@@ -494,8 +494,8 @@ export default function Index() {
             <div className="space-y-4">
               <h3 className="font-display text-2xl text-white mb-6">Как нас найти</h3>
               {[
-                { icon: "MapPin", title: "Адрес", text: "ул. Тверская, 15, Москва\nМ. Тверская, 2 мин пешком" },
-                { icon: "Phone", title: "Телефон", text: "+7 (495) 123-45-67\nЕжедневно 8:00–23:00" },
+                { icon: "MapPin", title: "Адрес", text: "г. Артём, мкр. Глобус 2, дом 1А" },
+                { icon: "Phone", title: "Телефон", text: "+7 908 980-35-45" },
                 { icon: "Mail", title: "Email", text: "hello@auraspa.ru\nОтвечаем в течение часа" },
                 { icon: "Clock", title: "Время работы", text: "Пн–Вс: 8:00–23:00\nБез выходных" },
               ].map(item => (
