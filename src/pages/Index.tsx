@@ -4,7 +4,7 @@ import Icon from "@/components/ui/icon";
 const HERO_IMAGE =
   "https://cdn.poehali.dev/projects/96829bf9-8ea6-42db-bc21-6a2d363e218e/files/000b3239-ae8e-4c05-9c8f-1203a2f22d2c.jpg";
 const POOL_IMAGE =
-  "https://cdn.poehali.dev/projects/96829bf9-8ea6-42db-bc21-6a2d363e218e/bucket/8b9da17d-8745-4a43-b98a-df9607bc6a70.jpg";
+  "https://cdn.poehali.dev/projects/96829bf9-8ea6-42db-bc21-6a2d363e218e/bucket/398dec83-3f2a-46f8-ad83-4668bb037d5a.jpg";
 const SAUNA_IMAGE =
   "https://cdn.poehali.dev/projects/96829bf9-8ea6-42db-bc21-6a2d363e218e/bucket/b26557f3-6845-4507-9ead-5707dc258983.jpg";
 const MASSAGE_IMAGE =
