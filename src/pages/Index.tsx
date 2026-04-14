@@ -3,10 +3,12 @@ import Icon from "@/components/ui/icon";
 
 const HERO_IMAGE =
   "https://cdn.poehali.dev/projects/96829bf9-8ea6-42db-bc21-6a2d363e218e/bucket/9960946a-759c-4a96-9a8e-a9e7ce408b19.jpg";
+const POOL_IMAGE =
+  "https://cdn.poehali.dev/projects/96829bf9-8ea6-42db-bc21-6a2d363e218e/bucket/8b9da17d-8745-4a43-b98a-df9607bc6a70.jpg";
+const SAUNA_IMAGE =
+  "https://cdn.poehali.dev/projects/96829bf9-8ea6-42db-bc21-6a2d363e218e/bucket/7785aa67-02cc-4242-8f7d-273145597e70.jpg";
 const MASSAGE_IMAGE =
   "https://cdn.poehali.dev/projects/96829bf9-8ea6-42db-bc21-6a2d363e218e/files/44677bce-753e-4be3-8f94-4980cd2cde7b.jpg";
-const SAUNA_IMAGE =
-  "https://cdn.poehali.dev/projects/96829bf9-8ea6-42db-bc21-6a2d363e218e/files/6179931e-a6e4-4205-b02d-f9566560def4.jpg";
 
 const NAV_ITEMS = [
   { label: "Главная", href: "#hero" },
@@ -25,12 +27,12 @@ const MARQUEE_ITEMS = [
 ];
 
 const SPACES = [
-  { icon: "Waves", title: "Бассейн", desc: "Термальный бассейн 34°C с подсветкой и гидромассажными форсунками. Полное расслабление в тёплой воде.", tag: "Вода", img: HERO_IMAGE },
+  { icon: "Waves", title: "Бассейн", desc: "Термальный бассейн 34°C с подсветкой и гидромассажными форсунками. Полное расслабление в тёплой воде.", tag: "Вода", img: POOL_IMAGE },
   { icon: "Flame", title: "Финская сауна", desc: "Классическая сауна из кедра до 90°C с берёзовыми вениками и натуральными ароматами.", tag: "Жар", img: SAUNA_IMAGE },
-  { icon: "Wind", title: "Пространство пара", desc: "Турецкая баня с мраморным камнем и традиционным пенным массажем в облаках горячего пара.", tag: "Пар", img: MASSAGE_IMAGE },
+  { icon: "Wind", title: "Пространство пара", desc: "Турецкая баня с мраморным камнем и традиционным пенным массажем в облаках горячего пара.", tag: "Пар", img: HERO_IMAGE },
   { icon: "Leaf", title: "Массажный зал", desc: "10 кабинетов для всех видов массажа — от тайского до стоун-терапии и горячих обёртываний.", tag: "Тело", img: MASSAGE_IMAGE },
   { icon: "Trees", title: "Можжевеловая комната", desc: "Ароматная комната с можжевеловыми досками и эфирными маслами — природное восстановление дыхания.", tag: "Природа", img: SAUNA_IMAGE },
-  { icon: "Sparkles", title: "Beauty-зона", desc: "Косметические процедуры, обёртывания и уходовые ритуалы для кожи с профессиональной косметикой.", tag: "Красота", img: HERO_IMAGE },
+  { icon: "Sparkles", title: "Beauty-зона", desc: "Косметические процедуры, обёртывания и уходовые ритуалы для кожи с профессиональной косметикой.", tag: "Красота", img: POOL_IMAGE },
 ];
 
 const PROGRAMS = [
@@ -63,10 +65,10 @@ const PROGRAMS = [
 const GALLERY_CATS = ["Все", "Бассейн", "Сауны", "Массаж", "Отдых", "Природа"];
 
 const GALLERY_ITEMS = [
-  { img: HERO_IMAGE, title: "Термальный бассейн", cat: "Бассейн" },
+  { img: POOL_IMAGE, title: "Термальный бассейн", cat: "Бассейн" },
   { img: SAUNA_IMAGE, title: "Финская сауна", cat: "Сауны" },
   { img: MASSAGE_IMAGE, title: "Массажный ритуал", cat: "Массаж" },
-  { img: HERO_IMAGE, title: "Зона релакса", cat: "Отдых" },
+  { img: HERO_IMAGE, title: "Хаммам", cat: "Сауны" },
   { img: SAUNA_IMAGE, title: "Хамам", cat: "Сауны" },
   { img: SAUNA_IMAGE, title: "Можжевеловая комната", cat: "Природа" },
 ];
