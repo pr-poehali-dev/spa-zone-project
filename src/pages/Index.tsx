@@ -37,12 +37,13 @@ const SPACES = [
 
 const PROGRAMS = [
   {
-    title: "День восстановления",
+    title: "Перезагрузка",
     subtitle: "Идеально для первого визита",
     duration: "6 часов",
     price: "от 4 900 ₽",
     features: ["Бассейн и все сауны", "Ароматический массаж 60 мин", "Фито-чай и фрукты", "Халат и тапочки"],
     popular: false,
+    img: "https://cdn.poehali.dev/projects/96829bf9-8ea6-42db-bc21-6a2d363e218e/bucket/8a2a46a9-6510-4c09-a1dc-dc0a22cc987b.jpg",
   },
   {
     title: "Ритуал обновления",
@@ -51,6 +52,7 @@ const PROGRAMS = [
     price: "от 8 500 ₽",
     features: ["Все зоны без ограничений", "Пространство пара 90 мин", "Можжевеловая комната 60 мин", "Ужин в ресторане"],
     popular: true,
+    img: SAUNA_IMAGE,
   },
   {
     title: "Weekend Escape",
@@ -59,6 +61,7 @@ const PROGRAMS = [
     price: "от 18 900 ₽",
     features: ["Размещение в номере-люкс", "3 процедуры на выбор", "Завтрак и ужин", "Персональный консьерж"],
     popular: false,
+    img: POOL_IMAGE,
   },
 ];
 
@@ -391,7 +394,7 @@ export default function Index() {
             {PROGRAMS.map((prog) => (
               <div
                 key={prog.title}
-                className="relative flex flex-col p-7 transition-all duration-300 hover:-translate-y-2"
+                className="relative flex flex-col transition-all duration-300 hover:-translate-y-2 overflow-hidden"
                 style={{
                   background: prog.popular ? "rgba(212,168,85,0.06)" : "rgba(26,20,16,0.6)",
                   border: prog.popular ? "1px solid rgba(212,168,85,0.5)" : "1px solid rgba(212,168,85,0.12)",
@@ -401,12 +404,17 @@ export default function Index() {
               >
                 {prog.popular && (
                   <div
-                    className="absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1 text-xs font-semibold tracking-wide"
+                    className="absolute top-4 right-4 z-10 px-4 py-1 text-xs font-semibold tracking-wide"
                     style={{ background: "linear-gradient(135deg,#D4A855,#F0C878)", color: "#0D0B0A", borderRadius: 50, whiteSpace: "nowrap" }}
                   >
                     Популярное
                   </div>
                 )}
+                <div className="relative overflow-hidden" style={{ height: 180 }}>
+                  <img src={prog.img} alt={prog.title} className="w-full h-full object-cover transition-transform duration-500 hover:scale-105" />
+                  <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(13,11,10,0.85) 0%, transparent 60%)" }} />
+                </div>
+                <div className="p-7 flex flex-col flex-1">
                 <div className="mb-5">
                   <h3 className="font-display font-light mb-1" style={{ fontSize: 26, color: "#EDE8DF" }}>{prog.title}</h3>
                   <p style={{ color: "#8B7355", fontSize: 13 }}>{prog.subtitle}</p>
@@ -429,6 +437,7 @@ export default function Index() {
                 >
                   Выбрать программу
                 </a>
+              </div>
               </div>
             ))}
           </div>
