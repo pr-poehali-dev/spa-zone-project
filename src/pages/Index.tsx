@@ -109,10 +109,10 @@ export default function Index() {
         <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
           <a href="#hero" className="flex items-center gap-2 group">
             <div className="w-8 h-8 rounded-full bg-gradient-to-br from-[#D4A855] to-[#B8943A] flex items-center justify-center">
-              <span className="text-[#0D0B0A] font-bold text-xs">A</span>
+              <span className="text-[#0D0B0A] font-bold text-xs">П</span>
             </div>
-            <span className="font-display text-xl text-[#D4A855] tracking-widest uppercase">AURA</span>
-            <span className="text-[#8B7355] text-xs tracking-[0.3em] uppercase mt-1">SPA</span>
+            <span className="font-display text-xl text-[#D4A855] tracking-widest uppercase">ПРОСТРАНСТВО</span>
+            <span className="text-[#8B7355] text-xs tracking-[0.3em] uppercase mt-1">ПАРА</span>
           </a>
 
           <div className="hidden lg:flex items-center gap-7">
@@ -151,7 +151,7 @@ export default function Index() {
       {/* HERO */}
       <div id="hero" className="relative h-screen min-h-[600px] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0">
-          <img src={HERO_IMAGE} alt="AURA SPA" className="w-full h-full object-cover" />
+          <img src={HERO_IMAGE} alt="Пространство Пара" className="w-full h-full object-cover" />
           <div className="absolute inset-0 bg-gradient-to-b from-[#0D0B0A]/70 via-[#0D0B0A]/40 to-[#0D0B0A]" />
           <div className="absolute inset-0 bg-gradient-to-r from-[#0D0B0A]/50 via-transparent to-[#0D0B0A]/30" />
         </div>
@@ -166,8 +166,8 @@ export default function Index() {
             <Icon name="Sparkles" size={12} />
             Премиальный СПА-центр
           </div>
-          <h1 className="font-display text-6xl md:text-8xl lg:text-9xl font-light leading-none mb-4 animate-fade-up text-white" style={{ animationDelay: '0.2s', opacity: 0, animationFillMode: 'forwards' }}>
-            AURA <span className="italic text-[#D4A855]">SPA</span>
+          <h1 className="font-display text-5xl md:text-7xl lg:text-8xl font-light leading-none mb-4 animate-fade-up text-white" style={{ animationDelay: '0.2s', opacity: 0, animationFillMode: 'forwards' }}>
+            ПРОСТРАНСТВО <span className="italic text-[#D4A855]">ПАРА</span>
           </h1>
           <p className="text-[#8B7355] text-lg md:text-xl font-light tracking-wide mb-3 animate-fade-up" style={{ animationDelay: '0.4s', opacity: 0, animationFillMode: 'forwards' }}>
             Пространство вашего восстановления
@@ -519,12 +519,12 @@ export default function Index() {
         <div className="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-2">
             <div className="w-7 h-7 rounded-full bg-gradient-to-br from-[#D4A855] to-[#B8943A] flex items-center justify-center">
-              <span className="text-[#0D0B0A] font-bold text-xs">A</span>
+              <span className="text-[#0D0B0A] font-bold text-xs">П</span>
             </div>
-            <span className="font-display text-lg text-[#D4A855] tracking-widest">AURA SPA</span>
+            <span className="font-display text-lg text-[#D4A855] tracking-widest">ПРОСТРАНСТВО ПАРА</span>
           </div>
           <div className="text-[#8B7355] text-xs text-center">
-            © 2026 AURA SPA. Все права защищены.
+            © 2026 Пространство Пара. Все права защищены.
           </div>
           <div className="flex gap-4">
             {["Instagram", "MessageCircle", "Send"].map(icon => (
