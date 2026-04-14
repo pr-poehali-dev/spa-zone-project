@@ -6,7 +6,7 @@ const HERO_IMAGE =
 const POOL_IMAGE =
   "https://cdn.poehali.dev/projects/96829bf9-8ea6-42db-bc21-6a2d363e218e/bucket/8b9da17d-8745-4a43-b98a-df9607bc6a70.jpg";
 const SAUNA_IMAGE =
-  "https://cdn.poehali.dev/projects/96829bf9-8ea6-42db-bc21-6a2d363e218e/bucket/7785aa67-02cc-4242-8f7d-273145597e70.jpg";
+  "https://cdn.poehali.dev/projects/96829bf9-8ea6-42db-bc21-6a2d363e218e/bucket/b26557f3-6845-4507-9ead-5707dc258983.jpg";
 const MASSAGE_IMAGE =
   "https://cdn.poehali.dev/projects/96829bf9-8ea6-42db-bc21-6a2d363e218e/files/44677bce-753e-4be3-8f94-4980cd2cde7b.jpg";
 
