@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import Icon from "@/components/ui/icon";
 
 const HERO_IMAGE =
-  "https://cdn.poehali.dev/projects/96829bf9-8ea6-42db-bc21-6a2d363e218e/files/b1f71b4a-b776-4b5e-9897-6d0804dffd53.jpg";
+  "https://cdn.poehali.dev/projects/96829bf9-8ea6-42db-bc21-6a2d363e218e/bucket/9960946a-759c-4a96-9a8e-a9e7ce408b19.jpg";
 const MASSAGE_IMAGE =
   "https://cdn.poehali.dev/projects/96829bf9-8ea6-42db-bc21-6a2d363e218e/files/44677bce-753e-4be3-8f94-4980cd2cde7b.jpg";
 const SAUNA_IMAGE =
