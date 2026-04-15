@@ -31,7 +31,7 @@ const SPACES = [
   { icon: "Flame", title: "Финская сауна", desc: "Классическая сауна из кедра до 90°C с берёзовыми вениками и натуральными ароматами.", tag: "Жар", img: SAUNA_IMAGE },
   { icon: "Wind", title: "Пространство пара", desc: "Турецкая баня с мраморным камнем и традиционным пенным массажем в облаках горячего пара.", tag: "Пар", img: HERO_IMAGE },
   { icon: "Leaf", title: "Массажный зал", desc: "10 кабинетов для всех видов массажа — от тайского до стоун-терапии и горячих обёртываний.", tag: "Тело", img: MASSAGE_IMAGE },
-  { icon: "Trees", title: "Можжевеловая комната", desc: "Ароматная комната с можжевеловыми досками и эфирными маслами — природное восстановление дыхания.", tag: "Природа", img: SAUNA_IMAGE },
+  { icon: "Trees", title: "Можжевеловая комната", desc: "Ароматная комната с можжевеловыми досками и эфирными маслами — природное восстановление дыхания.", tag: "Природа", img: SAUNA_IMAGE, imgs: ["https://cdn.poehali.dev/files/ca1bd218-a636-47d0-9274-451e54c2cd18.jpg", "https://cdn.poehali.dev/files/2eced06b-a37e-48f8-a7b3-3443680ee5e1.jpg"] },
   { icon: "Sparkles", title: "Beauty-зона", desc: "Косметические процедуры, обёртывания и уходовые ритуалы для кожи с профессиональной косметикой.", tag: "Красота", img: POOL_IMAGE },
 ];
 
@@ -118,6 +118,56 @@ function useInView(threshold = 0.1) {
     return () => obs.disconnect();
   }, [threshold]);
   return { ref, inView };
+}
+
+function SpaceCard({ space }: { space: { icon: string; title: string; desc: string; tag: string; img: string; imgs?: string[] } }) {
+  const images = space.imgs ?? [space.img];
+  const [idx, setIdx] = useState(0);
+  const prev = (e: React.MouseEvent) => { e.stopPropagation(); setIdx((i) => (i - 1 + images.length) % images.length); };
+  const next = (e: React.MouseEvent) => { e.stopPropagation(); setIdx((i) => (i + 1) % images.length); };
+  return (
+    <div className="card-dark hover-lift">
+      <div className="relative overflow-hidden" style={{ height: 200 }}>
+        {images.map((src, i) => (
+          <img
+            key={src}
+            src={src}
+            alt={space.title}
+            className="absolute inset-0 w-full h-full object-cover transition-opacity duration-500"
+            style={{ opacity: i === idx ? 1 : 0 }}
+          />
+        ))}
+        <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(13,11,10,0.7) 0%, transparent 60%)" }} />
+        <div className="absolute top-4 left-4">
+          <span className="glass-tag">{space.tag}</span>
+        </div>
+        {images.length > 1 && (
+          <>
+            <button onClick={prev} className="absolute left-2 top-1/2 -translate-y-1/2 w-7 h-7 rounded-full flex items-center justify-center" style={{ background: "rgba(13,11,10,0.6)", border: "1px solid rgba(212,168,85,0.3)" }}>
+              <Icon name="ChevronLeft" size={14} style={{ color: "#D4A855" }} />
+            </button>
+            <button onClick={next} className="absolute right-2 top-1/2 -translate-y-1/2 w-7 h-7 rounded-full flex items-center justify-center" style={{ background: "rgba(13,11,10,0.6)", border: "1px solid rgba(212,168,85,0.3)" }}>
+              <Icon name="ChevronRight" size={14} style={{ color: "#D4A855" }} />
+            </button>
+            <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1.5">
+              {images.map((_, i) => (
+                <button key={i} onClick={(e) => { e.stopPropagation(); setIdx(i); }} className="rounded-full transition-all duration-300" style={{ width: i === idx ? 16 : 6, height: 6, background: i === idx ? "#D4A855" : "rgba(255,255,255,0.4)" }} />
+              ))}
+            </div>
+          </>
+        )}
+      </div>
+      <div className="p-6">
+        <div className="flex items-center gap-3 mb-3">
+          <div className="w-8 h-8 rounded-lg flex items-center justify-center" style={{ background: "rgba(212,168,85,0.12)" }}>
+            <Icon name={space.icon} size={15} style={{ color: "#D4A855" }} />
+          </div>
+          <h3 className="font-display font-medium" style={{ fontSize: 20, color: "#EDE8DF" }}>{space.title}</h3>
+        </div>
+        <p style={{ color: "#8B7355", fontSize: 14, lineHeight: 1.7 }}>{space.desc}</p>
+      </div>
+    </div>
+  );
 }
 
 function FadeSection({ children, className = "", id = "" }: { children: React.ReactNode; className?: string; id?: string }) {
@@ -358,24 +408,7 @@ export default function Index() {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
             {SPACES.map((space) => (
-              <div key={space.title} className="card-dark hover-lift">
-                <div className="relative overflow-hidden" style={{ height: 200 }}>
-                  <img src={space.img} alt={space.title} className="w-full h-full object-cover transition-transform duration-500 hover:scale-110" />
-                  <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(13,11,10,0.7) 0%, transparent 60%)" }} />
-                  <div className="absolute top-4 left-4">
-                    <span className="glass-tag">{space.tag}</span>
-                  </div>
-                </div>
-                <div className="p-6">
-                  <div className="flex items-center gap-3 mb-3">
-                    <div className="w-8 h-8 rounded-lg flex items-center justify-center" style={{ background: "rgba(212,168,85,0.12)" }}>
-                      <Icon name={space.icon} size={15} style={{ color: "#D4A855" }} />
-                    </div>
-                    <h3 className="font-display font-medium" style={{ fontSize: 20, color: "#EDE8DF" }}>{space.title}</h3>
-                  </div>
-                  <p style={{ color: "#8B7355", fontSize: 14, lineHeight: 1.7 }}>{space.desc}</p>
-                </div>
-              </div>
+              <SpaceCard key={space.title} space={space} />
             ))}
           </div>
         </div>
