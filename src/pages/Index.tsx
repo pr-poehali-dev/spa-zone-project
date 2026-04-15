@@ -192,6 +192,7 @@ export default function Index() {
   const [galleryCat, setGalleryCat] = useState("Все");
   const [lightbox, setLightbox] = useState<{ img: string; title: string } | null>(null);
   const [formData, setFormData] = useState({ name: "", phone: "", comment: "" });
+  const [formStatus, setFormStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [parallaxY, setParallaxY] = useState(0);
 
   useEffect(() => {
@@ -706,8 +707,29 @@ export default function Index() {
           <div className="grid md:grid-cols-2 gap-12">
             {/* Form */}
             <div>
-              <h3 className="font-display font-light mb-6" style={{ fontSize: 28, color: "#EDE8DF" }}>Записаться на визит</h3>
-              <form className="space-y-3" onSubmit={(e) => e.preventDefault()}>
+              <h3 className="font-display font-light mb-4" style={{ fontSize: 28, color: "#EDE8DF" }}>Записаться на визит</h3>
+              <p className="text-sm mb-6" style={{ color: "#B8A98A", lineHeight: 1.6 }}>
+                Оставьте ваши контактные данные, наш администратор свяжется с вами и ответит на ваши вопросы с 10:00 до 22:00
+              </p>
+              <form className="space-y-3" onSubmit={async (e) => {
+                e.preventDefault();
+                setFormStatus("loading");
+                try {
+                  const res = await fetch("https://functions.poehali.dev/ce5987a8-a696-47ec-be09-3afce56f755b", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(formData),
+                  });
+                  if (res.ok) {
+                    setFormStatus("success");
+                    setFormData({ name: "", phone: "", comment: "" });
+                  } else {
+                    setFormStatus("error");
+                  }
+                } catch {
+                  setFormStatus("error");
+                }
+              }}>
                 {[
                   { key: "name", type: "text", placeholder: "Ваше имя" },
                   { key: "phone", type: "tel", placeholder: "Номер телефона" },
@@ -746,9 +768,23 @@ export default function Index() {
                   onFocus={(e) => (e.target.style.borderColor = "rgba(212,168,85,0.5)")}
                   onBlur={(e) => (e.target.style.borderColor = "rgba(212,168,85,0.15)")}
                 />
-                <button type="submit" className="w-full btn-gold text-center">
-                  Отправить заявку
+                <button
+                  type="submit"
+                  className="w-full btn-gold text-center"
+                  disabled={formStatus === "loading"}
+                >
+                  {formStatus === "loading" ? "Отправка..." : "Отправить заявку"}
                 </button>
+                {formStatus === "success" && (
+                  <p className="text-sm text-center mt-3" style={{ color: "#D4A855" }}>
+                    Заявка отправлена! Мы свяжемся с вами с 10:00 до 22:00.
+                  </p>
+                )}
+                {formStatus === "error" && (
+                  <p className="text-sm text-center mt-3" style={{ color: "#e88" }}>
+                    Не удалось отправить. Позвоните нам напрямую.
+                  </p>
+                )}
               </form>
             </div>
 
@@ -759,7 +795,7 @@ export default function Index() {
                 {[
                   { icon: "MapPin", title: "Адрес", text: "г. Артём, мкр. Глобус 2, дом 1А" },
                   { icon: "Phone", title: "Телефон", text: "+7 908 980-35-45" },
-                  { icon: "Mail", title: "Email", text: "hello@auraspa.ru\nОтвечаем в течение часа" },
+                  { icon: "Mail", title: "Email", text: "fitnslim.par@mail.ru\nОтвечаем с 10:00 до 22:00" },
                   { icon: "Clock", title: "Время работы", text: "Пн–Вс: 8:00–23:00\nБез выходных" },
                 ].map((item) => (
                   <div
