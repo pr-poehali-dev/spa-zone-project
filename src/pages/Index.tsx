@@ -52,7 +52,7 @@ const PROGRAMS = [
     price: "от 8 500 ₽",
     features: ["Все зоны без ограничений", "Пространство пара 90 мин", "Можжевеловая комната 60 мин", "Ужин в ресторане"],
     popular: true,
-    img: SAUNA_IMAGE,
+    img: "https://cdn.poehali.dev/files/66df40a0-2180-4282-87dd-1d0b6417d29c.jpg",
   },
   {
     title: "Weekend Escape",
