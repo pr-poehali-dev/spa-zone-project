@@ -72,7 +72,7 @@ const GALLERY_ITEMS = [
   { img: SAUNA_IMAGE, title: "Финская сауна", cat: "Сауны" },
   { img: MASSAGE_IMAGE, title: "Массажный ритуал", cat: "Массаж" },
   { img: HERO_IMAGE, title: "Хаммам", cat: "Сауны" },
-  { img: SAUNA_IMAGE, title: "Хамам", cat: "Сауны" },
+  { img: SAUNA_IMAGE, title: "Хаммам", cat: "Сауны" },
   { img: SAUNA_IMAGE, title: "Можжевеловая комната", cat: "Природа" },
 ];
 
