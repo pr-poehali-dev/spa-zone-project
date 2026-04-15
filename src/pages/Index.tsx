@@ -421,6 +421,7 @@ export default function Index() {
             <div className="section-tag">Выберите своё</div>
             <h2 className="font-display font-light mt-2" style={{ fontSize: "clamp(40px, 5vw, 60px)", color: "#EDE8DF" }}>Программы</h2>
             <div className="gold-divider" />
+            <p className="mt-4 max-w-xl" style={{ color: "#8B7355", fontSize: 16, lineHeight: 1.8 }}>Каждая программа — это путешествие со своей историей, запахом и состоянием, которое ты унесёшь с собой.</p>
           </div>
 
           <div className="grid md:grid-cols-3 gap-6">
