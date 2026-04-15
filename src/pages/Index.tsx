@@ -352,7 +352,7 @@ export default function Index() {
               style={{ animation: "fadeUp 0.8s 0.6s ease forwards", opacity: 0 }}
             >
               <a href="#contacts" className="btn-gold">Забронировать визит</a>
-              <a href="#programs" className="btn-outline-gold">Наши программы</a>
+              <a href="#contacts" className="btn-outline-gold">Жду звонка</a>
             </div>
           </div>
         </div>
@@ -796,7 +796,7 @@ export default function Index() {
                   { icon: "MapPin", title: "Адрес", text: "г. Артём, мкр. Глобус 2, дом 1А" },
                   { icon: "Phone", title: "Телефон", text: "+7 908 980-35-45" },
                   { icon: "Mail", title: "Email", text: "fitnslim.par@mail.ru\nОтвечаем с 10:00 до 22:00" },
-                  { icon: "Clock", title: "Время работы", text: "Пн–Вс: 8:00–23:00\nБез выходных" },
+                  { icon: "Clock", title: "Время работы", text: "Пн–Вс: 10:00–22:00\nБез выходных" },
                 ].map((item) => (
                   <div
                     key={item.title}
