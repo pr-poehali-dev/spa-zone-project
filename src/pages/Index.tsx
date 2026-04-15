@@ -8,7 +8,7 @@ const POOL_IMAGE =
 const SAUNA_IMAGE =
   "https://cdn.poehali.dev/projects/96829bf9-8ea6-42db-bc21-6a2d363e218e/bucket/b26557f3-6845-4507-9ead-5707dc258983.jpg";
 const MASSAGE_IMAGE =
-  "https://cdn.poehali.dev/projects/96829bf9-8ea6-42db-bc21-6a2d363e218e/files/44677bce-753e-4be3-8f94-4980cd2cde7b.jpg";
+  "https://cdn.poehali.dev/files/546728b2-54c4-4bd3-8489-0759f916742c.jpg";
 
 const NAV_ITEMS = [
   { label: "Главная", href: "#hero" },
@@ -30,7 +30,7 @@ const SPACES = [
   { icon: "Waves", title: "Бассейн", desc: "Термальный бассейн — температура воды под ваш запрос от 36°C и выше. Полное расслабление в тёплой воде.", tag: "Вода", img: POOL_IMAGE },
   { icon: "Flame", title: "Финская сауна", desc: "Классическая финская сауна до 90°C с берёзовыми вениками и натуральными ароматами. После — чан на свежем воздухе на нашей террасе.", tag: "Жар", img: SAUNA_IMAGE },
   { icon: "Wind", title: "Пространство пара", desc: "Турецкая баня с мраморным камнем и традиционным пенным массажем в облаках горячего пара.", tag: "Пар", img: HERO_IMAGE },
-  { icon: "Leaf", title: "Массажный зал", desc: "10 кабинетов для всех видов массажа — от тайского до стоун-терапии и горячих обёртываний.", tag: "Тело", img: MASSAGE_IMAGE },
+  { icon: "Leaf", title: "Массажный зал", desc: "10 кабинетов для всех видов массажа — от тайского до стоун-терапии и горячих обёртываний.", tag: "Тело", img: MASSAGE_IMAGE, imgs: ["https://cdn.poehali.dev/files/546728b2-54c4-4bd3-8489-0759f916742c.jpg", "https://cdn.poehali.dev/files/1f142cc2-f16d-4c72-a8a2-52ecb84d4849.jpg", "https://cdn.poehali.dev/files/1174c867-0a1f-4ab0-8dc4-f00abe9b028c.jpg"] },
   { icon: "Trees", title: "🌿 Арома-комната", desc: "Можжевеловая комната — приглушённый свет и звуки природы только для вас. Лёжа на сенном матрасе, вдыхая ароматы трав и хвои, вы почувствуете, как тело само отпускает всё лишнее. Стены из можжевеловых спилов наполняют воздух живой смолой — природным антисептиком, который очищает дыхание и успокаивает нервную систему. Над головой — звёздное небо, вокруг — тишина, которую не нужно заслуживать.", tag: "Можжевеловая комната", img: SAUNA_IMAGE, imgs: ["https://cdn.poehali.dev/files/ca1bd218-a636-47d0-9274-451e54c2cd18.jpg", "https://cdn.poehali.dev/files/2eced06b-a37e-48f8-a7b3-3443680ee5e1.jpg"] },
   { icon: "Sparkles", title: "СПА — Косметика, которая работает глубже, чем вы думаете", desc: "Используем космецевтику Комфорт Зон и Талассо Бретань — морские водоросли и минералы Атлантики насыщают кожу йодом, магнием и цинком. В сочетании с теплом хаммама активные вещества проникают в 3–4 раза глубже. Результат уже после первой процедуры: кожа мягкая, упругая — как после моря.", tag: "Красота", img: "https://cdn.poehali.dev/projects/96829bf9-8ea6-42db-bc21-6a2d363e218e/bucket/21f81724-a20a-4ce9-a0d4-d093b4801c05.jpg", imgs: ["https://cdn.poehali.dev/projects/96829bf9-8ea6-42db-bc21-6a2d363e218e/bucket/21f81724-a20a-4ce9-a0d4-d093b4801c05.jpg", "https://cdn.poehali.dev/projects/96829bf9-8ea6-42db-bc21-6a2d363e218e/bucket/6284b1da-37e5-49a7-884b-955656d70c38.jpg", "https://cdn.poehali.dev/files/7b99a33b-4d26-4682-9186-109c55f0f264.jpg"] },
 ];
@@ -70,7 +70,9 @@ const GALLERY_CATS = ["Все", "Бассейн", "Сауны", "Массаж", 
 const GALLERY_ITEMS = [
   { img: POOL_IMAGE, title: "Термальный бассейн", cat: "Бассейн" },
   { img: SAUNA_IMAGE, title: "Финская сауна", cat: "Сауны" },
-  { img: MASSAGE_IMAGE, title: "Массажный ритуал", cat: "Массаж" },
+  { img: MASSAGE_IMAGE, title: "Массажный зал", cat: "Массаж" },
+  { img: "https://cdn.poehali.dev/files/1f142cc2-f16d-4c72-a8a2-52ecb84d4849.jpg", title: "Атмосфера покоя", cat: "Массаж" },
+  { img: "https://cdn.poehali.dev/files/1174c867-0a1f-4ab0-8dc4-f00abe9b028c.jpg", title: "Свечи и уют", cat: "Массаж" },
   { img: HERO_IMAGE, title: "Хаммам", cat: "Сауны" },
   { img: SAUNA_IMAGE, title: "Хаммам", cat: "Сауны" },
   { img: SAUNA_IMAGE, title: "Можжевеловая комната", cat: "Природа" },
