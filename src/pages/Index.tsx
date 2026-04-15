@@ -335,7 +335,7 @@ export default function Index() {
             <p
               style={{ color: "#8B7355", fontSize: 17, fontWeight: 300, maxWidth: 420, lineHeight: 1.7, marginBottom: 10, animation: "fadeUp 0.8s 0.35s ease forwards", opacity: 0 }}
             >
-              Бассейн · Сауны · Хамам · Массаж · Ароматерапия
+              Бассейн · Сауна · Хаммам · Массаж · Ароматерапия
             </p>
             <p
               style={{ color: "rgba(237,232,223,0.65)", fontSize: 15, fontWeight: 300, maxWidth: 380, lineHeight: 1.75, marginBottom: 36, animation: "fadeUp 0.8s 0.45s ease forwards", opacity: 0 }}
