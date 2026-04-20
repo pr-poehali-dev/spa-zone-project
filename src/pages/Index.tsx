@@ -302,9 +302,41 @@ export default function Index() {
           <div className="absolute inset-0" style={{ background: "linear-gradient(to bottom, transparent 50%, rgba(13,11,10,0.7) 100%)" }} />
         </div>
 
-        {/* Floating blobs */}
-        <div className="absolute" style={{ top: "25%", left: "25%", width: 380, height: 380, borderRadius: "50%", background: "rgba(212,168,85,0.04)", filter: "blur(80px)", animation: "float 5s ease-in-out infinite" }} />
-        <div className="absolute" style={{ bottom: "30%", right: "20%", width: 260, height: 260, borderRadius: "50%", background: "rgba(78,205,196,0.04)", filter: "blur(80px)", animation: "float 7s ease-in-out infinite reverse" }} />
+        {/* Steam effect */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          {/* Ambient glow — горячая вода */}
+          <div style={{ position: "absolute", bottom: "0%", left: "30%", width: 600, height: 300, borderRadius: "50%", background: "radial-gradient(ellipse, rgba(78,205,196,0.07) 0%, transparent 70%)", filter: "blur(40px)" }} />
+          <div style={{ position: "absolute", bottom: "5%", right: "15%", width: 400, height: 200, borderRadius: "50%", background: "radial-gradient(ellipse, rgba(212,168,85,0.05) 0%, transparent 70%)", filter: "blur(30px)" }} />
+
+          {/* Струи пара — снизу вверх */}
+          {[
+            { left: "32%", bottom: "8%",  w: 90,  h: 140, anim: "steamRise 5.5s 0s ease-in-out infinite",   opacity: 0.55, bg: "rgba(220,230,235,0.55)" },
+            { left: "38%", bottom: "5%",  w: 70,  h: 120, anim: "steamRise2 6.5s 1.2s ease-in-out infinite", opacity: 0.45, bg: "rgba(200,220,225,0.45)" },
+            { left: "44%", bottom: "10%", w: 110, h: 160, anim: "steamRise 7s 0.6s ease-in-out infinite",    opacity: 0.6,  bg: "rgba(230,235,240,0.6)"  },
+            { left: "50%", bottom: "4%",  w: 80,  h: 130, anim: "steamRise3 5s 2s ease-in-out infinite",     opacity: 0.4,  bg: "rgba(210,225,230,0.4)"  },
+            { left: "56%", bottom: "9%",  w: 95,  h: 150, anim: "steamRise2 8s 0.3s ease-in-out infinite",   opacity: 0.5,  bg: "rgba(220,232,238,0.5)"  },
+            { left: "62%", bottom: "6%",  w: 75,  h: 125, anim: "steamRise 6s 1.8s ease-in-out infinite",    opacity: 0.45, bg: "rgba(215,228,235,0.45)" },
+            { left: "68%", bottom: "12%", w: 100, h: 145, anim: "steamRise3 7.5s 0.9s ease-in-out infinite", opacity: 0.55, bg: "rgba(225,235,240,0.55)" },
+            { left: "26%", bottom: "3%",  w: 65,  h: 110, anim: "steamRise2 5s 3s ease-in-out infinite",     opacity: 0.35, bg: "rgba(210,220,228,0.35)" },
+            { left: "74%", bottom: "7%",  w: 85,  h: 135, anim: "steamRise 9s 1.5s ease-in-out infinite",    opacity: 0.4,  bg: "rgba(220,230,236,0.4)"  },
+          ].map((s, i) => (
+            <div
+              key={i}
+              className="steam-particle"
+              style={{
+                left: s.left, bottom: s.bottom,
+                width: s.w, height: s.h,
+                background: `radial-gradient(ellipse at 50% 80%, ${s.bg}, transparent 70%)`,
+                animation: s.anim,
+                opacity: 0,
+              }}
+            />
+          ))}
+
+          {/* Широкий туман у основания */}
+          <div style={{ position: "absolute", bottom: 0, left: "20%", width: "65%", height: 120, background: "linear-gradient(to top, rgba(180,210,220,0.12) 0%, transparent 100%)", filter: "blur(18px)", animation: "steamDrift 9s ease-in-out infinite" }} />
+          <div style={{ position: "absolute", bottom: 0, left: "25%", width: "55%", height: 80,  background: "linear-gradient(to top, rgba(200,220,230,0.08) 0%, transparent 100%)", filter: "blur(12px)", animation: "steamDrift 12s ease-in-out infinite reverse" }} />
+        </div>
 
         <div className="relative z-10 max-w-7xl mx-auto px-6 w-full">
           <div className="max-w-2xl">

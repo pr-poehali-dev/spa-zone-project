@@ -272,6 +272,71 @@
   }
 }
 
+@keyframes steamRise {
+  0% {
+    transform: translateY(0) translateX(0) scaleX(1);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  60% {
+    opacity: 0.35;
+  }
+  100% {
+    transform: translateY(-160px) translateX(20px) scaleX(1.6);
+    opacity: 0;
+  }
+}
+@keyframes steamRise2 {
+  0% {
+    transform: translateY(0) translateX(0) scaleX(1);
+    opacity: 0;
+  }
+  12% {
+    opacity: 0.8;
+  }
+  55% {
+    opacity: 0.2;
+  }
+  100% {
+    transform: translateY(-200px) translateX(-30px) scaleX(2);
+    opacity: 0;
+  }
+}
+@keyframes steamRise3 {
+  0% {
+    transform: translateY(0) translateX(0) scaleX(1);
+    opacity: 0;
+  }
+  8% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 0.15;
+  }
+  100% {
+    transform: translateY(-180px) translateX(10px) scaleX(1.8);
+    opacity: 0;
+  }
+}
+@keyframes steamDrift {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(18px);
+  }
+}
+
+.steam-particle {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(22px);
+  pointer-events: none;
+}
+
 @keyframes fadeUp {
   from {
     opacity: 0;
