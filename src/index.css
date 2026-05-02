@@ -6,45 +6,46 @@
 
 @layer base {
   :root {
-    --background: 30 15% 5%;
-    --foreground: 38 30% 90%;
+    --background: 24 22% 5%;
+    --foreground: 36 40% 92%;
 
-    --card: 28 18% 8%;
-    --card-foreground: 38 30% 90%;
+    --card: 26 24% 8%;
+    --card-foreground: 36 40% 92%;
 
-    --popover: 28 18% 8%;
-    --popover-foreground: 38 30% 90%;
+    --popover: 26 24% 8%;
+    --popover-foreground: 36 40% 92%;
 
-    --primary: 40 60% 60%;
-    --primary-foreground: 28 18% 8%;
+    --primary: 32 50% 61%;
+    --primary-foreground: 26 24% 6%;
 
-    --secondary: 28 18% 12%;
-    --secondary-foreground: 38 30% 90%;
+    --secondary: 26 24% 11%;
+    --secondary-foreground: 36 40% 92%;
 
-    --muted: 28 15% 14%;
-    --muted-foreground: 35 15% 50%;
+    --muted: 26 20% 13%;
+    --muted-foreground: 30 22% 52%;
 
-    --accent: 40 60% 60%;
-    --accent-foreground: 28 18% 8%;
+    --accent: 32 50% 61%;
+    --accent-foreground: 26 24% 6%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 35 15% 18%;
-    --input: 35 15% 18%;
-    --ring: 40 60% 60%;
+    --border: 30 18% 17%;
+    --input: 30 18% 17%;
+    --ring: 32 50% 61%;
 
     --radius: 0.5rem;
 
-    --spa-gold: #d4a855;
-    --spa-gold-light: #f0c878;
-    --spa-gold-dark: #b8943a;
-    --spa-bg: #0d0b0a;
-    --spa-bg2: #1a1410;
-    --spa-bg3: #0f0d0b;
-    --spa-text: #ede8df;
-    --spa-text-muted: #8b7355;
-    --spa-teal: #4ecdc4;
+    --spa-gold: #c9a26e;
+    --spa-gold-light: #e8c08a;
+    --spa-gold-dark: #a8813f;
+    --spa-bg: #100c09;
+    --spa-bg2: #1c1410;
+    --spa-bg3: #130f0c;
+    --spa-text: #f0e8da;
+    --spa-text-muted: #9c8264;
+    --spa-amber: #d4874a;
+    --spa-ember: #8b3a1a;
   }
 }
 
@@ -100,8 +101,8 @@
   }
 
   .btn-gold {
-    background: linear-gradient(135deg, var(--spa-gold), var(--spa-gold-dark));
-    color: var(--spa-bg);
+    background: linear-gradient(135deg, var(--spa-gold), var(--spa-amber));
+    color: #0e0a07;
     padding: 14px 36px;
     border-radius: 50px;
     font-family: "Golos Text", sans-serif;
@@ -113,15 +114,15 @@
       transform 0.3s ease,
       box-shadow 0.3s ease;
     display: inline-block;
-    box-shadow: 0 0 30px rgba(212, 168, 85, 0.3);
+    box-shadow: 0 4px 28px rgba(201, 162, 110, 0.35);
   }
   .btn-gold:hover {
     transform: scale(1.04);
-    box-shadow: 0 0 40px rgba(212, 168, 85, 0.5);
+    box-shadow: 0 6px 40px rgba(212, 135, 74, 0.5);
   }
 
   .btn-outline-gold {
-    border: 1px solid rgba(212, 168, 85, 0.4);
+    border: 1px solid rgba(201, 162, 110, 0.45);
     color: var(--spa-gold);
     padding: 13px 36px;
     border-radius: 50px;
@@ -135,8 +136,8 @@
     background: transparent;
   }
   .btn-outline-gold:hover {
-    background: rgba(212, 168, 85, 0.1);
-    border-color: rgba(212, 168, 85, 0.7);
+    background: rgba(201, 162, 110, 0.1);
+    border-color: rgba(201, 162, 110, 0.75);
   }
 
   .section-tag {
@@ -149,32 +150,44 @@
   }
 
   .gold-divider {
-    width: 50px;
+    width: 60px;
     height: 1px;
-    background: linear-gradient(to right, var(--spa-gold), transparent);
+    background: linear-gradient(
+      to right,
+      var(--spa-amber),
+      var(--spa-gold),
+      transparent
+    );
     margin: 16px 0;
   }
 
   .gold-divider-center {
-    width: 50px;
+    width: 60px;
     height: 1px;
-    background: var(--spa-gold);
+    background: linear-gradient(
+      to right,
+      transparent,
+      var(--spa-gold),
+      transparent
+    );
     margin: 16px auto;
   }
 
   .card-dark {
-    background: rgba(26, 20, 16, 0.7);
-    border: 1px solid rgba(212, 168, 85, 0.12);
-    border-radius: 12px;
-    backdrop-filter: blur(12px);
+    background: rgba(28, 20, 14, 0.75);
+    border: 1px solid rgba(201, 162, 110, 0.13);
+    border-radius: 14px;
+    backdrop-filter: blur(14px);
     transition:
-      transform 0.3s ease,
-      box-shadow 0.3s ease;
+      transform 0.35s ease,
+      box-shadow 0.35s ease,
+      border-color 0.35s ease;
     overflow: hidden;
   }
   .card-dark:hover {
     transform: translateY(-6px);
-    box-shadow: 0 20px 60px rgba(212, 168, 85, 0.18);
+    box-shadow: 0 20px 60px rgba(212, 135, 74, 0.16);
+    border-color: rgba(201, 162, 110, 0.28);
   }
 
   .nav-link {
@@ -210,16 +223,16 @@
     display: inline-flex;
     align-items: center;
     padding: 4px 12px;
-    background: rgba(212, 168, 85, 0.15);
-    border: 1px solid rgba(212, 168, 85, 0.35);
+    background: rgba(201, 162, 110, 0.14);
+    border: 1px solid rgba(201, 162, 110, 0.38);
     border-radius: 50px;
     font-family: "Golos Text", sans-serif;
     font-size: 10px;
     font-weight: 500;
     letter-spacing: 0.15em;
     text-transform: uppercase;
-    color: var(--spa-gold);
-    backdrop-filter: blur(4px);
+    color: var(--spa-gold-light);
+    backdrop-filter: blur(6px);
   }
 
   .gallery-item {
@@ -257,12 +270,12 @@
 
   .hover-lift {
     transition:
-      transform 0.3s ease,
-      box-shadow 0.3s ease;
+      transform 0.35s ease,
+      box-shadow 0.35s ease;
   }
   .hover-lift:hover {
     transform: translateY(-5px);
-    box-shadow: 0 16px 50px rgba(212, 168, 85, 0.15);
+    box-shadow: 0 16px 50px rgba(212, 135, 74, 0.18);
   }
 
   .marquee-track {

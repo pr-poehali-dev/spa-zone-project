@@ -23,7 +23,7 @@ const NAV_ITEMS = [
 
 const MARQUEE_ITEMS = [
   "Бассейн", "Финская сауна", "Хаммам", "Массаж", "Пространство пара",
-  "Можжевеловая комната", "Обёртывания", "Ароматерапия", "Стоун-терапия", "Beauty-ритуалы",
+  "Можжевеловая комната", "Обёртывания", "Ароматерапия", "Чан на свежем воздухе", "Стоун-терапия", "Beauty-ритуалы",
 ];
 
 const SPACES = [
@@ -140,21 +140,21 @@ function SpaceCard({ space }: { space: { icon: string; title: string; desc: stri
             style={{ opacity: i === idx ? 1 : 0 }}
           />
         ))}
-        <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(13,11,10,0.7) 0%, transparent 60%)" }} />
+        <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(16,12,9,0.72) 0%, transparent 60%)" }} />
         <div className="absolute top-4 left-4">
           <span className="glass-tag">{space.tag}</span>
         </div>
         {images.length > 1 && (
           <>
-            <button onClick={prev} className="absolute left-2 top-1/2 -translate-y-1/2 w-7 h-7 rounded-full flex items-center justify-center" style={{ background: "rgba(13,11,10,0.6)", border: "1px solid rgba(212,168,85,0.3)" }}>
-              <Icon name="ChevronLeft" size={14} style={{ color: "#D4A855" }} />
+            <button onClick={prev} className="absolute left-2 top-1/2 -translate-y-1/2 w-7 h-7 rounded-full flex items-center justify-center" style={{ background: "rgba(16,12,9,0.6)", border: "1px solid rgba(212,168,85,0.3)" }}>
+              <Icon name="ChevronLeft" size={14} style={{ color: "#c9a26e" }} />
             </button>
-            <button onClick={next} className="absolute right-2 top-1/2 -translate-y-1/2 w-7 h-7 rounded-full flex items-center justify-center" style={{ background: "rgba(13,11,10,0.6)", border: "1px solid rgba(212,168,85,0.3)" }}>
-              <Icon name="ChevronRight" size={14} style={{ color: "#D4A855" }} />
+            <button onClick={next} className="absolute right-2 top-1/2 -translate-y-1/2 w-7 h-7 rounded-full flex items-center justify-center" style={{ background: "rgba(16,12,9,0.6)", border: "1px solid rgba(212,168,85,0.3)" }}>
+              <Icon name="ChevronRight" size={14} style={{ color: "#c9a26e" }} />
             </button>
             <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1.5">
               {images.map((_, i) => (
-                <button key={i} onClick={(e) => { e.stopPropagation(); setIdx(i); }} className="rounded-full transition-all duration-300" style={{ width: i === idx ? 16 : 6, height: 6, background: i === idx ? "#D4A855" : "rgba(255,255,255,0.4)" }} />
+                <button key={i} onClick={(e) => { e.stopPropagation(); setIdx(i); }} className="rounded-full transition-all duration-300" style={{ width: i === idx ? 16 : 6, height: 6, background: i === idx ? "#c9a26e" : "rgba(255,255,255,0.4)" }} />
               ))}
             </div>
           </>
@@ -163,11 +163,11 @@ function SpaceCard({ space }: { space: { icon: string; title: string; desc: stri
       <div className="p-6">
         <div className="flex items-center gap-3 mb-3">
           <div className="w-8 h-8 rounded-lg flex items-center justify-center" style={{ background: "rgba(212,168,85,0.12)" }}>
-            <Icon name={space.icon} size={15} style={{ color: "#D4A855" }} />
+            <Icon name={space.icon} size={15} style={{ color: "#c9a26e" }} />
           </div>
-          <h3 className="font-display font-medium" style={{ fontSize: 20, color: "#EDE8DF" }}>{space.title}</h3>
+          <h3 className="font-display font-medium" style={{ fontSize: 20, color: "#f0e8da" }}>{space.title}</h3>
         </div>
-        <p style={{ color: "#8B7355", fontSize: 14, lineHeight: 1.7 }}>{space.desc}</p>
+        <p style={{ color: "#9c8264", fontSize: 14, lineHeight: 1.7 }}>{space.desc}</p>
       </div>
     </div>
   );
@@ -214,13 +214,13 @@ export default function Index() {
   const filtered = galleryCat === "Все" ? GALLERY_ITEMS : GALLERY_ITEMS.filter((i) => i.cat === galleryCat);
 
   return (
-    <div className="min-h-screen overflow-x-hidden" style={{ background: "#0D0B0A", color: "#EDE8DF", fontFamily: "'Golos Text', sans-serif" }}>
+    <div className="min-h-screen overflow-x-hidden" style={{ background: "#100c09", color: "#f0e8da", fontFamily: "'Golos Text', sans-serif" }}>
 
       {/* ── NAVIGATION ── */}
       <nav
         className="fixed top-0 left-0 right-0 z-50 transition-all duration-500"
         style={{
-          background: scrolled ? "rgba(13,11,10,0.96)" : "transparent",
+          background: scrolled ? "rgba(16,12,9,0.96)" : "transparent",
           backdropFilter: scrolled ? "blur(16px)" : "none",
           borderBottom: scrolled ? "1px solid rgba(212,168,85,0.1)" : "none",
           padding: scrolled ? "12px 0" : "22px 0",
@@ -229,14 +229,14 @@ export default function Index() {
         <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
           {/* Logo */}
           <a href="#hero" className="flex items-center gap-3">
-            <div className="w-9 h-9 rounded-full flex items-center justify-center" style={{ background: "linear-gradient(135deg, #D4A855, #B8943A)" }}>
-              <span style={{ color: "#0D0B0A", fontWeight: 700, fontSize: 11, letterSpacing: "0.05em" }}>ПП</span>
+            <div className="w-9 h-9 rounded-full flex items-center justify-center" style={{ background: "linear-gradient(135deg, #c9a26e, #a8813f)" }}>
+              <span style={{ color: "#0e0a07", fontWeight: 700, fontSize: 11, letterSpacing: "0.05em" }}>ПП</span>
             </div>
             <div className="flex flex-col leading-none gap-0.5">
-              <span style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 15, letterSpacing: "0.2em", textTransform: "uppercase", color: "#D4A855" }}>
+              <span style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 15, letterSpacing: "0.2em", textTransform: "uppercase", color: "#c9a26e" }}>
                 Пространство
               </span>
-              <span style={{ fontFamily: "'Golos Text', sans-serif", fontSize: 10, letterSpacing: "0.3em", textTransform: "uppercase", color: "#8B7355" }}>
+              <span style={{ fontFamily: "'Golos Text', sans-serif", fontSize: 10, letterSpacing: "0.3em", textTransform: "uppercase", color: "#9c8264" }}>
                 Пара
               </span>
             </div>
@@ -259,7 +259,7 @@ export default function Index() {
             <a href="#contacts" className="hidden lg:inline-block btn-gold">Записаться</a>
             <button
               className="lg:hidden"
-              style={{ color: "#EDE8DF" }}
+              style={{ color: "#f0e8da" }}
               onClick={() => setMenuOpen(!menuOpen)}
             >
               <Icon name={menuOpen ? "X" : "Menu"} size={22} />
@@ -271,14 +271,14 @@ export default function Index() {
         {menuOpen && (
           <div
             className="lg:hidden px-6 py-5 flex flex-col gap-3"
-            style={{ background: "rgba(13,11,10,0.98)", borderTop: "1px solid rgba(212,168,85,0.1)" }}
+            style={{ background: "rgba(16,12,9,0.98)", borderTop: "1px solid rgba(212,168,85,0.1)" }}
           >
             {NAV_ITEMS.map((item) => (
               <a
                 key={item.label}
                 href={item.href}
                 className="py-2 text-sm tracking-wide border-b"
-                style={{ color: "#8B7355", borderColor: "rgba(212,168,85,0.08)" }}
+                style={{ color: "#9c8264", borderColor: "rgba(212,168,85,0.08)" }}
                 onClick={() => setMenuOpen(false)}
               >
                 {item.label}
@@ -304,8 +304,9 @@ export default function Index() {
         </div>
 
         {/* Floating blobs */}
-        <div className="absolute" style={{ top: "25%", left: "25%", width: 380, height: 380, borderRadius: "50%", background: "rgba(212,168,85,0.04)", filter: "blur(80px)", animation: "float 5s ease-in-out infinite" }} />
-        <div className="absolute" style={{ bottom: "30%", right: "20%", width: 260, height: 260, borderRadius: "50%", background: "rgba(78,205,196,0.04)", filter: "blur(80px)", animation: "float 7s ease-in-out infinite reverse" }} />
+        <div className="absolute" style={{ top: "20%", left: "20%", width: 420, height: 420, borderRadius: "50%", background: "rgba(212,135,74,0.06)", filter: "blur(90px)", animation: "float 6s ease-in-out infinite" }} />
+        <div className="absolute" style={{ bottom: "25%", right: "15%", width: 300, height: 300, borderRadius: "50%", background: "rgba(201,162,110,0.05)", filter: "blur(80px)", animation: "float 8s ease-in-out infinite reverse" }} />
+        <div className="absolute" style={{ top: "55%", left: "55%", width: 200, height: 200, borderRadius: "50%", background: "rgba(139,58,26,0.04)", filter: "blur(60px)", animation: "float 10s ease-in-out infinite" }} />
 
         <div className="relative z-10 max-w-7xl mx-auto px-6 w-full">
           <div className="max-w-2xl">
@@ -314,14 +315,14 @@ export default function Index() {
               className="inline-flex items-center gap-2 mb-6"
               style={{
                 padding: "6px 18px",
-                border: "1px solid rgba(212,168,85,0.3)",
+                border: "1px solid rgba(201,162,110,0.3)",
                 borderRadius: 50,
-                background: "rgba(212,168,85,0.08)",
+                background: "rgba(201,162,110,0.08)",
                 animation: "fadeIn 0.6s ease forwards",
               }}
             >
-              <span style={{ width: 5, height: 5, borderRadius: "50%", background: "#D4A855", display: "inline-block" }} />
-              <span style={{ fontFamily: "'Golos Text', sans-serif", fontSize: 11, letterSpacing: "0.2em", textTransform: "uppercase", color: "#D4A855" }}>
+              <span style={{ width: 5, height: 5, borderRadius: "50%", background: "#c9a26e", display: "inline-block" }} />
+              <span style={{ fontFamily: "'Golos Text', sans-serif", fontSize: 11, letterSpacing: "0.2em", textTransform: "uppercase", color: "#c9a26e" }}>
                 СПА-центр · г. Артём
               </span>
             </div>
@@ -332,19 +333,19 @@ export default function Index() {
               style={{ fontSize: "clamp(56px, 8vw, 96px)", animation: "fadeUp 0.8s 0.2s ease forwards", opacity: 0 }}
             >
               Простран-<br />ство{" "}
-              <span className="italic" style={{ color: "#D4A855" }}>Пара</span>
+              <span className="italic" style={{ color: "#c9a26e" }}>Пара</span>
             </h1>
 
             {/* Sub */}
             <p
-              style={{ color: "#8B7355", fontSize: 17, fontWeight: 300, maxWidth: 420, lineHeight: 1.7, marginBottom: 10, animation: "fadeUp 0.8s 0.35s ease forwards", opacity: 0 }}
+              style={{ color: "#9c8264", fontSize: 17, fontWeight: 300, maxWidth: 420, lineHeight: 1.7, marginBottom: 14, animation: "fadeUp 0.8s 0.35s ease forwards", opacity: 0 }}
             >
               Бассейн · Сауна · Хаммам · Массаж · Ароматерапия
             </p>
             <p
-              style={{ color: "rgba(237,232,223,0.65)", fontSize: 15, fontWeight: 300, maxWidth: 380, lineHeight: 1.75, marginBottom: 36, animation: "fadeUp 0.8s 0.45s ease forwards", opacity: 0 }}
+              style={{ color: "rgba(240,232,218,0.7)", fontSize: 16, fontWeight: 300, maxWidth: 400, lineHeight: 1.85, marginBottom: 36, animation: "fadeUp 0.8s 0.45s ease forwards", opacity: 0 }}
             >
-              Премиальное пространство для восстановления тела и духа в сердце Приморья
+              Здесь тело вспоминает, как быть лёгким. Тепло, пар, тишина — и ничего лишнего.
             </p>
 
             {/* Buttons */}
@@ -361,16 +362,16 @@ export default function Index() {
         {/* Marquee */}
         <div
           className="absolute bottom-0 left-0 right-0 overflow-hidden py-3"
-          style={{ background: "rgba(13,11,10,0.55)", backdropFilter: "blur(6px)", borderTop: "1px solid rgba(212,168,85,0.08)" }}
+          style={{ background: "rgba(16,12,9,0.55)", backdropFilter: "blur(6px)", borderTop: "1px solid rgba(212,168,85,0.08)" }}
         >
           <div className="marquee-track gap-10 flex">
             {[...MARQUEE_ITEMS, ...MARQUEE_ITEMS].map((t, i) => (
               <span
                 key={i}
                 className="flex items-center gap-3 whitespace-nowrap"
-                style={{ color: "#8B7355", fontSize: 10, letterSpacing: "0.3em", textTransform: "uppercase" }}
+                style={{ color: "#7a6248", fontSize: 10, letterSpacing: "0.3em", textTransform: "uppercase" }}
               >
-                <span style={{ width: 4, height: 4, borderRadius: "50%", background: "#D4A855", display: "inline-block", opacity: 0.7 }} />
+                <span style={{ width: 4, height: 4, borderRadius: "50%", background: "#c9a26e", display: "inline-block", opacity: 0.7 }} />
                 {t}
               </span>
             ))}
@@ -379,7 +380,7 @@ export default function Index() {
 
         {/* Scroll cue */}
         <div className="absolute bottom-14 right-10 hidden md:flex flex-col items-center gap-2" style={{ opacity: 0.5 }}>
-          <span style={{ fontSize: 10, letterSpacing: "0.25em", textTransform: "uppercase", color: "#D4A855", writingMode: "vertical-rl" }}>scroll</span>
+          <span style={{ fontSize: 10, letterSpacing: "0.25em", textTransform: "uppercase", color: "#c9a26e", writingMode: "vertical-rl" }}>scroll</span>
           <div style={{ width: 1, height: 40, background: "linear-gradient(to bottom, #D4A855, transparent)" }} />
         </div>
       </div>
@@ -394,19 +395,19 @@ export default function Index() {
             { num: "3 года", label: "Безупречного сервиса" },
           ].map((s) => (
             <div key={s.label}>
-              <div className="font-display font-light mb-1" style={{ fontSize: 48, color: "#D4A855" }}>{s.num}</div>
-              <div style={{ fontSize: 11, letterSpacing: "0.2em", textTransform: "uppercase", color: "#8B7355" }}>{s.label}</div>
+              <div className="font-display font-light mb-1" style={{ fontSize: 48, color: "#c9a26e" }}>{s.num}</div>
+              <div style={{ fontSize: 11, letterSpacing: "0.2em", textTransform: "uppercase", color: "#9c8264" }}>{s.label}</div>
             </div>
           ))}
         </div>
       </FadeSection>
 
       {/* ── SPACES ── */}
-      <FadeSection id="spaces" className="py-24" style={{ background: "#0D0B0A" }}>
+      <FadeSection id="spaces" className="py-24" style={{ background: "#100c09" }}>
         <div className="max-w-7xl mx-auto px-6">
           <div className="mb-14">
             <div className="section-tag">Наши зоны</div>
-            <h2 className="font-display font-light mt-2" style={{ fontSize: "clamp(40px, 5vw, 60px)", color: "#EDE8DF" }}>Пространства</h2>
+            <h2 className="font-display font-light mt-2" style={{ fontSize: "clamp(40px, 5vw, 60px)", color: "#f0e8da" }}>Пространства</h2>
             <div className="gold-divider" />
           </div>
 
@@ -423,9 +424,9 @@ export default function Index() {
         <div className="max-w-6xl mx-auto px-6">
           <div className="mb-14">
             <div className="section-tag">Выберите своё</div>
-            <h2 className="font-display font-light mt-2" style={{ fontSize: "clamp(40px, 5vw, 60px)", color: "#EDE8DF" }}>Программы</h2>
+            <h2 className="font-display font-light mt-2" style={{ fontSize: "clamp(40px, 5vw, 60px)", color: "#f0e8da" }}>Программы</h2>
             <div className="gold-divider" />
-            <p className="mt-4 max-w-xl" style={{ color: "#8B7355", fontSize: 16, lineHeight: 1.8 }}>Каждая программа — это путешествие со своей историей, запахом и состоянием, которое ты унесёшь с собой.</p>
+            <p className="mt-4 max-w-xl" style={{ color: "#9c8264", fontSize: 16, lineHeight: 1.85 }}>Каждая программа — это маршрут внутрь себя. Со своим запахом, теплом и состоянием, которое останется с вами ещё долго после.</p>
           </div>
 
           <div className="grid md:grid-cols-3 gap-6">
@@ -443,28 +444,28 @@ export default function Index() {
                 {prog.popular && (
                   <div
                     className="absolute top-4 right-4 z-10 px-4 py-1 text-xs font-semibold tracking-wide"
-                    style={{ background: "linear-gradient(135deg,#D4A855,#F0C878)", color: "#0D0B0A", borderRadius: 50, whiteSpace: "nowrap" }}
+                    style={{ background: "linear-gradient(135deg,#D4A855,#F0C878)", color: "#100c09", borderRadius: 50, whiteSpace: "nowrap" }}
                   >
                     Популярное
                   </div>
                 )}
                 <div className="relative overflow-hidden" style={{ height: 180 }}>
                   <img src={prog.img} alt={prog.title} className="w-full h-full object-cover transition-transform duration-500 hover:scale-105" />
-                  <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(13,11,10,0.85) 0%, transparent 60%)" }} />
+                  <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(16,12,9,0.85) 0%, transparent 60%)" }} />
                 </div>
                 <div className="p-7 flex flex-col flex-1">
                 <div className="mb-5">
-                  <h3 className="font-display font-light mb-1" style={{ fontSize: 26, color: "#EDE8DF" }}>{prog.title}</h3>
-                  <p style={{ color: "#8B7355", fontSize: 13 }}>{prog.subtitle}</p>
+                  <h3 className="font-display font-light mb-1" style={{ fontSize: 26, color: "#f0e8da" }}>{prog.title}</h3>
+                  <p style={{ color: "#9c8264", fontSize: 13 }}>{prog.subtitle}</p>
                 </div>
                 <div className="flex items-baseline gap-2 mb-6">
-                  <span className="font-display font-light" style={{ fontSize: 36, color: "#D4A855" }}>{prog.price}</span>
-                  <span style={{ color: "#8B7355", fontSize: 13 }}>/ {prog.duration}</span>
+                  <span className="font-display font-light" style={{ fontSize: 36, color: "#c9a26e" }}>{prog.price}</span>
+                  <span style={{ color: "#9c8264", fontSize: 13 }}>/ {prog.duration}</span>
                 </div>
                 <ul className="space-y-3 mb-8 flex-1">
                   {prog.features.map((f) => (
-                    <li key={f} className="flex items-center gap-2.5" style={{ fontSize: 14, color: "rgba(237,232,223,0.8)" }}>
-                      <Icon name="Check" size={13} style={{ color: "#4ECDC4", flexShrink: 0 }} />
+                    <li key={f} className="flex items-center gap-2.5" style={{ fontSize: 14, color: "rgba(240,232,218,0.82)" }}>
+                      <Icon name="Check" size={13} style={{ color: "#c9a26e", flexShrink: 0 }} />
                       {f}
                     </li>
                   ))}
@@ -483,11 +484,11 @@ export default function Index() {
       </FadeSection>
 
       {/* ── GALLERY ── */}
-      <FadeSection id="gallery" className="py-24" style={{ background: "#0D0B0A" }}>
+      <FadeSection id="gallery" className="py-24" style={{ background: "#100c09" }}>
         <div className="max-w-7xl mx-auto px-6">
           <div className="mb-12">
             <div className="section-tag">Наши пространства</div>
-            <h2 className="font-display font-light mt-2" style={{ fontSize: "clamp(40px, 5vw, 60px)", color: "#EDE8DF" }}>Галерея</h2>
+            <h2 className="font-display font-light mt-2" style={{ fontSize: "clamp(40px, 5vw, 60px)", color: "#f0e8da" }}>Галерея</h2>
             <div className="gold-divider" />
           </div>
 
@@ -502,7 +503,7 @@ export default function Index() {
                   borderRadius: 50,
                   border: galleryCat === cat ? "1px solid rgba(212,168,85,0.5)" : "1px solid rgba(212,168,85,0.15)",
                   background: galleryCat === cat ? "rgba(212,168,85,0.15)" : "transparent",
-                  color: galleryCat === cat ? "#D4A855" : "#8B7355",
+                  color: galleryCat === cat ? "#c9a26e" : "#9c8264",
                   fontFamily: "'Golos Text', sans-serif",
                   fontWeight: 500,
                   cursor: "pointer",
@@ -524,8 +525,8 @@ export default function Index() {
               >
                 <img src={item.img} alt={item.title} />
                 <div className="gallery-overlay">
-                  <span style={{ fontSize: 10, letterSpacing: "0.2em", textTransform: "uppercase", color: "#D4A855", marginBottom: 4 }}>{item.cat}</span>
-                  <span className="font-display" style={{ fontSize: 20, color: "#EDE8DF" }}>{item.title}</span>
+                  <span style={{ fontSize: 10, letterSpacing: "0.2em", textTransform: "uppercase", color: "#c9a26e", marginBottom: 4 }}>{item.cat}</span>
+                  <span className="font-display" style={{ fontSize: 20, color: "#f0e8da" }}>{item.title}</span>
                 </div>
               </div>
             ))}
@@ -537,7 +538,7 @@ export default function Index() {
       {lightbox && (
         <div
           className="fixed inset-0 z-[100] flex items-center justify-center p-4"
-          style={{ background: "rgba(13,11,10,0.93)", backdropFilter: "blur(8px)", animation: "fadeIn 0.3s ease" }}
+          style={{ background: "rgba(16,12,9,0.95)", backdropFilter: "blur(8px)", animation: "fadeIn 0.3s ease" }}
           onClick={() => setLightbox(null)}
         >
           <button className="absolute top-6 right-6 transition-colors" style={{ color: "rgba(237,232,223,0.5)" }} onClick={() => setLightbox(null)}>
@@ -545,7 +546,7 @@ export default function Index() {
           </button>
           <div className="max-w-4xl w-full" onClick={(e) => e.stopPropagation()}>
             <img src={lightbox.img} alt={lightbox.title} style={{ width: "100%", borderRadius: 12 }} />
-            <p className="text-center font-display mt-4" style={{ fontSize: 22, color: "#D4A855" }}>{lightbox.title}</p>
+            <p className="text-center font-display mt-4" style={{ fontSize: 22, color: "#c9a26e" }}>{lightbox.title}</p>
           </div>
         </div>
       )}
@@ -562,24 +563,27 @@ export default function Index() {
               />
               <div
                 className="absolute -bottom-5 -right-5 p-6 hidden md:block"
-                style={{ background: "linear-gradient(135deg,#D4A855,#B8943A)", borderRadius: 12 }}
+                style={{ background: "linear-gradient(135deg,#c9a26e,#a8813f)", borderRadius: 12 }}
               >
-                <div className="font-display font-light" style={{ fontSize: 42, color: "#0D0B0A" }}>8 000+</div>
-                <div style={{ fontSize: 11, letterSpacing: "0.15em", textTransform: "uppercase", color: "rgba(13,11,10,0.65)", marginTop: 4 }}>
+                <div className="font-display font-light" style={{ fontSize: 42, color: "#0e0a07" }}>8 000+</div>
+                <div style={{ fontSize: 11, letterSpacing: "0.15em", textTransform: "uppercase", color: "rgba(14,10,7,0.6)", marginTop: 4 }}>
                   Гостей за 3 года
                 </div>
               </div>
             </div>
             <div>
               <div className="section-tag">Кто мы</div>
-              <h2 className="font-display font-light mt-2 leading-tight" style={{ fontSize: "clamp(36px, 4vw, 52px)", color: "#EDE8DF" }}>
-                Три года<br />
-                <span className="italic" style={{ color: "#D4A855" }}>философии</span>
-                <br />восстановления
+              <h2 className="font-display font-light mt-2 leading-tight" style={{ fontSize: "clamp(36px, 4vw, 52px)", color: "#f0e8da" }}>
+                Место, где<br />
+                <span className="italic" style={{ color: "#c9a26e" }}>тело</span>
+                <br />отдыхает по-настоящему
               </h2>
               <div className="gold-divider" />
-              <p style={{ color: "#8B7355", lineHeight: 1.8, marginBottom: 14, fontSize: 15 }}>
-                Пространство Пара — это не просто спа-центр. Это место, где профессиональные ритуалы встречаются с персональным подходом. Каждый визит — уникальный опыт, созданный именно для вас.
+              <p style={{ color: "#9c8264", lineHeight: 1.85, marginBottom: 14, fontSize: 15 }}>
+                Мы создавали «Пространство Пара» с одной мыслью: дать людям место, где не нужно ничего делать — только чувствовать. Тепло воды, аромат пара, вес хорошего массажа. Без суеты, без экранов, без спешки.
+              </p>
+              <p style={{ color: "#9c8264", lineHeight: 1.85, marginBottom: 24, fontSize: 15 }}>
+                За три года через наши двери прошло больше восьми тысяч гостей — и каждый уходил с чем-то своим. Кто-то с лёгкостью в теле, кто-то с тишиной внутри. Именно это мы считаем настоящим результатом.
               </p>
               <div className="grid grid-cols-2 gap-3">
                 {[
@@ -592,8 +596,8 @@ export default function Index() {
                     className="flex items-center gap-3 py-3"
                     style={{ borderBottom: "1px solid rgba(212,168,85,0.1)" }}
                   >
-                    <Icon name={item.icon} size={14} style={{ color: "#D4A855", flexShrink: 0 }} />
-                    <span style={{ fontSize: 13, color: "#EDE8DF" }}>{item.text}</span>
+                    <Icon name={item.icon} size={14} style={{ color: "#c9a26e", flexShrink: 0 }} />
+                    <span style={{ fontSize: 13, color: "#f0e8da" }}>{item.text}</span>
                   </div>
                 ))}
               </div>
@@ -603,12 +607,13 @@ export default function Index() {
       </FadeSection>
 
       {/* ── REVIEWS ── */}
-      <FadeSection id="reviews" className="py-24" style={{ background: "#0D0B0A" }}>
+      <FadeSection id="reviews" className="py-24" style={{ background: "#100c09" }}>
         <div className="max-w-6xl mx-auto px-6">
           <div className="mb-14">
             <div className="section-tag">Говорят гости</div>
-            <h2 className="font-display font-light mt-2" style={{ fontSize: "clamp(40px, 5vw, 60px)", color: "#EDE8DF" }}>Отзывы</h2>
+            <h2 className="font-display font-light mt-2" style={{ fontSize: "clamp(40px, 5vw, 60px)", color: "#f0e8da" }}>Отзывы</h2>
             <div className="gold-divider" />
+            <p className="mt-4 max-w-lg" style={{ color: "#9c8264", fontSize: 15, lineHeight: 1.85 }}>Слова тех, кто уже побывал здесь — и нашёл что-то важное для себя.</p>
           </div>
           <div className="grid md:grid-cols-2 gap-5">
             {REVIEWS.map((r) => (
@@ -619,7 +624,7 @@ export default function Index() {
               >
                 <div className="flex gap-1 mb-4">
                   {Array.from({ length: r.stars }).map((_, i) => (
-                    <Icon key={i} name="Star" size={13} style={{ color: "#D4A855" }} />
+                    <Icon key={i} name="Star" size={13} style={{ color: "#c9a26e" }} />
                   ))}
                 </div>
                 <p className="font-display italic mb-5" style={{ fontSize: 18, color: "rgba(237,232,223,0.85)", lineHeight: 1.7 }}>
@@ -631,13 +636,13 @@ export default function Index() {
                 >
                   <div
                     className="w-9 h-9 rounded-full flex items-center justify-center font-semibold text-sm"
-                    style={{ background: "linear-gradient(135deg,#D4A855,#B8943A)", color: "#0D0B0A" }}
+                    style={{ background: "linear-gradient(135deg,#D4A855,#B8943A)", color: "#100c09" }}
                   >
                     {r.name[0]}
                   </div>
                   <div>
-                    <div style={{ fontSize: 14, color: "#EDE8DF", fontWeight: 500 }}>{r.name}</div>
-                    <div style={{ fontSize: 12, color: "#8B7355" }}>{r.role}</div>
+                    <div style={{ fontSize: 14, color: "#f0e8da", fontWeight: 500 }}>{r.name}</div>
+                    <div style={{ fontSize: 12, color: "#9c8264" }}>{r.role}</div>
                   </div>
                 </div>
               </div>
@@ -652,13 +657,13 @@ export default function Index() {
           <div className="flex items-end justify-between mb-14 flex-wrap gap-4">
             <div>
               <div className="section-tag">Полезное</div>
-              <h2 className="font-display font-light mt-2" style={{ fontSize: "clamp(40px, 5vw, 60px)", color: "#EDE8DF" }}>Блог</h2>
+              <h2 className="font-display font-light mt-2" style={{ fontSize: "clamp(40px, 5vw, 60px)", color: "#f0e8da" }}>Блог</h2>
               <div className="gold-divider" />
             </div>
             <a
               href="#"
               className="flex items-center gap-2 text-xs tracking-widest uppercase transition-all hover:gap-3"
-              style={{ color: "#D4A855", fontWeight: 500 }}
+              style={{ color: "#c9a26e", fontWeight: 500 }}
             >
               Все статьи <Icon name="ArrowRight" size={14} />
             </a>
@@ -680,8 +685,8 @@ export default function Index() {
                   </div>
                 </div>
                 <div className="p-5">
-                  <h3 className="font-display font-medium mb-3 leading-tight" style={{ fontSize: 20, color: "#EDE8DF" }}>{post.title}</h3>
-                  <div className="flex items-center gap-4" style={{ color: "#8B7355", fontSize: 12 }}>
+                  <h3 className="font-display font-medium mb-3 leading-tight" style={{ fontSize: 20, color: "#f0e8da" }}>{post.title}</h3>
+                  <div className="flex items-center gap-4" style={{ color: "#9c8264", fontSize: 12 }}>
                     <span className="flex items-center gap-1">
                       <Icon name="Calendar" size={11} /> {post.date}
                     </span>
@@ -697,18 +702,18 @@ export default function Index() {
       </FadeSection>
 
       {/* ── CONTACTS ── */}
-      <FadeSection id="contacts" className="py-24" style={{ background: "#0D0B0A" }}>
+      <FadeSection id="contacts" className="py-24" style={{ background: "#100c09" }}>
         <div className="max-w-5xl mx-auto px-6">
           <div className="mb-14">
             <div className="section-tag">Мы ждём вас</div>
-            <h2 className="font-display font-light mt-2" style={{ fontSize: "clamp(40px, 5vw, 60px)", color: "#EDE8DF" }}>Контакты</h2>
+            <h2 className="font-display font-light mt-2" style={{ fontSize: "clamp(40px, 5vw, 60px)", color: "#f0e8da" }}>Контакты</h2>
             <div className="gold-divider" />
           </div>
 
           <div className="grid md:grid-cols-2 gap-12">
             {/* Form */}
             <div>
-              <h3 className="font-display font-light mb-4" style={{ fontSize: 28, color: "#EDE8DF" }}>Записаться на визит</h3>
+              <h3 className="font-display font-light mb-4" style={{ fontSize: 28, color: "#f0e8da" }}>Записаться на визит</h3>
               <p className="text-sm mb-6" style={{ color: "#B8A98A", lineHeight: 1.6 }}>
                 Оставьте ваши контактные данные, наш администратор свяжется с вами и ответит на ваши вопросы с 10:00 до 22:00
               </p>
@@ -746,7 +751,7 @@ export default function Index() {
                       background: "rgba(26,20,16,0.7)",
                       border: "1px solid rgba(212,168,85,0.15)",
                       borderRadius: 8,
-                      color: "#EDE8DF",
+                      color: "#f0e8da",
                       fontFamily: "'Golos Text', sans-serif",
                     }}
                     onFocus={(e) => (e.target.style.borderColor = "rgba(212,168,85,0.5)")}
@@ -763,7 +768,7 @@ export default function Index() {
                     background: "rgba(26,20,16,0.7)",
                     border: "1px solid rgba(212,168,85,0.15)",
                     borderRadius: 8,
-                    color: "#EDE8DF",
+                    color: "#f0e8da",
                     fontFamily: "'Golos Text', sans-serif",
                   }}
                   onFocus={(e) => (e.target.style.borderColor = "rgba(212,168,85,0.5)")}
@@ -777,7 +782,7 @@ export default function Index() {
                   {formStatus === "loading" ? "Отправка..." : "Отправить заявку"}
                 </button>
                 {formStatus === "success" && (
-                  <p className="text-sm text-center mt-3" style={{ color: "#D4A855" }}>
+                  <p className="text-sm text-center mt-3" style={{ color: "#c9a26e" }}>
                     Заявка отправлена! Мы свяжемся с вами с 10:00 до 22:00.
                   </p>
                 )}
@@ -791,7 +796,7 @@ export default function Index() {
 
             {/* Info */}
             <div>
-              <h3 className="font-display font-light mb-6" style={{ fontSize: 28, color: "#EDE8DF" }}>Как нас найти</h3>
+              <h3 className="font-display font-light mb-6" style={{ fontSize: 28, color: "#f0e8da" }}>Как нас найти</h3>
               <div className="space-y-0">
                 {[
                   { icon: "MapPin", title: "Адрес", text: "г. Артём, мкр. Глобус 2, дом 1А" },
@@ -804,12 +809,12 @@ export default function Index() {
                     className="flex gap-4 py-4"
                     style={{ borderBottom: "1px solid rgba(212,168,85,0.08)" }}
                   >
-                    <Icon name={item.icon} size={16} style={{ color: "#D4A855", marginTop: 2, flexShrink: 0 }} />
+                    <Icon name={item.icon} size={16} style={{ color: "#c9a26e", marginTop: 2, flexShrink: 0 }} />
                     <div>
-                      <div style={{ fontSize: 10, letterSpacing: "0.15em", textTransform: "uppercase", color: "#D4A855", fontWeight: 500, marginBottom: 3 }}>
+                      <div style={{ fontSize: 10, letterSpacing: "0.15em", textTransform: "uppercase", color: "#c9a26e", fontWeight: 500, marginBottom: 3 }}>
                         {item.title}
                       </div>
-                      <div style={{ fontSize: 14, color: "#EDE8DF", lineHeight: 1.7, whiteSpace: "pre-line" }}>{item.text}</div>
+                      <div style={{ fontSize: 14, color: "#f0e8da", lineHeight: 1.7, whiteSpace: "pre-line" }}>{item.text}</div>
                     </div>
                   </div>
                 ))}
@@ -823,28 +828,28 @@ export default function Index() {
       <footer className="py-8" style={{ background: "#080706", borderTop: "1px solid rgba(212,168,85,0.08)" }}>
         <div className="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-3">
-            <div className="w-7 h-7 rounded-full flex items-center justify-center" style={{ background: "linear-gradient(135deg,#D4A855,#B8943A)" }}>
-              <span style={{ color: "#0D0B0A", fontWeight: 700, fontSize: 9 }}>ПП</span>
+            <div className="w-7 h-7 rounded-full flex items-center justify-center" style={{ background: "linear-gradient(135deg,#c9a26e,#a8813f)" }}>
+              <span style={{ color: "#100c09", fontWeight: 700, fontSize: 9 }}>ПП</span>
             </div>
-            <span className="font-display" style={{ fontSize: 15, letterSpacing: "0.15em", textTransform: "uppercase", color: "#D4A855" }}>
+            <span className="font-display" style={{ fontSize: 15, letterSpacing: "0.15em", textTransform: "uppercase", color: "#c9a26e" }}>
               Пространство Пара
             </span>
           </div>
-          <div style={{ fontSize: 12, color: "#8B7355" }}>© 2026 Пространство Пара. Все права защищены.</div>
+          <div style={{ fontSize: 12, color: "#9c8264" }}>© 2026 Пространство Пара. Все права защищены.</div>
           <div className="flex gap-3">
             {["Instagram", "MessageCircle", "Send"].map((icon) => (
               <a
                 key={icon}
                 href="#"
                 className="w-8 h-8 rounded-full flex items-center justify-center transition-all hover:scale-110"
-                style={{ border: "1px solid rgba(212,168,85,0.2)", color: "#8B7355" }}
+                style={{ border: "1px solid rgba(212,168,85,0.2)", color: "#9c8264" }}
                 onMouseEnter={(e) => {
                   (e.currentTarget as HTMLElement).style.borderColor = "rgba(212,168,85,0.6)";
-                  (e.currentTarget as HTMLElement).style.color = "#D4A855";
+                  (e.currentTarget as HTMLElement).style.color = "#c9a26e";
                 }}
                 onMouseLeave={(e) => {
                   (e.currentTarget as HTMLElement).style.borderColor = "rgba(212,168,85,0.2)";
-                  (e.currentTarget as HTMLElement).style.color = "#8B7355";
+                  (e.currentTarget as HTMLElement).style.color = "#9c8264";
                 }}
               >
                 <Icon name={icon} size={13} />
