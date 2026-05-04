@@ -60,8 +60,18 @@ export default function ProgramZhenskaya() {
 
       <div style={{ height: 1, background: "linear-gradient(to right, transparent, #c9a26e, transparent)" }} />
 
+      {/* Photo */}
+      <div style={{ width: "100%", maxHeight: 520, overflow: "hidden", position: "relative" }}>
+        <img
+          src="https://cdn.poehali.dev/files/79e8a835-813d-4f7e-b485-ccd3874a657c.jpg"
+          alt="Женская гармония"
+          style={{ width: "100%", height: 520, objectFit: "cover", objectPosition: "center 20%" }}
+        />
+        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, rgba(245,240,232,0) 50%, rgba(245,240,232,1) 100%)" }} />
+      </div>
+
       {/* Hero */}
-      <div style={{ maxWidth: 780, margin: "0 auto", padding: "60px 40px 0", textAlign: "center" }}>
+      <div style={{ maxWidth: 780, margin: "0 auto", padding: "40px 40px 0", textAlign: "center" }}>
         <div style={{ fontSize: 11, letterSpacing: "0.28em", textTransform: "uppercase", color: "#8b5a3c", marginBottom: 16, fontStyle: "italic" }}>
           ЖЕНСКАЯ ПРОГРАММА ПАРЕНИЯ
         </div>
