@@ -279,7 +279,7 @@
   }
 
   .marquee-track {
-    animation: marquee 22s linear infinite;
+    animation: marquee 14s linear infinite;
     display: flex;
     white-space: nowrap;
   }
