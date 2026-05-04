@@ -405,8 +405,11 @@ export default function Index() {
                   <div style={{ fontSize: 11, fontWeight: 600, letterSpacing: "0.08em", color: "#FFCC00", textTransform: "uppercase", lineHeight: 1.2 }}>
                     Хорошее место
                   </div>
-                  <div style={{ fontSize: 10, color: "rgba(240,232,218,0.5)", letterSpacing: "0.06em", marginTop: 1 }}>
-                    Яндекс Карты · Награда
+                  <div style={{ display: "flex", alignItems: "center", gap: 3, marginTop: 2 }}>
+                    {"★★★★★".split("").map((s, i) => (
+                      <span key={i} style={{ fontSize: 11, color: "#FFCC00", lineHeight: 1 }}>{s}</span>
+                    ))}
+                    <span style={{ fontSize: 10, color: "rgba(240,232,218,0.45)", marginLeft: 3 }}>5.0</span>
                   </div>
                 </div>
               </a>
