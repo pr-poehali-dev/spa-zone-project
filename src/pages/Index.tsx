@@ -482,11 +482,10 @@ export default function Index() {
 
       {/* ── STATS ── */}
       <FadeSection className="py-14 border-y" style={{ borderColor: "rgba(212,168,85,0.1)", background: "#0F0D0B" } as React.CSSProperties}>
-        <div className="max-w-5xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+        <div className="max-w-5xl mx-auto px-6 grid grid-cols-3 gap-8 text-center">
           {[
-            { num: "12+", label: "Зон отдыха" },
-            { num: "50+", label: "Видов процедур" },
-            { num: "8 000+", label: "Довольных гостей" },
+            { num: "500+", label: "Довольных клиентов" },
+            { num: "2", label: "Массажных кабинета" },
             { num: "3 года", label: "Безупречного сервиса" },
           ].map((s) => (
             <div key={s.label}>
