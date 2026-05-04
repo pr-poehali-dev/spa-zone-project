@@ -73,7 +73,7 @@ const PROGRAMS = [
     tag: "Женская",
     features: ["Мыльно-веничный массаж в хаммаме", "Парение вениками каждой гостье", "Ритуал «Колыбель» в бассейне", "Тёплый чан + массаж 30 мин"],
     popular: false,
-    img: POOL_IMAGE,
+    img: "https://cdn.poehali.dev/files/79e8a835-813d-4f7e-b485-ccd3874a657c.jpg",
     href: "/programmy/zhenskaya-garmoniya",
   },
   {
