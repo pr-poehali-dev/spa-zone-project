@@ -1,6 +1,11 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { Link } from "react-router-dom";
 import Icon from "@/components/ui/icon";
+
+const PHOTOS = [
+  "https://cdn.poehali.dev/files/79e8a835-813d-4f7e-b485-ccd3874a657c.jpg",
+  "https://cdn.poehali.dev/files/f81b1334-d80f-410d-84c3-6694857abbcd.jpg",
+];
 
 const STEPS = [
   {
@@ -37,7 +42,17 @@ const STEPS = [
 
 export default function ProgramZhenskaya() {
   const [openIdx, setOpenIdx] = useState<number | null>(null);
+  const [photoIdx, setPhotoIdx] = useState(0);
+
   useEffect(() => { window.scrollTo(0, 0); }, []);
+
+  const prevPhoto = useCallback(() => setPhotoIdx(i => (i - 1 + PHOTOS.length) % PHOTOS.length), []);
+  const nextPhoto = useCallback(() => setPhotoIdx(i => (i + 1) % PHOTOS.length), []);
+
+  useEffect(() => {
+    const t = setInterval(nextPhoto, 4000);
+    return () => clearInterval(t);
+  }, [nextPhoto]);
 
   return (
     <div style={{ background: "#f5f0e8", minHeight: "100vh", fontFamily: "'Golos Text', sans-serif" }}>
@@ -60,14 +75,37 @@ export default function ProgramZhenskaya() {
 
       <div style={{ height: 1, background: "linear-gradient(to right, transparent, #c9a26e, transparent)" }} />
 
-      {/* Photo */}
-      <div style={{ width: "100%", maxHeight: 520, overflow: "hidden", position: "relative" }}>
-        <img
-          src="https://cdn.poehali.dev/files/79e8a835-813d-4f7e-b485-ccd3874a657c.jpg"
-          alt="Женская гармония"
-          style={{ width: "100%", height: 520, objectFit: "cover", objectPosition: "center 20%" }}
-        />
-        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, rgba(245,240,232,0) 50%, rgba(245,240,232,1) 100%)" }} />
+      {/* Carousel */}
+      <div style={{ width: "100%", height: 520, overflow: "hidden", position: "relative" }}>
+        {PHOTOS.map((src, i) => (
+          <img
+            key={src}
+            src={src}
+            alt="Женская гармония"
+            style={{
+              position: "absolute", inset: 0, width: "100%", height: "100%",
+              objectFit: "cover", objectPosition: "center 20%",
+              opacity: i === photoIdx ? 1 : 0,
+              transition: "opacity 0.8s ease",
+            }}
+          />
+        ))}
+        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, rgba(245,240,232,0) 55%, rgba(245,240,232,1) 100%)" }} />
+
+        {/* Arrows */}
+        <button onClick={prevPhoto} style={{ position: "absolute", left: 16, top: "50%", transform: "translateY(-50%)", background: "rgba(245,240,232,0.2)", backdropFilter: "blur(6px)", border: "1px solid rgba(139,90,60,0.2)", borderRadius: "50%", width: 40, height: 40, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", color: "#5c3520" }}>
+          <Icon name="ChevronLeft" size={18} />
+        </button>
+        <button onClick={nextPhoto} style={{ position: "absolute", right: 16, top: "50%", transform: "translateY(-50%)", background: "rgba(245,240,232,0.2)", backdropFilter: "blur(6px)", border: "1px solid rgba(139,90,60,0.2)", borderRadius: "50%", width: 40, height: 40, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", color: "#5c3520" }}>
+          <Icon name="ChevronRight" size={18} />
+        </button>
+
+        {/* Dots */}
+        <div style={{ position: "absolute", bottom: 72, left: "50%", transform: "translateX(-50%)", display: "flex", gap: 8 }}>
+          {PHOTOS.map((_, i) => (
+            <button key={i} onClick={() => setPhotoIdx(i)} style={{ width: i === photoIdx ? 20 : 6, height: 6, borderRadius: 50, background: i === photoIdx ? "#c9a26e" : "rgba(139,90,60,0.35)", border: "none", cursor: "pointer", transition: "all 0.3s ease", padding: 0 }} />
+          ))}
+        </div>
       </div>
 
       {/* Hero */}
