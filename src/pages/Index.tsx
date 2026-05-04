@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import { Link } from "react-router-dom";
 import Icon from "@/components/ui/icon";
 
 const HERO_IMAGE =
@@ -38,31 +39,40 @@ const SPACES = [
 
 const PROGRAMS = [
   {
-    title: "Перезагрузка",
-    subtitle: "Идеально для первого визита",
-    duration: "6 часов",
-    price: "от 4 900 ₽",
-    features: ["Бассейн и все сауны", "Ароматический массаж 60 мин", "Фито-чай и фрукты", "Халат и тапочки"],
+    title: "Путешествие по состоянию тела",
+    subtitle: "Программа парения на двоих",
+    tag: "Для двоих",
+    features: ["Встреча с пар-мастером", "Парение на сенном матрасе вдвоём", "Хаммам, бассейн, можжевеловая комната", "Терраса с подвесной кроватью"],
     popular: false,
-    img: "https://cdn.poehali.dev/projects/96829bf9-8ea6-42db-bc21-6a2d363e218e/bucket/8a2a46a9-6510-4c09-a1dc-dc0a22cc987b.jpg",
+    img: "https://cdn.poehali.dev/projects/96829bf9-8ea6-42db-bc21-6a2d363e218e/bucket/b26557f3-6845-4507-9ead-5707dc258983.jpg",
+    href: "/programmy/puteshestvie",
   },
   {
-    title: "Ритуал обновления",
-    subtitle: "Самый популярный выбор",
-    duration: "8 часов",
-    price: "от 8 500 ₽",
-    features: ["Все зоны без ограничений", "Пространство пара 90 мин", "Можжевеловая комната 60 мин", "Ужин в ресторане"],
+    title: "Ладование",
+    subtitle: "Семейная церемония парения",
+    tag: "Для пары",
+    features: ["Ароматерапия и звуки колокольчиков", "Парное солевое скрабирование", "Можжевеловая комната", "Ритуал «Колыбель» в бассейне"],
     popular: true,
     img: "https://cdn.poehali.dev/files/66df40a0-2180-4282-87dd-1d0b6417d29c.jpg",
+    href: "/programmy/ladovanie",
   },
   {
-    title: "Weekend Escape",
-    subtitle: "Полное погружение на 2 дня",
-    duration: "2 дня",
-    price: "от 18 900 ₽",
-    features: ["Размещение в номере-люкс", "3 процедуры на выбор", "Завтрак и ужин", "Персональный консьерж"],
+    title: "Трансформация",
+    subtitle: "Особенная женская программа",
+    tag: "Женская",
+    features: ["Четыре стихии — четыре этапа", "Медово-солевой скраб с заговором", "Парение вениками", "Метафорические карты"],
+    popular: false,
+    img: "https://cdn.poehali.dev/projects/96829bf9-8ea6-42db-bc21-6a2d363e218e/bucket/21f81724-a20a-4ce9-a0d4-d093b4801c05.jpg",
+    href: "/programmy/transformaciya",
+  },
+  {
+    title: "Женская гармония",
+    subtitle: "День с подружками — без суеты",
+    tag: "Женская",
+    features: ["Мыльно-веничный массаж в хаммаме", "Парение вениками каждой гостье", "Ритуал «Колыбель» в бассейне", "Тёплый чан + массаж 30 мин"],
     popular: false,
     img: POOL_IMAGE,
+    href: "/programmy/zhenskaya-garmoniya",
   },
 ];
 
@@ -429,7 +439,7 @@ export default function Index() {
             <p className="mt-4 max-w-xl" style={{ color: "#9c8264", fontSize: 16, lineHeight: 1.85 }}>Каждая программа — это маршрут внутрь себя. Со своим запахом, теплом и состоянием, которое останется с вами ещё долго после.</p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {PROGRAMS.map((prog) => (
               <div
                 key={prog.title}
@@ -452,31 +462,39 @@ export default function Index() {
                 <div className="relative overflow-hidden" style={{ height: 180 }}>
                   <img src={prog.img} alt={prog.title} className="w-full h-full object-cover transition-transform duration-500 hover:scale-105" />
                   <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(16,12,9,0.85) 0%, transparent 60%)" }} />
+                  <div className="absolute bottom-3 left-4">
+                    <span className="glass-tag">{prog.tag}</span>
+                  </div>
                 </div>
-                <div className="p-7 flex flex-col flex-1">
-                <div className="mb-5">
-                  <h3 className="font-display font-light mb-1" style={{ fontSize: 26, color: "#f0e8da" }}>{prog.title}</h3>
-                  <p style={{ color: "#9c8264", fontSize: 13 }}>{prog.subtitle}</p>
+                <div className="p-6 flex flex-col flex-1">
+                  <div className="mb-4 flex-1">
+                    <h3 className="font-display font-light mb-1" style={{ fontSize: 22, color: "#f0e8da", lineHeight: 1.25 }}>{prog.title}</h3>
+                    <p style={{ color: "#9c8264", fontSize: 12, marginTop: 4 }}>{prog.subtitle}</p>
+                  </div>
+                  <ul className="space-y-2 mb-6">
+                    {prog.features.map((f) => (
+                      <li key={f} className="flex items-start gap-2" style={{ fontSize: 13, color: "rgba(240,232,218,0.75)" }}>
+                        <Icon name="Check" size={12} style={{ color: "#c9a26e", flexShrink: 0, marginTop: 2 }} />
+                        {f}
+                      </li>
+                    ))}
+                  </ul>
+                  <div className="flex flex-col gap-2">
+                    <Link
+                      to={prog.href}
+                      className={prog.popular ? "btn-gold text-center" : "btn-outline-gold text-center"}
+                      style={{ fontSize: 11, padding: "11px 20px" }}
+                    >
+                      Подробнее
+                    </Link>
+                    <a
+                      href="#contacts"
+                      style={{ fontSize: 11, color: "#9c8264", textAlign: "center", padding: "8px", letterSpacing: "0.06em", textTransform: "uppercase" }}
+                    >
+                      Записаться
+                    </a>
+                  </div>
                 </div>
-                <div className="flex items-baseline gap-2 mb-6">
-                  <span className="font-display font-light" style={{ fontSize: 36, color: "#c9a26e" }}>{prog.price}</span>
-                  <span style={{ color: "#9c8264", fontSize: 13 }}>/ {prog.duration}</span>
-                </div>
-                <ul className="space-y-3 mb-8 flex-1">
-                  {prog.features.map((f) => (
-                    <li key={f} className="flex items-center gap-2.5" style={{ fontSize: 14, color: "rgba(240,232,218,0.82)" }}>
-                      <Icon name="Check" size={13} style={{ color: "#c9a26e", flexShrink: 0 }} />
-                      {f}
-                    </li>
-                  ))}
-                </ul>
-                <a
-                  href="#contacts"
-                  className={prog.popular ? "btn-gold text-center" : "btn-outline-gold text-center"}
-                >
-                  Выбрать программу
-                </a>
-              </div>
               </div>
             ))}
           </div>
