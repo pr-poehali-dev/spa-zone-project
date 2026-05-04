@@ -128,9 +128,21 @@ const REVIEWS = [
 ];
 
 const BLOG_POSTS = [
-  { title: "Как пространство пара меняет кожу за один сеанс", date: "8 апреля 2026", read: "5 мин", tag: "Процедуры", img: MASSAGE_IMAGE },
-  { title: "Можжевельник: что происходит с телом в ароматной комнате", date: "2 апреля 2026", read: "7 мин", tag: "Наука", img: SAUNA_IMAGE },
-  { title: "Сезонные ритуалы: весеннее очищение тела и духа", date: "25 марта 2026", read: "4 мин", tag: "Ритуалы", img: HERO_IMAGE },
+  {
+    title: "Как пространство пара меняет кожу за один сеанс",
+    date: "8 апреля 2026", read: "5 мин", tag: "Процедуры", img: MASSAGE_IMAGE,
+    back: "Горячий пар раскрывает поры, усиливает кровообращение и запускает глубокое очищение. Уже после первого сеанса кожа становится мягкой, упругой — как после моря. Это не косметика. Это физиология.",
+  },
+  {
+    title: "Можжевельник: что происходит с телом в ароматной комнате",
+    date: "2 апреля 2026", read: "7 мин", tag: "Наука", img: SAUNA_IMAGE,
+    back: "Смолы можжевельника — природный антисептик. В комнате они насыщают воздух фитонцидами, которые очищают дыхание, успокаивают нервную систему и снижают уровень кортизола. Наука подтверждает то, что тело чувствует само.",
+  },
+  {
+    title: "Сезонные ритуалы: весеннее очищение тела и духа",
+    date: "25 марта 2026", read: "4 мин", tag: "Ритуалы", img: HERO_IMAGE,
+    back: "Весной тело просыпается — и просит помощи. Скраб, пар, контраст и тишина. Древние ритуалы работают не потому что мы верим — а потому что они созданы под нашу физиологию. Весеннее очищение — не традиция. Это необходимость.",
+  },
 ];
 
 function useInView(threshold = 0.1) {
@@ -743,32 +755,67 @@ export default function Index() {
           </div>
           <div className="grid md:grid-cols-3 gap-5">
             {BLOG_POSTS.map((post) => (
-              <article
+              <div
                 key={post.title}
-                className="card-dark hover-lift cursor-pointer"
+                className="cursor-pointer"
+                style={{ height: 340, perspective: 1000 }}
               >
-                <div className="relative overflow-hidden" style={{ height: 190 }}>
-                  <img
-                    src={post.img}
-                    alt={post.title}
-                    className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
-                  />
-                  <div className="absolute top-4 left-4">
-                    <span className="glass-tag">{post.tag}</span>
-                  </div>
+                <div
+                  className="blog-flip-inner"
+                  style={{
+                    position: "relative", width: "100%", height: "100%",
+                    transformStyle: "preserve-3d", transition: "transform 0.7s cubic-bezier(0.4,0.2,0.2,1)",
+                  }}
+                  onMouseEnter={e => (e.currentTarget.style.transform = "rotateY(180deg)")}
+                  onMouseLeave={e => (e.currentTarget.style.transform = "rotateY(0deg)")}
+                >
+                  {/* Front */}
+                  <article
+                    style={{
+                      position: "absolute", inset: 0, backfaceVisibility: "hidden",
+                      background: "rgba(28,20,14,0.75)", border: "1px solid rgba(201,162,110,0.13)",
+                      borderRadius: 14, overflow: "hidden",
+                    }}
+                  >
+                    <div style={{ position: "relative", height: 190, overflow: "hidden" }}>
+                      <img src={post.img} alt={post.title} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                      <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(16,12,9,0.7) 0%, transparent 60%)" }} />
+                      <div style={{ position: "absolute", top: 16, left: 16 }}>
+                        <span className="glass-tag">{post.tag}</span>
+                      </div>
+                    </div>
+                    <div style={{ padding: "20px" }}>
+                      <h3 className="font-display font-medium leading-tight" style={{ fontSize: 20, color: "#f0e8da", marginBottom: 12 }}>{post.title}</h3>
+                      <div className="flex items-center gap-4" style={{ color: "#9c8264", fontSize: 12 }}>
+                        <span className="flex items-center gap-1"><Icon name="Calendar" size={11} /> {post.date}</span>
+                        <span className="flex items-center gap-1"><Icon name="Clock" size={11} /> {post.read} чтения</span>
+                      </div>
+                    </div>
+                  </article>
+
+                  {/* Back */}
+                  <article
+                    style={{
+                      position: "absolute", inset: 0, backfaceVisibility: "hidden",
+                      transform: "rotateY(180deg)",
+                      background: "linear-gradient(135deg, rgba(212,168,85,0.12), rgba(28,20,14,0.95))",
+                      border: "1px solid rgba(201,162,110,0.35)",
+                      borderRadius: 14, overflow: "hidden",
+                      display: "flex", flexDirection: "column", justifyContent: "center",
+                      padding: "32px 28px",
+                    }}
+                  >
+                    <span className="glass-tag" style={{ alignSelf: "flex-start", marginBottom: 20 }}>{post.tag}</span>
+                    <p style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 17, fontStyle: "italic", color: "#d4b896", lineHeight: 1.85, margin: 0 }}>
+                      {post.back}
+                    </p>
+                    <div style={{ marginTop: 28, height: 1, background: "linear-gradient(to right, #c9a26e, transparent)" }} />
+                    <div style={{ marginTop: 16, fontSize: 11, color: "#9c8264", letterSpacing: "0.15em", textTransform: "uppercase" }}>
+                      {post.read} чтения · {post.date}
+                    </div>
+                  </article>
                 </div>
-                <div className="p-5">
-                  <h3 className="font-display font-medium mb-3 leading-tight" style={{ fontSize: 20, color: "#f0e8da" }}>{post.title}</h3>
-                  <div className="flex items-center gap-4" style={{ color: "#9c8264", fontSize: 12 }}>
-                    <span className="flex items-center gap-1">
-                      <Icon name="Calendar" size={11} /> {post.date}
-                    </span>
-                    <span className="flex items-center gap-1">
-                      <Icon name="Clock" size={11} /> {post.read} чтения
-                    </span>
-                  </div>
-                </div>
-              </article>
+              </div>
             ))}
           </div>
         </div>
