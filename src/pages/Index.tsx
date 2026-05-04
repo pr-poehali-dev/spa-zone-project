@@ -209,7 +209,6 @@ export default function Index() {
   const [activeNav, setActiveNav] = useState("hero");
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [galleryCat, setGalleryCat] = useState("Все");
   const [lightbox, setLightbox] = useState<{ img: string; title: string } | null>(null);
   const [formData, setFormData] = useState({ name: "", phone: "", comment: "" });
   const [formStatus, setFormStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
@@ -229,8 +228,6 @@ export default function Index() {
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
-
-  const filtered = galleryCat === "Все" ? GALLERY_ITEMS : GALLERY_ITEMS.filter((i) => i.cat === galleryCat);
 
   return (
     <div className="min-h-screen overflow-x-hidden" style={{ background: "#100c09", color: "#f0e8da", fontFamily: "'Golos Text', sans-serif" }}>
@@ -421,15 +418,34 @@ export default function Index() {
         </div>
       </FadeSection>
 
-      {/* ── SPACES ── */}
+      {/* ── SPACES / GALLERY ── */}
       <FadeSection id="spaces" className="py-24" style={{ background: "#100c09" }}>
         <div className="max-w-7xl mx-auto px-6">
           <div className="mb-14">
-            <div className="section-tag">Наши зоны</div>
-            <h2 className="font-display font-light mt-2" style={{ fontSize: "clamp(40px, 5vw, 60px)", color: "#f0e8da" }}>Пространства</h2>
+            <div className="section-tag">Наши пространства</div>
+            <h2 className="font-display font-light mt-2" style={{ fontSize: "clamp(40px, 5vw, 60px)", color: "#f0e8da" }}>Галерея</h2>
             <div className="gold-divider" />
           </div>
 
+          {/* Gallery grid */}
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-3 mb-14">
+            {GALLERY_ITEMS.map((item, i) => (
+              <div
+                key={i}
+                className="gallery-item"
+                style={{ aspectRatio: "4/3", borderRadius: 10, overflow: "hidden" }}
+                onClick={() => setLightbox(item)}
+              >
+                <img src={item.img} alt={item.title} />
+                <div className="gallery-overlay">
+                  <span style={{ fontSize: 10, letterSpacing: "0.2em", textTransform: "uppercase", color: "#c9a26e", marginBottom: 4 }}>{item.cat}</span>
+                  <span className="font-display" style={{ fontSize: 20, color: "#f0e8da" }}>{item.title}</span>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Space cards */}
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
             {SPACES.map((space) => (
               <SpaceCard key={space.title} space={space} />
@@ -510,56 +526,8 @@ export default function Index() {
         </div>
       </FadeSection>
 
-      {/* ── GALLERY ── */}
-      <FadeSection id="gallery" className="py-24" style={{ background: "#100c09" }}>
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="mb-12">
-            <div className="section-tag">Наши пространства</div>
-            <h2 className="font-display font-light mt-2" style={{ fontSize: "clamp(40px, 5vw, 60px)", color: "#f0e8da" }}>Галерея</h2>
-            <div className="gold-divider" />
-          </div>
-
-          {/* Filter tabs */}
-          <div className="flex flex-wrap gap-2 mb-8">
-            {GALLERY_CATS.map((cat) => (
-              <button
-                key={cat}
-                onClick={() => setGalleryCat(cat)}
-                className="px-5 py-2 text-xs tracking-widest uppercase transition-all duration-300"
-                style={{
-                  borderRadius: 50,
-                  border: galleryCat === cat ? "1px solid rgba(212,168,85,0.5)" : "1px solid rgba(212,168,85,0.15)",
-                  background: galleryCat === cat ? "rgba(212,168,85,0.15)" : "transparent",
-                  color: galleryCat === cat ? "#c9a26e" : "#9c8264",
-                  fontFamily: "'Golos Text', sans-serif",
-                  fontWeight: 500,
-                  cursor: "pointer",
-                }}
-              >
-                {cat}
-              </button>
-            ))}
-          </div>
-
-          {/* Grid */}
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-            {filtered.map((item, i) => (
-              <div
-                key={i}
-                className="gallery-item"
-                style={{ aspectRatio: "4/3", borderRadius: 10, overflow: "hidden" }}
-                onClick={() => setLightbox(item)}
-              >
-                <img src={item.img} alt={item.title} />
-                <div className="gallery-overlay">
-                  <span style={{ fontSize: 10, letterSpacing: "0.2em", textTransform: "uppercase", color: "#c9a26e", marginBottom: 4 }}>{item.cat}</span>
-                  <span className="font-display" style={{ fontSize: 20, color: "#f0e8da" }}>{item.title}</span>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </FadeSection>
+      {/* gallery anchor for nav */}
+      <div id="gallery" />
 
       {/* Lightbox */}
       {lightbox && (
