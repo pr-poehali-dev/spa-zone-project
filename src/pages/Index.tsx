@@ -375,39 +375,73 @@ export default function Index() {
               <a href="#contacts" className="btn-outline-gold">Жду звонка</a>
             </div>
 
-            {/* Яндекс «Хорошее место» */}
-            <a
-              href="https://yandex.ru/maps/org/9801271735"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-3 mt-6"
-              style={{
-                animation: "fadeUp 0.8s 0.75s ease forwards",
-                opacity: 0,
-                display: "inline-flex",
-                padding: "10px 20px 10px 14px",
-                background: "rgba(255,204,0,0.08)",
-                border: "1px solid rgba(255,204,0,0.25)",
-                borderRadius: 50,
-                textDecoration: "none",
-                transition: "all 0.3s ease",
-              }}
-              onMouseEnter={e => (e.currentTarget.style.background = "rgba(255,204,0,0.14)")}
-              onMouseLeave={e => (e.currentTarget.style.background = "rgba(255,204,0,0.08)")}
+            {/* Badges row */}
+            <div
+              className="flex flex-wrap gap-3 mt-6"
+              style={{ animation: "fadeUp 0.8s 0.75s ease forwards", opacity: 0 }}
             >
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-                <circle cx="12" cy="12" r="12" fill="#FFCC00" />
-                <text x="12" y="16" textAnchor="middle" fontSize="13" fontWeight="bold" fill="#1a1a1a">Я</text>
-              </svg>
-              <div>
-                <div style={{ fontSize: 11, fontWeight: 600, letterSpacing: "0.08em", color: "#FFCC00", textTransform: "uppercase", lineHeight: 1.2 }}>
-                  Хорошее место
+              {/* Яндекс «Хорошее место» */}
+              <a
+                href="https://yandex.ru/maps/org/9801271735"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-3"
+                style={{
+                  padding: "10px 20px 10px 14px",
+                  background: "rgba(255,204,0,0.08)",
+                  border: "1px solid rgba(255,204,0,0.25)",
+                  borderRadius: 50,
+                  textDecoration: "none",
+                  transition: "all 0.3s ease",
+                }}
+                onMouseEnter={e => (e.currentTarget.style.background = "rgba(255,204,0,0.14)")}
+                onMouseLeave={e => (e.currentTarget.style.background = "rgba(255,204,0,0.08)")}
+              >
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                  <circle cx="12" cy="12" r="12" fill="#FFCC00" />
+                  <text x="12" y="16" textAnchor="middle" fontSize="13" fontWeight="bold" fill="#1a1a1a">Я</text>
+                </svg>
+                <div>
+                  <div style={{ fontSize: 11, fontWeight: 600, letterSpacing: "0.08em", color: "#FFCC00", textTransform: "uppercase", lineHeight: 1.2 }}>
+                    Хорошее место
+                  </div>
+                  <div style={{ fontSize: 10, color: "rgba(240,232,218,0.5)", letterSpacing: "0.06em", marginTop: 1 }}>
+                    Яндекс Карты · Награда
+                  </div>
                 </div>
-                <div style={{ fontSize: 10, color: "rgba(240,232,218,0.5)", letterSpacing: "0.06em", marginTop: 1 }}>
-                  Яндекс Карты · Награда
+              </a>
+
+              {/* 2ГИС */}
+              <a
+                href="https://2gis.ru/firm/2RanymjLDD3"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-3"
+                style={{
+                  padding: "10px 20px 10px 14px",
+                  background: "rgba(72,183,77,0.08)",
+                  border: "1px solid rgba(72,183,77,0.25)",
+                  borderRadius: 50,
+                  textDecoration: "none",
+                  transition: "all 0.3s ease",
+                }}
+                onMouseEnter={e => (e.currentTarget.style.background = "rgba(72,183,77,0.14)")}
+                onMouseLeave={e => (e.currentTarget.style.background = "rgba(72,183,77,0.08)")}
+              >
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                  <circle cx="12" cy="12" r="12" fill="#48B74D" />
+                  <text x="12" y="16" textAnchor="middle" fontSize="9" fontWeight="bold" fill="#ffffff">2ГИС</text>
+                </svg>
+                <div>
+                  <div style={{ fontSize: 11, fontWeight: 600, letterSpacing: "0.08em", color: "#48B74D", textTransform: "uppercase", lineHeight: 1.2 }}>
+                    Найти нас
+                  </div>
+                  <div style={{ fontSize: 10, color: "rgba(240,232,218,0.5)", letterSpacing: "0.06em", marginTop: 1 }}>
+                    2ГИС · Карты
+                  </div>
                 </div>
-              </div>
-            </a>
+              </a>
+            </div>
           </div>
         </div>
 
