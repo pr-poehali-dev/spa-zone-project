@@ -74,6 +74,15 @@ const PROGRAMS = [
     img: POOL_IMAGE,
     href: "/programmy/zhenskaya-garmoniya",
   },
+  {
+    title: "Крепость Духа",
+    subtitle: "Мужская программа парения · 4 часа",
+    tag: "Мужская",
+    features: ["Парение на сенном матрасе", "Хаммам, бассейн, чан с хвоей", "5 массажей по 30 минут", "Уха по-приморски и фирменный стол"],
+    popular: false,
+    img: SAUNA_IMAGE,
+    href: "/programmy/krepost-duha",
+  },
 ];
 
 const GALLERY_CATS = ["Все", "Бассейн", "Сауны", "Массаж", "Отдых", "Природа"];
