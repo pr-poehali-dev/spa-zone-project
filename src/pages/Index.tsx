@@ -494,14 +494,16 @@ export default function Index() {
 
       {/* ── STATS ── */}
       <FadeSection className="py-14 border-y" style={{ borderColor: "rgba(212,168,85,0.1)", background: "#0F0D0B" } as React.CSSProperties}>
-        <div className="max-w-5xl mx-auto px-6 grid grid-cols-3 gap-8 text-center">
+        <div className="max-w-5xl mx-auto px-6 grid grid-cols-2 md:grid-cols-5 gap-8 text-center">
           {[
             { num: "500+", label: "Довольных клиентов" },
-            { num: "2", label: "Массажных кабинета" },
+            { num: "10+", label: "Авторских программ" },
             { num: "3 года", label: "Безупречного сервиса" },
+            { num: "Пар-мастер", label: "Профессиональное парение" },
+            { num: "СПА", label: "Полный спектр услуг" },
           ].map((s) => (
             <div key={s.label}>
-              <div className="font-display font-light mb-1" style={{ fontSize: 48, color: "#c9a26e" }}>{s.num}</div>
+              <div className="font-display font-light mb-1" style={{ fontSize: 40, color: "#c9a26e" }}>{s.num}</div>
               <div style={{ fontSize: 11, letterSpacing: "0.2em", textTransform: "uppercase", color: "#9c8264" }}>{s.label}</div>
             </div>
           ))}
