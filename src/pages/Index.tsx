@@ -84,7 +84,7 @@ const PROGRAMS = [
     tag: "Мужская",
     features: ["Парение на сенном матрасе", "Хаммам, бассейн, чан с хвоей", "5 массажей по 30 минут", "Уха по-приморски и фирменный стол"],
     popular: false,
-    img: SAUNA_IMAGE,
+    img: "https://cdn.poehali.dev/files/815cccc3-7246-43d5-9f64-e703411b71f9.jpg",
     href: "/programmy/krepost-duha",
   },
 ];
