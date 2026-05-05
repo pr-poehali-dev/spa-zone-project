@@ -94,6 +94,7 @@ const PROGRAMS = [
     features: ["Встреча с пар-мастером", "Парение на сенном матрасе", "Хаммам, бассейн, можжевеловая комната", "Терраса с подвесной кроватью"],
     popular: false,
     img: "https://cdn.poehali.dev/files/79602049-2177-4efd-ad4b-fffaf6aef0fb.JPG",
+    imgFit: "contain" as const,
     href: "/programmy/puteshestvie",
   },
 ];
@@ -702,8 +703,8 @@ export default function Index() {
                     Популярное
                   </div>
                 )}
-                <div className="relative overflow-hidden" style={{ height: 180 }}>
-                  <img src={prog.img} alt={prog.title} className="w-full h-full object-cover transition-transform duration-500 hover:scale-105" />
+                <div className="relative overflow-hidden" style={{ height: 180, background: prog.imgFit === "contain" ? "#100c09" : "transparent" }}>
+                  <img src={prog.img} alt={prog.title} className={`w-full h-full transition-transform duration-500 hover:scale-105 ${prog.imgFit === "contain" ? "object-contain" : "object-cover"}`} />
                   <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(16,12,9,0.85) 0%, transparent 60%)" }} />
                   <div className="absolute bottom-3 left-4">
                     <span className="glass-tag">{prog.tag}</span>
