@@ -98,6 +98,7 @@ const GALLERY_ITEMS = [
   { img: "https://cdn.poehali.dev/projects/96829bf9-8ea6-42db-bc21-6a2d363e218e/bucket/28bdf4f0-62a7-4d59-9b55-99b6d575208f.jpg", title: "Хаммам", cat: "Сауны" },
   { img: "https://cdn.poehali.dev/projects/96829bf9-8ea6-42db-bc21-6a2d363e218e/bucket/28bdf4f0-62a7-4d59-9b55-99b6d575208f.jpg", title: "Хаммам в белом мраморе", cat: "Сауны" },
   { img: "https://cdn.poehali.dev/projects/96829bf9-8ea6-42db-bc21-6a2d363e218e/files/40ca8680-c4e9-48e0-be2f-50f916f4ae3f.jpg", title: "Можжевеловая комната", cat: "Природа" },
+  { img: "https://cdn.poehali.dev/projects/96829bf9-8ea6-42db-bc21-6a2d363e218e/bucket/5c17da44-232f-4762-956a-1a34a47439df.JPG", title: "Контрастный душ", cat: "Сауны" },
 ];
 
 const REVIEWS = [
