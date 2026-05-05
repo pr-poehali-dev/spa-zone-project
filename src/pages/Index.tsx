@@ -32,7 +32,7 @@ const MARQUEE_ITEMS = [
 
 const SPACES = [
   { icon: "Waves", title: "Бассейн", desc: "Термальный бассейн — температура воды под ваш запрос от 36°C и выше. Полное расслабление в тёплой воде.", tag: "Вода", img: POOL_IMAGE },
-  { icon: "Flame", title: "Финская сауна", desc: "Классическая финская сауна до 90°C с берёзовыми вениками и натуральными ароматами. После — чан на свежем воздухе на нашей террасе.", tag: "Жар", img: SAUNA_IMAGE },
+  { icon: "Flame", title: "Финская сауна", desc: "Классическая финская сауна до 90°C с берёзовыми вениками и натуральными ароматами. После — чан на свежем воздухе на нашей террасе.", tag: "Жар", img: SAUNA_IMAGE, imgs: [SAUNA_IMAGE, "https://cdn.poehali.dev/projects/96829bf9-8ea6-42db-bc21-6a2d363e218e/bucket/f9297473-a316-4856-83ad-f065e7fa567f.jpg"] },
   { icon: "Droplets", title: "Чан на свежем воздухе", desc: "Горячий чан под открытым небом — живой огонь нагревает воду до 40°C. Лежишь в тепле, дышишь свежим воздухом и смотришь в небо. Лучшее после сауны.", tag: "Воздух", img: "https://cdn.poehali.dev/projects/96829bf9-8ea6-42db-bc21-6a2d363e218e/bucket/b503abaf-8203-45d7-b31e-34f8102364d2.jpg", imgs: ["https://cdn.poehali.dev/projects/96829bf9-8ea6-42db-bc21-6a2d363e218e/bucket/b503abaf-8203-45d7-b31e-34f8102364d2.jpg", "https://cdn.poehali.dev/projects/96829bf9-8ea6-42db-bc21-6a2d363e218e/bucket/7900c746-c09e-4676-bc8b-875efd4855b8.jpg"] },
   { icon: "Wind", title: "Пространство пара", desc: "Турецкая баня с мраморным камнем и традиционным пенным массажем в облаках горячего пара.", tag: "Пар", img: "https://cdn.poehali.dev/projects/96829bf9-8ea6-42db-bc21-6a2d363e218e/bucket/28bdf4f0-62a7-4d59-9b55-99b6d575208f.jpg", imgs: ["https://cdn.poehali.dev/projects/96829bf9-8ea6-42db-bc21-6a2d363e218e/bucket/28bdf4f0-62a7-4d59-9b55-99b6d575208f.jpg", "https://cdn.poehali.dev/files/218bd40d-5e92-4507-b11c-7e402bd3f13e.JPG", "https://cdn.poehali.dev/projects/96829bf9-8ea6-42db-bc21-6a2d363e218e/bucket/7870c390-eddb-404f-accd-1a723f4987e9.JPG"] },
   { icon: "Leaf", title: "Массажный зал", desc: "2 кабинета для массажа, обёртываний, спа головы и косметолога.", tag: "Тело", img: MASSAGE_IMAGE, imgs: ["https://cdn.poehali.dev/files/546728b2-54c4-4bd3-8489-0759f916742c.jpg", "https://cdn.poehali.dev/files/1f142cc2-f16d-4c72-a8a2-52ecb84d4849.jpg", "https://cdn.poehali.dev/files/1174c867-0a1f-4ab0-8dc4-f00abe9b028c.jpg", "https://cdn.poehali.dev/projects/96829bf9-8ea6-42db-bc21-6a2d363e218e/bucket/6e723f23-60c4-4ac9-a504-892e6223ca14.jpg"] },
@@ -93,7 +93,7 @@ const GALLERY_CATS = ["Все", "Бассейн", "Сауны", "Массаж", 
 
 const GALLERY_ITEMS = [
   { img: POOL_IMAGE, title: "Термальный бассейн", cat: "Бассейн" },
-  { img: SAUNA_IMAGE, title: "Финская сауна", cat: "Сауны" },
+  { img: SAUNA_IMAGE, title: "Финская сауна", cat: "Сауны", imgs: [SAUNA_IMAGE, "https://cdn.poehali.dev/projects/96829bf9-8ea6-42db-bc21-6a2d363e218e/bucket/f9297473-a316-4856-83ad-f065e7fa567f.jpg"] },
   { img: MASSAGE_IMAGE, title: "Массажный зал", cat: "Массаж" },
   { img: "https://cdn.poehali.dev/files/1f142cc2-f16d-4c72-a8a2-52ecb84d4849.jpg", title: "Атмосфера покоя", cat: "Массаж" },
   { img: "https://cdn.poehali.dev/files/1174c867-0a1f-4ab0-8dc4-f00abe9b028c.jpg", title: "Свечи и уют", cat: "Массаж" },
@@ -155,6 +155,52 @@ function useInView(threshold = 0.1) {
     return () => obs.disconnect();
   }, [threshold]);
   return { ref, inView };
+}
+
+function GalleryCard({ item, onOpen }: { item: { img: string; title: string; cat: string; imgs?: string[] }; onOpen: () => void }) {
+  const images = item.imgs ?? [item.img];
+  const [idx, setIdx] = useState(0);
+  const [hovered, setHovered] = useState(false);
+
+  useEffect(() => {
+    if (!hovered || images.length < 2) return;
+    const t = setInterval(() => setIdx((i) => (i + 1) % images.length), 1400);
+    return () => clearInterval(t);
+  }, [hovered, images.length]);
+
+  return (
+    <div
+      className="gallery-item"
+      style={{ aspectRatio: "4/3", borderRadius: 10, overflow: "hidden", position: "relative" }}
+      onClick={onOpen}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => { setHovered(false); setIdx(0); }}
+    >
+      {images.map((src, i) => (
+        <img
+          key={src}
+          src={src}
+          alt={item.title}
+          style={{
+            position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover",
+            opacity: i === idx ? 1 : 0,
+            transition: "opacity 0.5s ease",
+          }}
+        />
+      ))}
+      <div className="gallery-overlay">
+        <span style={{ fontSize: 10, letterSpacing: "0.2em", textTransform: "uppercase", color: "#c9a26e", marginBottom: 4 }}>{item.cat}</span>
+        <span className="font-display" style={{ fontSize: 20, color: "#f0e8da" }}>{item.title}</span>
+      </div>
+      {images.length > 1 && (
+        <div style={{ position: "absolute", bottom: 8, left: "50%", transform: "translateX(-50%)", display: "flex", gap: 5, zIndex: 10 }}>
+          {images.map((_, i) => (
+            <div key={i} style={{ width: i === idx ? 14 : 5, height: 5, borderRadius: 99, background: i === idx ? "#c9a26e" : "rgba(255,255,255,0.4)", transition: "all 0.3s" }} />
+          ))}
+        </div>
+      )}
+    </div>
+  );
 }
 
 function SpaceCard({ space }: { space: { icon: string; title: string; desc: string; tag: string; img: string; imgs?: string[]; autoFlip?: boolean } }) {
@@ -604,18 +650,7 @@ export default function Index() {
           {/* Gallery grid */}
           <div className="grid grid-cols-2 md:grid-cols-3 gap-3 mb-14">
             {GALLERY_ITEMS.map((item, i) => (
-              <div
-                key={i}
-                className="gallery-item"
-                style={{ aspectRatio: "4/3", borderRadius: 10, overflow: "hidden" }}
-                onClick={() => setLightbox(item)}
-              >
-                <img src={item.img} alt={item.title} />
-                <div className="gallery-overlay">
-                  <span style={{ fontSize: 10, letterSpacing: "0.2em", textTransform: "uppercase", color: "#c9a26e", marginBottom: 4 }}>{item.cat}</span>
-                  <span className="font-display" style={{ fontSize: 20, color: "#f0e8da" }}>{item.title}</span>
-                </div>
-              </div>
+              <GalleryCard key={i} item={item} onOpen={() => setLightbox(item)} />
             ))}
           </div>
 
