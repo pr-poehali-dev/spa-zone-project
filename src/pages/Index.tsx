@@ -3,8 +3,10 @@ import { Link } from "react-router-dom";
 import Icon from "@/components/ui/icon";
 import PolicyModal from "@/components/PolicyModal";
 
-const HERO_IMAGE =
-  "https://cdn.poehali.dev/projects/96829bf9-8ea6-42db-bc21-6a2d363e218e/files/000b3239-ae8e-4c05-9c8f-1203a2f22d2c.jpg";
+const HERO_IMAGES = [
+  "https://cdn.poehali.dev/projects/96829bf9-8ea6-42db-bc21-6a2d363e218e/files/000b3239-ae8e-4c05-9c8f-1203a2f22d2c.jpg",
+  "https://cdn.poehali.dev/projects/96829bf9-8ea6-42db-bc21-6a2d363e218e/bucket/224dd57b-359a-42be-8a9e-02c52f193af2.jpg",
+];
 const POOL_IMAGE =
   "https://cdn.poehali.dev/projects/96829bf9-8ea6-42db-bc21-6a2d363e218e/bucket/398dec83-3f2a-46f8-ad83-4668bb037d5a.jpg";
 const SAUNA_IMAGE =
@@ -151,7 +153,7 @@ const BLOG_POSTS = [
   },
   {
     title: "Сезонные ритуалы: весеннее очищение тела и духа",
-    date: "25 марта 2026", read: "4 мин", tag: "Ритуалы", img: HERO_IMAGE,
+    date: "25 марта 2026", read: "4 мин", tag: "Ритуалы", img: HERO_IMAGES[0],
     back: "Весной тело просыпается — и просит помощи. Скраб, пар, контраст и тишина. Древние ритуалы работают не потому что мы верим — а потому что они созданы под нашу физиологию. Весеннее очищение — не традиция. Это необходимость.",
   },
 ];
