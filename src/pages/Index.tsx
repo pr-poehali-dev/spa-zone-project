@@ -96,8 +96,8 @@ const GALLERY_ITEMS = [
   { img: "https://cdn.poehali.dev/files/1f142cc2-f16d-4c72-a8a2-52ecb84d4849.jpg", title: "Атмосфера покоя", cat: "Массаж" },
   { img: "https://cdn.poehali.dev/files/1174c867-0a1f-4ab0-8dc4-f00abe9b028c.jpg", title: "Свечи и уют", cat: "Массаж" },
   { img: HERO_IMAGE, title: "Хаммам", cat: "Сауны" },
-  { img: SAUNA_IMAGE, title: "Хаммам", cat: "Сауны" },
-  { img: SAUNA_IMAGE, title: "Можжевеловая комната", cat: "Природа" },
+  { img: "https://cdn.poehali.dev/projects/96829bf9-8ea6-42db-bc21-6a2d363e218e/files/40ca8680-c4e9-48e0-be2f-50f916f4ae3f.jpg", title: "Хаммам в белом мраморе", cat: "Сауны" },
+  { img: "https://cdn.poehali.dev/projects/96829bf9-8ea6-42db-bc21-6a2d363e218e/files/40ca8680-c4e9-48e0-be2f-50f916f4ae3f.jpg", title: "Можжевеловая комната", cat: "Природа" },
 ];
 
 const REVIEWS = [
