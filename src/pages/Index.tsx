@@ -96,6 +96,7 @@ const GALLERY_ITEMS = [
   { img: "https://cdn.poehali.dev/files/1f142cc2-f16d-4c72-a8a2-52ecb84d4849.jpg", title: "Атмосфера покоя", cat: "Массаж" },
   { img: "https://cdn.poehali.dev/files/1174c867-0a1f-4ab0-8dc4-f00abe9b028c.jpg", title: "Свечи и уют", cat: "Массаж" },
   { img: "https://cdn.poehali.dev/projects/96829bf9-8ea6-42db-bc21-6a2d363e218e/bucket/28bdf4f0-62a7-4d59-9b55-99b6d575208f.jpg", title: "Хаммам", cat: "Сауны" },
+  { img: "https://cdn.poehali.dev/projects/96829bf9-8ea6-42db-bc21-6a2d363e218e/bucket/16925e76-36b5-4168-9b0b-d4cb6025ed94.jpg", title: "Наш интерьер", cat: "Интерьер" },
 ];
 
 const REVIEWS = [
