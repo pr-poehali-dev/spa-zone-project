@@ -87,6 +87,15 @@ const PROGRAMS = [
     img: "https://cdn.poehali.dev/files/815cccc3-7246-43d5-9f64-e703411b71f9.jpg",
     href: "/programmy/krepost-duha",
   },
+  {
+    title: "Программа на одного гостя",
+    subtitle: "Индивидуальная программа парения",
+    tag: "Индивидуальная",
+    features: ["Встреча с пар-мастером", "Парение на сенном матрасе", "Хаммам, бассейн, можжевеловая комната", "Терраса с подвесной кроватью"],
+    popular: false,
+    img: "https://cdn.poehali.dev/files/79602049-2177-4efd-ad4b-fffaf6aef0fb.JPG",
+    href: "/programmy/puteshestvie",
+  },
 ];
 
 const GALLERY_CATS = ["Все", "Бассейн", "Сауны", "Массаж", "Отдых", "Природа"];
