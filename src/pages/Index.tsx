@@ -372,9 +372,14 @@ export default function Index() {
               Бассейн · Сауна · Хаммам · Массаж · Ароматерапия
             </p>
             <p
-              style={{ color: "rgba(240,232,218,0.7)", fontSize: 16, fontWeight: 300, maxWidth: 400, lineHeight: 1.85, marginBottom: 36, animation: "fadeUp 0.8s 0.45s ease forwards", opacity: 0 }}
+              style={{ color: "rgba(240,232,218,0.7)", fontSize: 16, fontWeight: 300, maxWidth: 400, lineHeight: 1.85, marginBottom: 20, animation: "fadeUp 0.8s 0.45s ease forwards", opacity: 0 }}
             >
               Здесь тело вспоминает, как быть лёгким. Тепло, пар, тишина — и ничего лишнего.
+            </p>
+            <p
+              style={{ color: "rgba(201,162,110,0.75)", fontSize: 14, fontWeight: 300, maxWidth: 400, lineHeight: 1.7, marginBottom: 36, animation: "fadeUp 0.8s 0.55s ease forwards", opacity: 0, letterSpacing: "0.04em" }}
+            >
+              Уютное пространство для компании до 8 человек
             </p>
 
             {/* Buttons */}
