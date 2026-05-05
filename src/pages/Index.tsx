@@ -38,6 +38,7 @@ const SPACES = [
   { icon: "Leaf", title: "Массажный зал", desc: "2 кабинета для массажа, обёртываний, спа головы и косметолога.", tag: "Тело", img: MASSAGE_IMAGE, imgs: ["https://cdn.poehali.dev/files/546728b2-54c4-4bd3-8489-0759f916742c.jpg", "https://cdn.poehali.dev/files/1f142cc2-f16d-4c72-a8a2-52ecb84d4849.jpg", "https://cdn.poehali.dev/files/1174c867-0a1f-4ab0-8dc4-f00abe9b028c.jpg", "https://cdn.poehali.dev/projects/96829bf9-8ea6-42db-bc21-6a2d363e218e/bucket/6e723f23-60c4-4ac9-a504-892e6223ca14.jpg"] },
   { icon: "Trees", title: "🌿 Арома-комната", desc: "Можжевеловая комната — приглушённый свет и звуки природы только для вас. Лёжа на сенном матрасе, вдыхая ароматы трав и хвои, вы почувствуете, как тело само отпускает всё лишнее. Стены из можжевеловых спилов наполняют воздух живой смолой — природным антисептиком, который очищает дыхание и успокаивает нервную систему. Над головой — звёздное небо, вокруг — тишина, которую не нужно заслуживать.", tag: "Можжевеловая комната", img: SAUNA_IMAGE, imgs: ["https://cdn.poehali.dev/files/ca1bd218-a636-47d0-9274-451e54c2cd18.jpg", "https://cdn.poehali.dev/files/2eced06b-a37e-48f8-a7b3-3443680ee5e1.jpg"] },
   { icon: "Sparkles", title: "СПА — Косметика, которая работает глубже, чем вы думаете", desc: "Используем космецевтику Комфорт Зон и Талассо Бретань — морские водоросли и минералы Атлантики насыщают кожу йодом, магнием и цинком. В сочетании с теплом хаммама активные вещества проникают в 3–4 раза глубже. Результат уже после первой процедуры: кожа мягкая, упругая — как после моря.", tag: "Красота", img: "https://cdn.poehali.dev/projects/96829bf9-8ea6-42db-bc21-6a2d363e218e/bucket/21f81724-a20a-4ce9-a0d4-d093b4801c05.jpg", imgs: ["https://cdn.poehali.dev/projects/96829bf9-8ea6-42db-bc21-6a2d363e218e/bucket/21f81724-a20a-4ce9-a0d4-d093b4801c05.jpg", "https://cdn.poehali.dev/projects/96829bf9-8ea6-42db-bc21-6a2d363e218e/bucket/6284b1da-37e5-49a7-884b-955656d70c38.jpg", "https://cdn.poehali.dev/files/7b99a33b-4d26-4682-9186-109c55f0f264.jpg"] },
+  { icon: "Crown", title: "СПА головы", desc: "Ритуал для волос и кожи головы: глубокое увлажнение, массаж, маски на натуральных маслах. Волосы оживают — блеск, мягкость и лёгкость уже после первой процедуры.", tag: "Красота", img: MASSAGE_IMAGE, autoFlip: true },
 ];
 
 const PROGRAMS = [
@@ -156,11 +157,81 @@ function useInView(threshold = 0.1) {
   return { ref, inView };
 }
 
-function SpaceCard({ space }: { space: { icon: string; title: string; desc: string; tag: string; img: string; imgs?: string[] } }) {
+function SpaceCard({ space }: { space: { icon: string; title: string; desc: string; tag: string; img: string; imgs?: string[]; autoFlip?: boolean } }) {
   const images = space.imgs ?? [space.img];
   const [idx, setIdx] = useState(0);
+  const [flipped, setFlipped] = useState(false);
   const prev = (e: React.MouseEvent) => { e.stopPropagation(); setIdx((i) => (i - 1 + images.length) % images.length); };
   const next = (e: React.MouseEvent) => { e.stopPropagation(); setIdx((i) => (i + 1) % images.length); };
+
+  useEffect(() => {
+    if (!space.autoFlip) return;
+    const interval = setInterval(() => setFlipped((f) => !f), 3000);
+    return () => clearInterval(interval);
+  }, [space.autoFlip]);
+
+  if (space.autoFlip) {
+    return (
+      <div style={{ perspective: 1000, height: 320 }}>
+        <div
+          style={{
+            position: "relative", width: "100%", height: "100%",
+            transformStyle: "preserve-3d",
+            transition: "transform 0.8s cubic-bezier(0.4,0.2,0.2,1)",
+            transform: flipped ? "rotateY(180deg)" : "rotateY(0deg)",
+          }}
+          onMouseEnter={() => setFlipped(true)}
+          onMouseLeave={() => setFlipped(false)}
+        >
+          {/* Front */}
+          <div className="card-dark" style={{ position: "absolute", inset: 0, backfaceVisibility: "hidden", overflow: "hidden", borderRadius: 14 }}>
+            <div style={{ position: "relative", height: 200, overflow: "hidden" }}>
+              <img src={space.img} alt={space.title} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+              <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(16,12,9,0.72) 0%, transparent 60%)" }} />
+              <div style={{ position: "absolute", top: 16, left: 16 }}>
+                <span className="glass-tag">{space.tag}</span>
+              </div>
+              <div style={{ position: "absolute", bottom: 10, right: 12, fontSize: 10, color: "rgba(201,162,110,0.6)", letterSpacing: "0.15em", textTransform: "uppercase" }}>
+                нажми ✦
+              </div>
+            </div>
+            <div className="p-6">
+              <div className="flex items-center gap-3 mb-3">
+                <div className="w-8 h-8 rounded-lg flex items-center justify-center" style={{ background: "rgba(212,168,85,0.12)" }}>
+                  <Icon name={space.icon} size={15} style={{ color: "#c9a26e" }} />
+                </div>
+                <h3 className="font-display font-medium" style={{ fontSize: 20, color: "#f0e8da" }}>{space.title}</h3>
+              </div>
+            </div>
+          </div>
+          {/* Back */}
+          <div
+            style={{
+              position: "absolute", inset: 0, backfaceVisibility: "hidden",
+              transform: "rotateY(180deg)", borderRadius: 14, overflow: "hidden",
+              background: "linear-gradient(135deg, rgba(212,168,85,0.1), rgba(28,20,14,0.97))",
+              border: "1px solid rgba(201,162,110,0.35)",
+              display: "flex", flexDirection: "column", justifyContent: "center",
+              padding: "32px 28px",
+            }}
+          >
+            <span className="glass-tag" style={{ alignSelf: "flex-start", marginBottom: 20 }}>{space.tag}</span>
+            <div className="flex items-center gap-3 mb-4">
+              <div className="w-8 h-8 rounded-lg flex items-center justify-center" style={{ background: "rgba(212,168,85,0.12)" }}>
+                <Icon name={space.icon} size={15} style={{ color: "#c9a26e" }} />
+              </div>
+              <h3 className="font-display font-medium" style={{ fontSize: 20, color: "#f0e8da" }}>{space.title}</h3>
+            </div>
+            <p style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 16, fontStyle: "italic", color: "#d4b896", lineHeight: 1.85, margin: 0 }}>
+              {space.desc}
+            </p>
+            <div style={{ marginTop: 24, height: 1, background: "linear-gradient(to right, #c9a26e, transparent)" }} />
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="card-dark hover-lift">
       <div className="relative overflow-hidden" style={{ height: 200 }}>
