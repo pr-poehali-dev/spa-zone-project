@@ -173,67 +173,64 @@ function SpaceCard({ space }: { space: { icon: string; title: string; desc: stri
   if (space.autoFlip) {
     return (
       <div
-        style={{ position: "relative", height: 320, overflow: "hidden", borderRadius: 14, cursor: "pointer" }}
+        style={{ perspective: 900, height: 320, cursor: "pointer" }}
         onMouseEnter={() => setFlipped(true)}
         onMouseLeave={() => setFlipped(false)}
       >
-        {/* Front — уезжает вверх */}
-        <div
-          className="card-dark"
-          style={{
+        <div style={{
+          position: "relative", width: "100%", height: "100%",
+          transformStyle: "preserve-3d",
+          transition: "transform 0.75s cubic-bezier(0.5,0.1,0.2,1)",
+          transform: flipped ? "rotateX(-90deg)" : "rotateX(0deg)",
+          transformOrigin: "center bottom",
+        }}>
+          {/* Front — лицевая грань */}
+          <div className="card-dark" style={{
             position: "absolute", inset: 0, borderRadius: 14, overflow: "hidden",
-            transition: "transform 0.6s cubic-bezier(0.7,0,0.3,1), opacity 0.5s ease",
-            transform: flipped ? "translateY(-100%)" : "translateY(0%)",
-            opacity: flipped ? 0 : 1,
-          }}
-        >
-          <div style={{ position: "relative", height: 200, overflow: "hidden" }}>
-            <img src={space.img} alt={space.title} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
-            <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(16,12,9,0.72) 0%, transparent 60%)" }} />
-            <div style={{ position: "absolute", top: 16, left: 16 }}>
-              <span className="glass-tag">{space.tag}</span>
+            backfaceVisibility: "hidden",
+          }}>
+            <div style={{ position: "relative", height: 200, overflow: "hidden" }}>
+              <img src={space.img} alt={space.title} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+              <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(16,12,9,0.72) 0%, transparent 60%)" }} />
+              <div style={{ position: "absolute", top: 16, left: 16 }}>
+                <span className="glass-tag">{space.tag}</span>
+              </div>
+            </div>
+            <div className="p-6">
+              <div className="flex items-center gap-3 mb-2">
+                <div className="w-8 h-8 rounded-lg flex items-center justify-center" style={{ background: "rgba(212,168,85,0.12)" }}>
+                  <Icon name={space.icon} size={15} style={{ color: "#c9a26e" }} />
+                </div>
+                <h3 className="font-display font-medium" style={{ fontSize: 20, color: "#f0e8da" }}>{space.title}</h3>
+              </div>
+              <p style={{ fontSize: 11, color: "rgba(201,162,110,0.45)", letterSpacing: "0.15em", textTransform: "uppercase", marginTop: 6 }}>подробнее ↓</p>
             </div>
           </div>
-          <div className="p-6">
-            <div className="flex items-center gap-3 mb-2">
+
+          {/* Bottom — нижняя грань куба */}
+          <div style={{
+            position: "absolute", inset: 0, borderRadius: 14, overflow: "hidden",
+            background: "linear-gradient(160deg, rgba(212,168,85,0.09), rgba(18,13,9,0.98))",
+            border: "1px solid rgba(201,162,110,0.3)",
+            display: "flex", flexDirection: "column", justifyContent: "center",
+            padding: "28px 28px",
+            backfaceVisibility: "hidden",
+            transform: "rotateX(90deg) translateZ(320px)",
+            transformOrigin: "center bottom",
+          }}>
+            <span className="glass-tag" style={{ alignSelf: "flex-start", marginBottom: 14 }}>{space.tag}</span>
+            <div className="flex items-center gap-3 mb-4">
               <div className="w-8 h-8 rounded-lg flex items-center justify-center" style={{ background: "rgba(212,168,85,0.12)" }}>
                 <Icon name={space.icon} size={15} style={{ color: "#c9a26e" }} />
               </div>
               <h3 className="font-display font-medium" style={{ fontSize: 20, color: "#f0e8da" }}>{space.title}</h3>
             </div>
-            <p style={{ fontSize: 11, color: "rgba(201,162,110,0.5)", letterSpacing: "0.15em", textTransform: "uppercase", marginTop: 8 }}>
-              узнать подробнее ↑
+            <p style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 15, fontStyle: "italic", color: "#d4b896", lineHeight: 1.8, margin: 0 }}>
+              {space.desc}
             </p>
+            <div style={{ marginTop: 18, height: 1, background: "linear-gradient(to right, #c9a26e, transparent)" }} />
+            <p style={{ marginTop: 12, fontSize: 11, color: "#9c8264", letterSpacing: "0.12em", textTransform: "uppercase" }}>записаться →</p>
           </div>
-        </div>
-
-        {/* Back — выезжает снизу */}
-        <div
-          style={{
-            position: "absolute", inset: 0, borderRadius: 14, overflow: "hidden",
-            background: "linear-gradient(160deg, rgba(212,168,85,0.08), rgba(18,13,9,0.98))",
-            border: "1px solid rgba(201,162,110,0.3)",
-            display: "flex", flexDirection: "column", justifyContent: "center",
-            padding: "32px 28px",
-            transition: "transform 0.6s cubic-bezier(0.7,0,0.3,1), opacity 0.5s ease",
-            transform: flipped ? "translateY(0%)" : "translateY(100%)",
-            opacity: flipped ? 1 : 0,
-          }}
-        >
-          <span className="glass-tag" style={{ alignSelf: "flex-start", marginBottom: 16 }}>{space.tag}</span>
-          <div className="flex items-center gap-3 mb-5">
-            <div className="w-8 h-8 rounded-lg flex items-center justify-center" style={{ background: "rgba(212,168,85,0.12)" }}>
-              <Icon name={space.icon} size={15} style={{ color: "#c9a26e" }} />
-            </div>
-            <h3 className="font-display font-medium" style={{ fontSize: 20, color: "#f0e8da" }}>{space.title}</h3>
-          </div>
-          <p style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 16, fontStyle: "italic", color: "#d4b896", lineHeight: 1.85, margin: 0 }}>
-            {space.desc}
-          </p>
-          <div style={{ marginTop: 20, height: 1, background: "linear-gradient(to right, #c9a26e, transparent)" }} />
-          <p style={{ marginTop: 14, fontSize: 11, color: "#9c8264", letterSpacing: "0.12em", textTransform: "uppercase" }}>
-            записаться →
-          </p>
         </div>
       </div>
     );
