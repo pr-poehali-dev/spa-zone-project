@@ -360,6 +360,14 @@ export default function Index() {
   const [policyModal, setPolicyModal] = useState<"privacy" | "consent" | null>(null);
   const [policyChecked, setPolicyChecked] = useState(false);
   const [parallaxY, setParallaxY] = useState(0);
+  const [heroIndex, setHeroIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setHeroIndex((i) => (i + 1) % HERO_IMAGES.length);
+    }, 5000);
+    return () => clearInterval(interval);
+  }, []);
 
   useEffect(() => {
     const onScroll = () => {
@@ -456,12 +464,22 @@ export default function Index() {
       <div id="hero" className="relative h-screen min-h-[620px] flex items-center overflow-hidden">
         {/* Parallax bg */}
         <div className="absolute inset-0">
-          <img
-            src={HERO_IMAGE}
-            alt="Пространство Пара"
-            className="w-full h-full object-cover"
-            style={{ transform: `translateY(${parallaxY}px)`, willChange: "transform", scale: "1.15" }}
-          />
+          {HERO_IMAGES.map((src, i) => (
+            <img
+              key={src}
+              src={src}
+              alt="Пространство Пара"
+              className="absolute inset-0 w-full h-full object-cover"
+              style={{
+                transform: `translateY(${parallaxY}px)`,
+                willChange: "transform",
+                scale: "1.15",
+                opacity: i === heroIndex ? 1 : 0,
+                transition: "opacity 1.2s ease-in-out",
+                zIndex: i === heroIndex ? 1 : 0,
+              }}
+            />
+          ))}
           <div className="absolute inset-0" style={{ background: "linear-gradient(to right, rgba(13,11,10,0.85) 0%, rgba(13,11,10,0.5) 55%, rgba(13,11,10,0.2) 100%)" }} />
           <div className="absolute inset-0" style={{ background: "linear-gradient(to bottom, transparent 50%, rgba(13,11,10,0.7) 100%)" }} />
         </div>
