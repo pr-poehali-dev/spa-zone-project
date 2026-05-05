@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import Icon from "@/components/ui/icon";
+import PolicyModal from "@/components/PolicyModal";
 
 const HERO_IMAGE =
   "https://cdn.poehali.dev/projects/96829bf9-8ea6-42db-bc21-6a2d363e218e/files/000b3239-ae8e-4c05-9c8f-1203a2f22d2c.jpg";
@@ -225,6 +226,8 @@ export default function Index() {
   const [lightbox, setLightbox] = useState<{ img: string; title: string } | null>(null);
   const [formData, setFormData] = useState({ name: "", phone: "", comment: "" });
   const [formStatus, setFormStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [policyModal, setPolicyModal] = useState<"privacy" | "consent" | null>(null);
+  const [policyChecked, setPolicyChecked] = useState(false);
   const [parallaxY, setParallaxY] = useState(0);
 
   useEffect(() => {
@@ -900,10 +903,29 @@ export default function Index() {
                   onFocus={(e) => (e.target.style.borderColor = "rgba(212,168,85,0.5)")}
                   onBlur={(e) => (e.target.style.borderColor = "rgba(212,168,85,0.15)")}
                 />
+                <label style={{ display: "flex", alignItems: "flex-start", gap: 10, cursor: "pointer" }}>
+                  <input
+                    type="checkbox"
+                    checked={policyChecked}
+                    onChange={(e) => setPolicyChecked(e.target.checked)}
+                    style={{ marginTop: 3, accentColor: "#c9a26e", flexShrink: 0, width: 15, height: 15 }}
+                  />
+                  <span style={{ fontSize: 12, color: "rgba(240,232,218,0.55)", lineHeight: 1.6 }}>
+                    Нажимая кнопку, я принимаю{" "}
+                    <button type="button" onClick={() => setPolicyModal("privacy")} style={{ color: "#c9a26e", background: "none", border: "none", padding: 0, cursor: "pointer", fontSize: 12, textDecoration: "underline" }}>
+                      политику конфиденциальности
+                    </button>{" "}
+                    и даю{" "}
+                    <button type="button" onClick={() => setPolicyModal("consent")} style={{ color: "#c9a26e", background: "none", border: "none", padding: 0, cursor: "pointer", fontSize: 12, textDecoration: "underline" }}>
+                      согласие на обработку персональных данных
+                    </button>
+                  </span>
+                </label>
                 <button
                   type="submit"
                   className="w-full btn-gold text-center"
-                  disabled={formStatus === "loading"}
+                  disabled={formStatus === "loading" || !policyChecked}
+                  style={{ opacity: policyChecked ? 1 : 0.5 }}
                 >
                   {formStatus === "loading" ? "Отправка..." : "Отправить заявку"}
                 </button>
@@ -984,6 +1006,7 @@ export default function Index() {
           </div>
         </div>
       </footer>
+      <PolicyModal type={policyModal} onClose={() => setPolicyModal(null)} />
     </div>
   );
 }
