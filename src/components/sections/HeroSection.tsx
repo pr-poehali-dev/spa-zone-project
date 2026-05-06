@@ -55,12 +55,12 @@ export default function HeroSection({ activeNav, scrolled, parallaxY, heroIndex 
 
           <div className="flex items-center gap-4">
             <a
-              href="tel:+74955404986"
+              href="tel:+79089803545"
               className="hidden lg:inline-flex items-center gap-2"
               style={{ color: "#e8c08a", fontSize: 15, fontWeight: 600, letterSpacing: "0.03em", textDecoration: "none" }}
             >
               <Icon name="Phone" size={15} style={{ color: "#e8c08a" }} />
-              +7 495 540-49-86
+              +7 908 980-35-45
             </a>
             <a href="#contacts" className="hidden lg:inline-block btn-gold">Записаться</a>
             <button
