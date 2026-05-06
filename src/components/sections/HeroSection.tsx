@@ -111,8 +111,92 @@ export default function HeroSection({ activeNav, scrolled, parallaxY, heroIndex 
               }}
             />
           ))}
-          <div className="absolute inset-0" style={{ background: "linear-gradient(to right, rgba(13,11,10,0.85) 0%, rgba(13,11,10,0.5) 55%, rgba(13,11,10,0.2) 100%)" }} />
-          <div className="absolute inset-0" style={{ background: "linear-gradient(to bottom, transparent 50%, rgba(13,11,10,0.7) 100%)" }} />
+          {/* Water ripple filter */}
+          <svg style={{ position: "absolute", width: 0, height: 0 }}>
+            <defs>
+              <filter id="water-ripple" x="-20%" y="-20%" width="140%" height="140%">
+                <feTurbulence
+                  type="fractalNoise"
+                  baseFrequency="0.012 0.008"
+                  numOctaves="3"
+                  seed="2"
+                  result="noise"
+                >
+                  <animate
+                    attributeName="baseFrequency"
+                    values="0.012 0.008;0.014 0.010;0.012 0.008"
+                    dur="8s"
+                    repeatCount="indefinite"
+                  />
+                  <animate
+                    attributeName="seed"
+                    values="2;5;8;5;2"
+                    dur="12s"
+                    repeatCount="indefinite"
+                  />
+                </feTurbulence>
+                <feDisplacementMap
+                  in="SourceGraphic"
+                  in2="noise"
+                  scale="18"
+                  xChannelSelector="R"
+                  yChannelSelector="G"
+                  result="displaced"
+                >
+                  <animate
+                    attributeName="scale"
+                    values="18;26;18"
+                    dur="8s"
+                    repeatCount="indefinite"
+                  />
+                </feDisplacementMap>
+              </filter>
+            </defs>
+          </svg>
+
+          {/* Animated water shimmer overlay */}
+          <div
+            className="absolute inset-0"
+            style={{
+              backgroundImage: `
+                repeating-linear-gradient(
+                  0deg,
+                  transparent,
+                  transparent 3px,
+                  rgba(255,200,100,0.018) 3px,
+                  rgba(255,200,100,0.018) 4px
+                )
+              `,
+              animation: "waterShimmer 6s ease-in-out infinite",
+              zIndex: 2,
+              pointerEvents: "none",
+            }}
+          />
+          <div
+            className="absolute inset-0"
+            style={{
+              backgroundImage: `
+                repeating-linear-gradient(
+                  90deg,
+                  transparent,
+                  transparent 8px,
+                  rgba(180,230,255,0.012) 8px,
+                  rgba(180,230,255,0.012) 9px
+                )
+              `,
+              animation: "waterShimmer2 9s ease-in-out infinite",
+              zIndex: 2,
+              pointerEvents: "none",
+            }}
+          />
+
+          {/* Water glow blobs */}
+          <div className="absolute" style={{ bottom: "15%", right: "25%", width: 500, height: 200, borderRadius: "50%", background: "rgba(100,180,255,0.07)", filter: "blur(60px)", animation: "waterGlow 5s ease-in-out infinite", zIndex: 2, pointerEvents: "none" }} />
+          <div className="absolute" style={{ bottom: "10%", right: "35%", width: 300, height: 120, borderRadius: "50%", background: "rgba(212,135,74,0.09)", filter: "blur(50px)", animation: "waterGlow 7s ease-in-out infinite reverse", zIndex: 2, pointerEvents: "none" }} />
+          <div className="absolute" style={{ bottom: "20%", right: "15%", width: 250, height: 100, borderRadius: "50%", background: "rgba(255,200,120,0.06)", filter: "blur(40px)", animation: "waterGlow 9s ease-in-out infinite", zIndex: 2, pointerEvents: "none" }} />
+
+          <div className="absolute inset-0" style={{ background: "linear-gradient(to right, rgba(13,11,10,0.85) 0%, rgba(13,11,10,0.5) 55%, rgba(13,11,10,0.2) 100%)", zIndex: 3 }} />
+          <div className="absolute inset-0" style={{ background: "linear-gradient(to bottom, transparent 50%, rgba(13,11,10,0.7) 100%)", zIndex: 3 }} />
         </div>
 
         <div className="absolute" style={{ top: "20%", left: "20%", width: 420, height: 420, borderRadius: "50%", background: "rgba(212,135,74,0.06)", filter: "blur(90px)", animation: "float 6s ease-in-out infinite" }} />
