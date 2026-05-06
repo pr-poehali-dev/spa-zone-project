@@ -126,6 +126,7 @@ export const GALLERY_ITEMS = [
   { img: "https://cdn.poehali.dev/projects/96829bf9-8ea6-42db-bc21-6a2d363e218e/bucket/b503abaf-8203-45d7-b31e-34f8102364d2.jpg", title: "Чан на свежем воздухе", cat: "Чан" },
   { img: MASSAGE_IMAGE, title: "Массажный зал", cat: "Массаж" },
   { img: "https://cdn.poehali.dev/projects/96829bf9-8ea6-42db-bc21-6a2d363e218e/bucket/16925e76-36b5-4168-9b0b-d4cb6025ed94.jpg", title: "Наш интерьер", cat: "Интерьер" },
+  { img: "https://cdn.poehali.dev/projects/96829bf9-8ea6-42db-bc21-6a2d363e218e/bucket/7900c746-c09e-4676-bc8b-875efd4855b8.jpg", title: "Терраса", cat: "Чан" },
 ];
 
 export const REVIEWS = [
