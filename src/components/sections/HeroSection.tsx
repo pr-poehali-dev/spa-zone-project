@@ -212,22 +212,6 @@ export default function HeroSection({ activeNav, scrolled, parallaxY, heroIndex 
 
         <div className="relative z-10 max-w-7xl mx-auto px-6 w-full">
           <div className="max-w-2xl" style={{ paddingLeft: 60 }}>
-            <div
-              className="inline-flex items-center gap-2 mb-6"
-              style={{
-                padding: "6px 18px",
-                border: "1px solid rgba(201,162,110,0.3)",
-                borderRadius: 50,
-                background: "rgba(201,162,110,0.08)",
-                animation: "fadeIn 0.6s ease forwards",
-              }}
-            >
-              <span style={{ width: 5, height: 5, borderRadius: "50%", background: "#c9a26e", display: "inline-block" }} />
-              <span style={{ fontFamily: "'Golos Text', sans-serif", fontSize: 11, letterSpacing: "0.2em", textTransform: "uppercase", color: "#c9a26e" }}>
-                СПА-центр · г. Артём
-              </span>
-            </div>
-
             <p
               style={{ color: "#9c8264", fontSize: 17, fontWeight: 300, maxWidth: 420, lineHeight: 1.7, marginBottom: 14, animation: "fadeUp 0.8s 0.35s ease forwards", opacity: 0 }}
             >
