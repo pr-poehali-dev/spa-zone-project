@@ -4,6 +4,7 @@ import HeroSection from "@/components/sections/HeroSection";
 import SpacesAndGallery from "@/components/sections/SpacesAndGallery";
 import ProgramsSection from "@/components/sections/ProgramsSection";
 import ContactsSection from "@/components/sections/ContactsSection";
+import PromoSection from "@/components/sections/PromoSection";
 import { NAV_ITEMS, HERO_IMAGES } from "@/data/indexData";
 
 export default function Index() {
@@ -47,6 +48,8 @@ export default function Index() {
       <SpacesAndGallery onLightboxOpen={setLightbox} />
 
       <ProgramsSection />
+
+      <PromoSection />
 
       <ContactsSection />
 
