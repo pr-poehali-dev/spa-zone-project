@@ -139,125 +139,58 @@ function GalleryCard({ item, onOpen }: { item: { img: string; title: string; cat
 function SpaceCard({ space }: { space: { icon: string; title: string; desc: string; tag: string; img: string; imgs?: string[]; autoFlip?: boolean } }) {
   const images = space.imgs ?? [space.img];
   const [idx, setIdx] = useState(0);
-  const [flipped, setFlipped] = useState(false);
-  const prev = (e: React.MouseEvent) => { e.stopPropagation(); setIdx((i) => (i - 1 + images.length) % images.length); };
-  const next = (e: React.MouseEvent) => { e.stopPropagation(); setIdx((i) => (i + 1) % images.length); };
+  const [hovered, setHovered] = useState(false);
 
   useEffect(() => {
-    if (!space.autoFlip) return;
-    const interval = setInterval(() => setFlipped((f) => !f), 3000);
-    return () => clearInterval(interval);
-  }, [space.autoFlip]);
-
-  if (space.autoFlip) {
-    return (
-      <div
-        style={{ perspective: 900, height: 320, cursor: "pointer" }}
-        onMouseEnter={() => setFlipped(true)}
-        onMouseLeave={() => setFlipped(false)}
-      >
-        <div style={{
-          position: "relative", width: "100%", height: "100%",
-          transformStyle: "preserve-3d",
-          transition: "transform 0.75s cubic-bezier(0.5,0.1,0.2,1)",
-          transform: flipped ? "rotateX(-90deg)" : "rotateX(0deg)",
-          transformOrigin: "center bottom",
-        }}>
-          {/* Front */}
-          <div className="card-dark" style={{
-            position: "absolute", inset: 0, borderRadius: 14, overflow: "hidden",
-            backfaceVisibility: "hidden",
-          }}>
-            <div style={{ position: "relative", height: 200, overflow: "hidden" }}>
-              <img src={space.img} alt={space.title} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
-              <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(16,12,9,0.72) 0%, transparent 60%)" }} />
-              <div style={{ position: "absolute", top: 16, left: 16 }}>
-                <span className="glass-tag">{space.tag}</span>
-              </div>
-            </div>
-            <div className="p-6">
-              <div className="flex items-center gap-3 mb-2">
-                <div className="w-8 h-8 rounded-lg flex items-center justify-center" style={{ background: "rgba(212,168,85,0.12)" }}>
-                  <Icon name={space.icon} size={15} style={{ color: "#c9a26e" }} />
-                </div>
-                <h3 className="font-display font-medium" style={{ fontSize: 20, color: "#f0e8da" }}>{space.title}</h3>
-              </div>
-              <p style={{ fontSize: 11, color: "rgba(201,162,110,0.45)", fontStyle: "italic" }}>Наведи для описания</p>
-            </div>
-          </div>
-
-          {/* Bottom */}
-          <div style={{
-            position: "absolute", inset: 0, borderRadius: 14, overflow: "hidden",
-            background: "linear-gradient(160deg, rgba(212,168,85,0.09), rgba(18,13,9,0.98))",
-            border: "1px solid rgba(201,162,110,0.3)",
-            display: "flex", flexDirection: "column", justifyContent: "center",
-            padding: "28px 28px",
-            backfaceVisibility: "hidden",
-            transform: "rotateX(90deg) translateZ(320px)",
-            transformOrigin: "center bottom",
-          }}>
-            <span className="glass-tag" style={{ alignSelf: "flex-start", marginBottom: 14 }}>{space.tag}</span>
-            <div className="flex items-center gap-3 mb-4">
-              <div className="w-8 h-8 rounded-lg flex items-center justify-center" style={{ background: "rgba(212,168,85,0.12)" }}>
-                <Icon name={space.icon} size={15} style={{ color: "#c9a26e" }} />
-              </div>
-              <h3 className="font-display font-medium" style={{ fontSize: 20, color: "#f0e8da" }}>{space.title}</h3>
-            </div>
-            <p style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 15, fontStyle: "italic", color: "#d4b896", lineHeight: 1.8, margin: 0 }}>
-              {space.desc}
-            </p>
-            <div style={{ marginTop: 18, height: 1, background: "linear-gradient(to right, #c9a26e, transparent)" }} />
-            <p style={{ marginTop: 12, fontSize: 11, color: "#9c8264", letterSpacing: "0.12em", textTransform: "uppercase" }}>записаться →</p>
-          </div>
-        </div>
-      </div>
-    );
-  }
+    if (!hovered || images.length < 2) return;
+    const t = setInterval(() => setIdx((i) => (i + 1) % images.length), 1600);
+    return () => clearInterval(t);
+  }, [hovered, images.length]);
 
   return (
-    <div className="card-dark hover-lift">
-      <div className="relative overflow-hidden" style={{ height: 200 }}>
-        {images.map((src, i) => (
-          <img
-            key={src}
-            src={src}
-            alt={space.title}
-            className="absolute inset-0 w-full h-full object-cover transition-opacity duration-500"
-            style={{ opacity: i === idx ? 1 : 0 }}
-          />
-        ))}
-        <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(16,12,9,0.72) 0%, transparent 60%)" }} />
-        <div className="absolute top-4 left-4">
-          <span className="glass-tag">{space.tag}</span>
+    <a
+      href="#contacts"
+      style={{ display: "block", position: "relative", overflow: "hidden", borderRadius: 4, cursor: "pointer", aspectRatio: "4/3" }}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => { setHovered(false); setIdx(0); }}
+    >
+      {images.map((src, i) => (
+        <img
+          key={src}
+          src={src}
+          alt={space.title}
+          style={{
+            position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover",
+            opacity: i === idx ? 1 : 0,
+            transition: "opacity 0.6s ease, transform 0.6s ease",
+            transform: hovered ? "scale(1.06)" : "scale(1)",
+          }}
+        />
+      ))}
+      <div style={{
+        position: "absolute", inset: 0,
+        background: "linear-gradient(to top, rgba(10,8,6,0.85) 0%, rgba(10,8,6,0.2) 50%, transparent 100%)",
+      }} />
+      <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, padding: "20px 20px 18px" }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 4 }}>
+          <span className="glass-tag" style={{ fontSize: 9 }}>{space.tag}</span>
         </div>
-        {images.length > 1 && (
-          <>
-            <button onClick={prev} className="absolute left-2 top-1/2 -translate-y-1/2 w-7 h-7 rounded-full flex items-center justify-center" style={{ background: "rgba(16,12,9,0.6)", border: "1px solid rgba(212,168,85,0.3)" }}>
-              <Icon name="ChevronLeft" size={14} style={{ color: "#c9a26e" }} />
-            </button>
-            <button onClick={next} className="absolute right-2 top-1/2 -translate-y-1/2 w-7 h-7 rounded-full flex items-center justify-center" style={{ background: "rgba(16,12,9,0.6)", border: "1px solid rgba(212,168,85,0.3)" }}>
-              <Icon name="ChevronRight" size={14} style={{ color: "#c9a26e" }} />
-            </button>
-            <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1.5">
-              {images.map((_, i) => (
-                <button key={i} onClick={(e) => { e.stopPropagation(); setIdx(i); }} className="rounded-full transition-all duration-300" style={{ width: i === idx ? 16 : 6, height: 6, background: i === idx ? "#c9a26e" : "rgba(255,255,255,0.4)" }} />
-              ))}
-            </div>
-          </>
-        )}
+        <h3 className="font-display" style={{ fontSize: "clamp(16px, 2vw, 22px)", color: "#f0e8da", fontWeight: 400, lineHeight: 1.2 }}>{space.title}</h3>
       </div>
-      <div className="p-6">
-        <div className="flex items-center gap-3 mb-3">
-          <div className="w-8 h-8 rounded-lg flex items-center justify-center" style={{ background: "rgba(212,168,85,0.12)" }}>
-            <Icon name={space.icon} size={15} style={{ color: "#c9a26e" }} />
-          </div>
-          <h3 className="font-display font-medium" style={{ fontSize: 20, color: "#f0e8da" }}>{space.title}</h3>
-        </div>
-        <p style={{ color: "#9c8264", fontSize: 14, lineHeight: 1.7 }}>{space.desc}</p>
+      <div style={{
+        position: "absolute", inset: 0,
+        background: "rgba(10,8,6,0.55)",
+        opacity: hovered ? 1 : 0,
+        transition: "opacity 0.4s ease",
+        display: "flex", alignItems: "center", justifyContent: "center",
+        flexDirection: "column", gap: 12, padding: 24,
+      }}>
+        <p style={{ color: "#f0e8da", fontSize: 13, lineHeight: 1.7, textAlign: "center", maxWidth: 220 }}>{space.desc}</p>
+        <span style={{ fontSize: 11, letterSpacing: "0.15em", textTransform: "uppercase", color: "#c9a26e", borderBottom: "1px solid rgba(201,162,110,0.4)", paddingBottom: 2 }}>Записаться</span>
       </div>
-    </div>
+    </a>
   );
+
 }
 
 interface SpacesAndGalleryProps {
@@ -305,7 +238,7 @@ export default function SpacesAndGallery({ onLightboxOpen }: SpacesAndGalleryPro
           </div>
 
           {/* Space cards */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-1.5">
             {SPACES.map((space) => (
               <SpaceCard key={space.title} space={space} />
             ))}
