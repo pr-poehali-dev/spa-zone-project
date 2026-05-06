@@ -121,6 +121,7 @@ export const PROGRAMS = [
 ];
 
 export const GALLERY_ITEMS = [
+  { img: POOL_IMAGE, title: "Термальный бассейн", cat: "Бассейн" },
   { img: SAUNA_IMAGE, title: "Финская сауна", cat: "Сауны", imgs: [SAUNA_IMAGE, "https://cdn.poehali.dev/projects/96829bf9-8ea6-42db-bc21-6a2d363e218e/bucket/f9297473-a316-4856-83ad-f065e7fa567f.jpg", "https://cdn.poehali.dev/projects/96829bf9-8ea6-42db-bc21-6a2d363e218e/bucket/55d46f04-b3af-40ec-8a72-0d6d3507a70e.jpg"] },
   { img: MASSAGE_IMAGE, title: "Массажный зал", cat: "Массаж" },
   { img: "https://cdn.poehali.dev/files/1f142cc2-f16d-4c72-a8a2-52ecb84d4849.jpg", title: "Атмосфера покоя", cat: "Массаж" },
