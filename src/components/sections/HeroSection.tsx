@@ -34,17 +34,14 @@ export default function HeroSection({ activeNav, scrolled, parallaxY, heroIndex 
       >
         <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
           <a href="#hero" className="flex items-center gap-3">
-            <div className="w-9 h-9 rounded-full flex items-center justify-center" style={{ background: "linear-gradient(135deg, #c9a26e, #a8813f)" }}>
-              <span style={{ color: "#0e0a07", fontWeight: 700, fontSize: 11, letterSpacing: "0.05em" }}>ПП</span>
-            </div>
-            <div className="flex flex-col leading-none gap-0.5">
-              <span style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 15, letterSpacing: "0.2em", textTransform: "uppercase", color: "#c9a26e" }}>
-                Пространство
-              </span>
-              <span style={{ fontFamily: "'Golos Text', sans-serif", fontSize: 10, letterSpacing: "0.3em", textTransform: "uppercase", color: "#9c8264" }}>
-                Пара
-              </span>
-            </div>
+            <img
+              src="https://cdn.poehali.dev/projects/96829bf9-8ea6-42db-bc21-6a2d363e218e/bucket/5d9efb83-2ddb-49ee-9ab2-aa83a7eb8a70.png"
+              alt="Пространство Пара"
+              style={{ height: 44, width: "auto", objectFit: "contain" }}
+            />
+            <span style={{ fontFamily: "'Golos Text', sans-serif", fontSize: 10, letterSpacing: "0.25em", textTransform: "uppercase", color: "#9c8264", writingMode: "vertical-rl", transform: "rotate(180deg)", lineHeight: 1 }}>
+              СПА комплекс
+            </span>
           </a>
 
           <div className="hidden lg:flex items-center gap-7">
