@@ -207,7 +207,7 @@ export default function HeroSection({ activeNav, scrolled, parallaxY, heroIndex 
         <div className="absolute" style={{ top: "55%", left: "55%", width: 200, height: 200, borderRadius: "50%", background: "rgba(139,58,26,0.04)", filter: "blur(60px)", animation: "float 10s ease-in-out infinite" }} />
 
         <div className="relative z-10 max-w-7xl mx-auto px-6 w-full">
-          <div className="max-w-2xl">
+          <div className="max-w-2xl" style={{ paddingLeft: 60 }}>
             <div
               className="inline-flex items-center gap-2 mb-6"
               style={{
