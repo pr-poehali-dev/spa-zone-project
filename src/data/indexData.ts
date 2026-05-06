@@ -6,7 +6,7 @@ const MASSAGE_IMAGE =
   "https://cdn.poehali.dev/files/546728b2-54c4-4bd3-8489-0759f916742c.jpg";
 
 export const HERO_IMAGES = [
-  "https://cdn.poehali.dev/projects/96829bf9-8ea6-42db-bc21-6a2d363e218e/bucket/0d547aa0-1c6a-4326-b77f-c8491bc7fb0d.png",
+  "https://cdn.poehali.dev/projects/96829bf9-8ea6-42db-bc21-6a2d363e218e/bucket/886c6f5a-97a4-4a57-ae29-b652ffa5276d.png",
 ];
 
 export const POOL_IMAGE_EXPORT = POOL_IMAGE;
