@@ -228,13 +228,6 @@ export default function HeroSection({ activeNav, scrolled, parallaxY, heroIndex 
               </span>
             </div>
 
-            <h1
-              className="font-display font-light leading-none mb-6"
-              style={{ fontSize: "clamp(14px, 2vw, 24px)", animation: "fadeUp 0.8s 0.2s ease forwards", opacity: 0 }}
-            >
-              Пространство <span className="italic" style={{ color: "#c9a26e" }}>Пара</span>
-            </h1>
-
             <p
               style={{ color: "#9c8264", fontSize: 17, fontWeight: 300, maxWidth: 420, lineHeight: 1.7, marginBottom: 14, animation: "fadeUp 0.8s 0.35s ease forwards", opacity: 0 }}
             >
