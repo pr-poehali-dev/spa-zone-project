@@ -272,8 +272,8 @@ export default function SpacesAndGallery({ onLightboxOpen }: SpacesAndGalleryPro
   return (
     <>
       {/* ── STATS ── */}
-      <FadeSection className="py-14 border-y" style={{ borderColor: "rgba(212,168,85,0.1)", background: "#0F0D0B" } as React.CSSProperties}>
-        <div className="max-w-5xl mx-auto px-6 grid grid-cols-2 md:grid-cols-5 gap-8 text-center">
+      <FadeSection className="py-7 border-y" style={{ borderColor: "rgba(212,168,85,0.1)", background: "#0F0D0B" } as React.CSSProperties}>
+        <div className="max-w-5xl mx-auto px-6 grid grid-cols-2 md:grid-cols-5 gap-5 text-center">
           {[
             { num: "500+", label: "Довольных клиентов" },
             { num: "10+", label: "Авторских программ" },
@@ -282,8 +282,8 @@ export default function SpacesAndGallery({ onLightboxOpen }: SpacesAndGalleryPro
             { num: "СПА", label: "Полный спектр услуг" },
           ].map((s) => (
             <div key={s.label}>
-              <div className="font-display font-light mb-1" style={{ fontSize: 40, color: "#c9a26e" }}>{s.num}</div>
-              <div style={{ fontSize: 11, letterSpacing: "0.2em", textTransform: "uppercase", color: "#9c8264" }}>{s.label}</div>
+              <div className="font-display font-light mb-0.5" style={{ fontSize: 22, color: "#c9a26e" }}>{s.num}</div>
+              <div style={{ fontSize: 10, letterSpacing: "0.15em", textTransform: "uppercase", color: "#9c8264" }}>{s.label}</div>
             </div>
           ))}
         </div>
