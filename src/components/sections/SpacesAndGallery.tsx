@@ -2,69 +2,65 @@ import { useState, useEffect, useRef } from "react";
 import Icon from "@/components/ui/icon";
 import { SPACES, GALLERY_ITEMS } from "@/data/indexData";
 
-function GalleryCarousel({ items, onOpen, wide }: { items: typeof GALLERY_ITEMS; onOpen: (item: typeof GALLERY_ITEMS[0]) => void; wide?: boolean }) {
-  const [idx, setIdx] = useState(0);
+function GalleryCarousel({ items, onOpen }: { items: typeof GALLERY_ITEMS; onOpen: (item: typeof GALLERY_ITEMS[0]) => void }) {
+  const pairs = Math.ceil(items.length / 2);
+  const [page, setPage] = useState(0);
   const [fade, setFade] = useState(true);
 
   useEffect(() => {
     const t = setInterval(() => {
       setFade(false);
-      setTimeout(() => {
-        setIdx((i) => (i + 1) % items.length);
-        setFade(true);
-      }, 400);
+      setTimeout(() => { setPage((p) => (p + 1) % pairs); setFade(true); }, 400);
     }, 3500);
     return () => clearInterval(t);
-  }, [items.length]);
+  }, [pairs]);
 
-  const goTo = (i: number) => {
+  const goTo = (p: number) => {
     setFade(false);
-    setTimeout(() => { setIdx(i); setFade(true); }, 400);
+    setTimeout(() => { setPage(p); setFade(true); }, 400);
   };
 
-  const item = items[idx];
+  const prev = () => goTo((page - 1 + pairs) % pairs);
+  const next = () => goTo((page + 1) % pairs);
+
+  const pair = items.slice(page * 2, page * 2 + 2);
 
   return (
-    <div
-      style={{ aspectRatio: wide ? "16/6" : "4/3", borderRadius: 10, overflow: "hidden", position: "relative", cursor: "pointer" }}
-      onClick={() => onOpen(item)}
-    >
-      <img
-        src={item.img}
-        alt={item.title}
-        style={{
-          width: "100%", height: "100%", objectFit: "cover",
-          opacity: fade ? 1 : 0,
-          transition: "opacity 0.4s ease",
-        }}
-      />
-      <div className="gallery-overlay" style={{ opacity: 1 }}>
-        <span style={{ fontSize: 10, letterSpacing: "0.2em", textTransform: "uppercase", color: "#c9a26e", marginBottom: 4 }}>{item.cat}</span>
-        <span className="font-display" style={{ fontSize: 20, color: "#f0e8da" }}>{item.title}</span>
-      </div>
-      {/* Dots */}
-      <div style={{ position: "absolute", bottom: 10, left: "50%", transform: "translateX(-50%)", display: "flex", gap: 5, zIndex: 10 }}>
-        {items.map((_, i) => (
-          <button
+    <div style={{ position: "relative" }}>
+      <div
+        className="grid grid-cols-2 gap-3"
+        style={{ opacity: fade ? 1 : 0, transition: "opacity 0.4s ease" }}
+      >
+        {pair.map((item, i) => (
+          <div
             key={i}
-            onClick={(e) => { e.stopPropagation(); goTo(i); }}
-            style={{ width: i === idx ? 16 : 5, height: 5, borderRadius: 99, background: i === idx ? "#c9a26e" : "rgba(255,255,255,0.4)", border: "none", cursor: "pointer", padding: 0, transition: "all 0.3s" }}
-          />
+            className="gallery-item"
+            style={{ aspectRatio: "4/3", borderRadius: 10, overflow: "hidden", position: "relative", cursor: "pointer" }}
+            onClick={() => onOpen(item)}
+          >
+            <img src={item.img} alt={item.title} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+            <div className="gallery-overlay">
+              <span style={{ fontSize: 10, letterSpacing: "0.2em", textTransform: "uppercase", color: "#c9a26e", marginBottom: 4 }}>{item.cat}</span>
+              <span className="font-display" style={{ fontSize: 20, color: "#f0e8da" }}>{item.title}</span>
+            </div>
+          </div>
         ))}
       </div>
-      {/* Nav arrows */}
-      <button
-        onClick={(e) => { e.stopPropagation(); goTo((idx - 1 + items.length) % items.length); }}
-        style={{ position: "absolute", left: 8, top: "50%", transform: "translateY(-50%)", width: 28, height: 28, borderRadius: "50%", background: "rgba(16,12,9,0.6)", border: "1px solid rgba(212,168,85,0.3)", display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer" }}
-      >
-        <Icon name="ChevronLeft" size={14} style={{ color: "#c9a26e" }} />
-      </button>
-      <button
-        onClick={(e) => { e.stopPropagation(); goTo((idx + 1) % items.length); }}
-        style={{ position: "absolute", right: 8, top: "50%", transform: "translateY(-50%)", width: 28, height: 28, borderRadius: "50%", background: "rgba(16,12,9,0.6)", border: "1px solid rgba(212,168,85,0.3)", display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer" }}
-      >
-        <Icon name="ChevronRight" size={14} style={{ color: "#c9a26e" }} />
-      </button>
+
+      {/* Controls */}
+      <div className="flex items-center justify-center gap-4 mt-4">
+        <button onClick={prev} style={{ width: 32, height: 32, borderRadius: "50%", background: "rgba(16,12,9,0.6)", border: "1px solid rgba(212,168,85,0.3)", display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer" }}>
+          <Icon name="ChevronLeft" size={15} style={{ color: "#c9a26e" }} />
+        </button>
+        <div style={{ display: "flex", gap: 6 }}>
+          {Array.from({ length: pairs }).map((_, i) => (
+            <button key={i} onClick={() => goTo(i)} style={{ width: i === page ? 18 : 6, height: 6, borderRadius: 99, background: i === page ? "#c9a26e" : "rgba(255,255,255,0.3)", border: "none", cursor: "pointer", padding: 0, transition: "all 0.3s" }} />
+          ))}
+        </div>
+        <button onClick={next} style={{ width: 32, height: 32, borderRadius: "50%", background: "rgba(16,12,9,0.6)", border: "1px solid rgba(212,168,85,0.3)", display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer" }}>
+          <Icon name="ChevronRight" size={15} style={{ color: "#c9a26e" }} />
+        </button>
+      </div>
     </div>
   );
 }
@@ -305,7 +301,7 @@ export default function SpacesAndGallery({ onLightboxOpen }: SpacesAndGalleryPro
             ))}
           </div>
           <div className="mb-14">
-            <GalleryCarousel items={GALLERY_ITEMS.slice(2)} onOpen={onLightboxOpen} wide />
+            <GalleryCarousel items={GALLERY_ITEMS.slice(2)} onOpen={onLightboxOpen} />
           </div>
 
           {/* Space cards */}
