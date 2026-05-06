@@ -290,7 +290,7 @@ export default function SpacesAndGallery({ onLightboxOpen }: SpacesAndGalleryPro
       </FadeSection>
 
       {/* ── SPACES / GALLERY ── */}
-      <FadeSection id="spaces" className="py-24" style={{ background: "#100c09" }}>
+      <FadeSection id="spaces" className="pt-10 pb-24" style={{ background: "#100c09" }}>
         <div className="max-w-7xl mx-auto px-6">
           <div className="mb-14">
             <div className="section-tag">Наши пространства</div>
