@@ -103,7 +103,7 @@ export default function ProgramsSection() {
 
   return (
     <>
-      <FadeSection id="programs" className="py-24" style={{ background: "#0F0D0B" }}>
+      <FadeSection id="programs" className="pt-10 pb-24" style={{ background: "#0F0D0B" }}>
         <div className="max-w-6xl mx-auto px-6">
           <div className="mb-14">
             <div className="section-tag">Выберите своё</div>
