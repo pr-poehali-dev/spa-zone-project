@@ -39,6 +39,10 @@ export default function HeroSection({ activeNav, scrolled, parallaxY, heroIndex 
               alt="Пространство Пара"
               style={{ height: 48, width: "auto", objectFit: "contain", background: "transparent", mixBlendMode: "luminosity" }}
             />
+            <div>
+              <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 18, fontWeight: 500, color: "#f0e8da", letterSpacing: "0.05em", lineHeight: 1.1 }}>Пространство Пара</div>
+              <div style={{ fontFamily: "'Golos Text', sans-serif", fontSize: 10, letterSpacing: "0.2em", textTransform: "uppercase", color: "#9c8264" }}>СПА-центр · г. Артём</div>
+            </div>
           </a>
 
           <div className="hidden lg:flex items-center gap-7">
