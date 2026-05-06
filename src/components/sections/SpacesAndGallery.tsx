@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import Icon from "@/components/ui/icon";
 import { SPACES, GALLERY_ITEMS } from "@/data/indexData";
 
-function GalleryCarousel({ items, onOpen }: { items: typeof GALLERY_ITEMS; onOpen: (item: typeof GALLERY_ITEMS[0]) => void }) {
+function GalleryCarousel({ items, onOpen, wide }: { items: typeof GALLERY_ITEMS; onOpen: (item: typeof GALLERY_ITEMS[0]) => void; wide?: boolean }) {
   const [idx, setIdx] = useState(0);
   const [fade, setFade] = useState(true);
 
@@ -26,7 +26,7 @@ function GalleryCarousel({ items, onOpen }: { items: typeof GALLERY_ITEMS; onOpe
 
   return (
     <div
-      style={{ aspectRatio: "4/3", borderRadius: 10, overflow: "hidden", position: "relative", cursor: "pointer" }}
+      style={{ aspectRatio: wide ? "16/6" : "4/3", borderRadius: 10, overflow: "hidden", position: "relative", cursor: "pointer" }}
       onClick={() => onOpen(item)}
     >
       <img
@@ -298,12 +298,14 @@ export default function SpacesAndGallery({ onLightboxOpen }: SpacesAndGalleryPro
             <div className="gold-divider" />
           </div>
 
-          {/* Gallery grid: 2 fixed + 1 carousel */}
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-3 mb-14">
+          {/* Gallery: 2 fixed cards + wide carousel below */}
+          <div className="grid grid-cols-2 gap-3 mb-3">
             {GALLERY_ITEMS.slice(0, 2).map((item, i) => (
               <GalleryCard key={i} item={item} onOpen={() => onLightboxOpen(item)} />
             ))}
-            <GalleryCarousel items={GALLERY_ITEMS.slice(2)} onOpen={onLightboxOpen} />
+          </div>
+          <div className="mb-14">
+            <GalleryCarousel items={GALLERY_ITEMS.slice(2)} onOpen={onLightboxOpen} wide />
           </div>
 
           {/* Space cards */}
