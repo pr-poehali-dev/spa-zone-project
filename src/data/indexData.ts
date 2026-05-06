@@ -121,10 +121,10 @@ export const PROGRAMS = [
 export const GALLERY_ITEMS = [
   { img: "https://cdn.poehali.dev/projects/96829bf9-8ea6-42db-bc21-6a2d363e218e/bucket/6a0f613a-b074-4016-81ca-9edc16686f03.jpg", title: "Бассейн", cat: "Бассейн" },
   { img: SAUNA_IMAGE, title: "Финская сауна", cat: "Сауны", imgs: [SAUNA_IMAGE, "https://cdn.poehali.dev/projects/96829bf9-8ea6-42db-bc21-6a2d363e218e/bucket/f9297473-a316-4856-83ad-f065e7fa567f.jpg", "https://cdn.poehali.dev/projects/96829bf9-8ea6-42db-bc21-6a2d363e218e/bucket/55d46f04-b3af-40ec-8a72-0d6d3507a70e.jpg"] },
+  { img: "https://cdn.poehali.dev/projects/96829bf9-8ea6-42db-bc21-6a2d363e218e/bucket/28bdf4f0-62a7-4d59-9b55-99b6d575208f.jpg", title: "Хаммам", cat: "Хаммам" },
+  { img: "https://cdn.poehali.dev/files/ca1bd218-a636-47d0-9274-451e54c2cd18.jpg", title: "Можжевеловая комната", cat: "Арома" },
+  { img: "https://cdn.poehali.dev/projects/96829bf9-8ea6-42db-bc21-6a2d363e218e/bucket/b503abaf-8203-45d7-b31e-34f8102364d2.jpg", title: "Чан на свежем воздухе", cat: "Чан" },
   { img: MASSAGE_IMAGE, title: "Массажный зал", cat: "Массаж" },
-  { img: "https://cdn.poehali.dev/files/1f142cc2-f16d-4c72-a8a2-52ecb84d4849.jpg", title: "Атмосфера покоя", cat: "Массаж" },
-  { img: "https://cdn.poehali.dev/files/1174c867-0a1f-4ab0-8dc4-f00abe9b028c.jpg", title: "Свечи и уют", cat: "Массаж" },
-  { img: "https://cdn.poehali.dev/projects/96829bf9-8ea6-42db-bc21-6a2d363e218e/bucket/28bdf4f0-62a7-4d59-9b55-99b6d575208f.jpg", title: "Хаммам", cat: "Сауны" },
   { img: "https://cdn.poehali.dev/projects/96829bf9-8ea6-42db-bc21-6a2d363e218e/bucket/16925e76-36b5-4168-9b0b-d4cb6025ed94.jpg", title: "Наш интерьер", cat: "Интерьер" },
 ];
 
