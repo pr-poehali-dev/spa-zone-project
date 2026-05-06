@@ -37,11 +37,8 @@ export default function HeroSection({ activeNav, scrolled, parallaxY, heroIndex 
             <img
               src="https://cdn.poehali.dev/projects/96829bf9-8ea6-42db-bc21-6a2d363e218e/bucket/5d9efb83-2ddb-49ee-9ab2-aa83a7eb8a70.png"
               alt="Пространство Пара"
-              style={{ height: 44, width: "auto", objectFit: "contain" }}
+              style={{ height: 48, width: "auto", objectFit: "contain", background: "transparent", mixBlendMode: "luminosity" }}
             />
-            <span style={{ fontFamily: "'Golos Text', sans-serif", fontSize: 10, letterSpacing: "0.25em", textTransform: "uppercase", color: "#9c8264", writingMode: "vertical-rl", transform: "rotate(180deg)", lineHeight: 1 }}>
-              СПА комплекс
-            </span>
           </a>
 
           <div className="hidden lg:flex items-center gap-7">
@@ -57,6 +54,14 @@ export default function HeroSection({ activeNav, scrolled, parallaxY, heroIndex 
           </div>
 
           <div className="flex items-center gap-4">
+            <a
+              href="tel:+74955404986"
+              className="hidden lg:inline-flex items-center gap-2"
+              style={{ color: "#e8c08a", fontSize: 15, fontWeight: 600, letterSpacing: "0.03em", textDecoration: "none" }}
+            >
+              <Icon name="Phone" size={15} style={{ color: "#e8c08a" }} />
+              +7 495 540-49-86
+            </a>
             <a href="#contacts" className="hidden lg:inline-block btn-gold">Записаться</a>
             <button
               className="lg:hidden"
