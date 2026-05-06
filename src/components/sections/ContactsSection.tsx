@@ -1,0 +1,405 @@
+import { useState, useEffect, useRef } from "react";
+import Icon from "@/components/ui/icon";
+import PolicyModal from "@/components/PolicyModal";
+import { REVIEWS, BLOG_POSTS, MASSAGE_IMAGE_EXPORT as MASSAGE_IMAGE } from "@/data/indexData";
+
+function useInView(threshold = 0.1) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [inView, setInView] = useState(false);
+  useEffect(() => {
+    const obs = new IntersectionObserver(([e]) => { if (e.isIntersecting) setInView(true); }, { threshold });
+    if (ref.current) obs.observe(ref.current);
+    return () => obs.disconnect();
+  }, [threshold]);
+  return { ref, inView };
+}
+
+function FadeSection({ children, className = "", id = "", style }: { children: React.ReactNode; className?: string; id?: string; style?: React.CSSProperties }) {
+  const { ref, inView } = useInView();
+  return (
+    <section
+      id={id}
+      ref={ref}
+      className={`transition-all duration-700 ${inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"} ${className}`}
+      style={style}
+    >
+      {children}
+    </section>
+  );
+}
+
+export default function ContactsSection() {
+  const [formData, setFormData] = useState({ name: "", phone: "", comment: "" });
+  const [formStatus, setFormStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [policyModal, setPolicyModal] = useState<"privacy" | "consent" | null>(null);
+  const [policyChecked, setPolicyChecked] = useState(false);
+
+  return (
+    <>
+      {/* ── ABOUT ── */}
+      <FadeSection id="about" className="py-24" style={{ background: "#0F0D0B" }}>
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="grid md:grid-cols-2 gap-16 items-center">
+            <div className="relative">
+              <img
+                src={MASSAGE_IMAGE}
+                alt="О нас"
+                style={{ width: "100%", height: 460, objectFit: "cover", borderRadius: 12 }}
+              />
+              <div
+                className="absolute -bottom-5 -right-5 p-6 hidden md:block"
+                style={{ background: "linear-gradient(135deg,#c9a26e,#a8813f)", borderRadius: 12 }}
+              >
+                <div className="font-display font-light" style={{ fontSize: 42, color: "#0e0a07" }}>8 000+</div>
+                <div style={{ fontSize: 11, letterSpacing: "0.15em", textTransform: "uppercase", color: "rgba(14,10,7,0.6)", marginTop: 4 }}>
+                  Гостей за 3 года
+                </div>
+              </div>
+            </div>
+            <div>
+              <div className="section-tag">Кто мы</div>
+              <h2 className="font-display font-light mt-2 leading-tight" style={{ fontSize: "clamp(36px, 4vw, 52px)", color: "#f0e8da" }}>
+                Место, где<br />
+                <span className="italic" style={{ color: "#c9a26e" }}>тело</span>
+                <br />отдыхает по-настоящему
+              </h2>
+              <div className="gold-divider" />
+              <p style={{ color: "#9c8264", lineHeight: 1.85, marginBottom: 14, fontSize: 15 }}>
+                Мы создавали «Пространство Пара» с одной мыслью: дать людям место, где не нужно ничего делать — только чувствовать. Тепло воды, аромат пара, вес хорошего массажа. Без суеты, без экранов, без спешки.
+              </p>
+              <p style={{ color: "#9c8264", lineHeight: 1.85, marginBottom: 24, fontSize: 15 }}>
+                За три года через наши двери прошло больше восьми тысяч гостей — и каждый уходил с чем-то своим. Кто-то с лёгкостью в теле, кто-то с тишиной внутри. Именно это мы считаем настоящим результатом.
+              </p>
+              <div className="grid grid-cols-2 gap-3">
+                {[
+                  { icon: "Users", text: "Команда мастеров" },
+                  { icon: "MapPin", text: "г. Артём, Глобус 2" },
+                  { icon: "Star", text: "4.9 на Яндекс.Картах" },
+                ].map((item) => (
+                  <div
+                    key={item.text}
+                    className="flex items-center gap-3 py-3"
+                    style={{ borderBottom: "1px solid rgba(212,168,85,0.1)" }}
+                  >
+                    <Icon name={item.icon} size={14} style={{ color: "#c9a26e", flexShrink: 0 }} />
+                    <span style={{ fontSize: 13, color: "#f0e8da" }}>{item.text}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </FadeSection>
+
+      {/* ── REVIEWS ── */}
+      <FadeSection id="reviews" className="py-24" style={{ background: "#100c09" }}>
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="mb-14">
+            <div className="section-tag">Говорят гости</div>
+            <h2 className="font-display font-light mt-2" style={{ fontSize: "clamp(40px, 5vw, 60px)", color: "#f0e8da" }}>Отзывы</h2>
+            <div className="gold-divider" />
+            <p className="mt-4 max-w-lg" style={{ color: "#9c8264", fontSize: 15, lineHeight: 1.85 }}>Слова тех, кто уже побывал здесь — и нашёл что-то важное для себя.</p>
+          </div>
+          <div className="grid md:grid-cols-2 gap-5">
+            {REVIEWS.map((r) => (
+              <div
+                key={r.name}
+                className="p-7 transition-all hover:-translate-y-1"
+                style={{ background: "rgba(26,20,16,0.7)", border: "1px solid rgba(212,168,85,0.1)", borderRadius: 14, backdropFilter: "blur(12px)" }}
+              >
+                <div className="flex gap-1 mb-4">
+                  {Array.from({ length: r.stars }).map((_, i) => (
+                    <Icon key={i} name="Star" size={13} style={{ color: "#c9a26e" }} />
+                  ))}
+                </div>
+                <p className="font-display italic mb-5" style={{ fontSize: 18, color: "rgba(237,232,223,0.85)", lineHeight: 1.7 }}>
+                  "{r.text}"
+                </p>
+                <div
+                  className="flex items-center gap-3 pt-4"
+                  style={{ borderTop: "1px solid rgba(212,168,85,0.1)" }}
+                >
+                  <div
+                    className="w-9 h-9 rounded-full flex items-center justify-center font-semibold text-sm"
+                    style={{ background: "linear-gradient(135deg,#D4A855,#B8943A)", color: "#100c09" }}
+                  >
+                    {r.name[0]}
+                  </div>
+                  <div>
+                    <div style={{ fontSize: 14, color: "#f0e8da", fontWeight: 500 }}>{r.name}</div>
+                    <div style={{ fontSize: 12, color: "#9c8264" }}>{r.role}</div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </FadeSection>
+
+      {/* ── BLOG ── */}
+      <FadeSection id="blog" className="py-24" style={{ background: "#0F0D0B" }}>
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="flex items-end justify-between mb-14 flex-wrap gap-4">
+            <div>
+              <div className="section-tag">Полезное</div>
+              <h2 className="font-display font-light mt-2" style={{ fontSize: "clamp(40px, 5vw, 60px)", color: "#f0e8da" }}>Блог</h2>
+              <div className="gold-divider" />
+            </div>
+            <a
+              href="#"
+              className="flex items-center gap-2 text-xs tracking-widest uppercase transition-all hover:gap-3"
+              style={{ color: "#c9a26e", fontWeight: 500 }}
+            >
+              Все статьи <Icon name="ArrowRight" size={14} />
+            </a>
+          </div>
+          <div className="grid md:grid-cols-3 gap-5">
+            {BLOG_POSTS.map((post) => (
+              <div
+                key={post.title}
+                className="cursor-pointer"
+                style={{ height: 340, perspective: 1000 }}
+              >
+                <div
+                  className="blog-flip-inner"
+                  style={{
+                    position: "relative", width: "100%", height: "100%",
+                    transformStyle: "preserve-3d", transition: "transform 0.7s cubic-bezier(0.4,0.2,0.2,1)",
+                  }}
+                  onMouseEnter={e => (e.currentTarget.style.transform = "rotateY(180deg)")}
+                  onMouseLeave={e => (e.currentTarget.style.transform = "rotateY(0deg)")}
+                >
+                  {/* Front */}
+                  <article
+                    style={{
+                      position: "absolute", inset: 0, backfaceVisibility: "hidden",
+                      background: "rgba(28,20,14,0.75)", border: "1px solid rgba(201,162,110,0.13)",
+                      borderRadius: 14, overflow: "hidden",
+                    }}
+                  >
+                    <div style={{ position: "relative", height: 190, overflow: "hidden" }}>
+                      <img src={post.img} alt={post.title} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                      <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(16,12,9,0.7) 0%, transparent 60%)" }} />
+                      <div style={{ position: "absolute", top: 16, left: 16 }}>
+                        <span className="glass-tag">{post.tag}</span>
+                      </div>
+                    </div>
+                    <div style={{ padding: "20px" }}>
+                      <h3 className="font-display font-medium leading-tight" style={{ fontSize: 20, color: "#f0e8da", marginBottom: 12 }}>{post.title}</h3>
+                      <div className="flex items-center gap-4" style={{ color: "#9c8264", fontSize: 12 }}>
+                        <span className="flex items-center gap-1"><Icon name="Calendar" size={11} /> {post.date}</span>
+                        <span className="flex items-center gap-1"><Icon name="Clock" size={11} /> {post.read} чтения</span>
+                      </div>
+                    </div>
+                  </article>
+
+                  {/* Back */}
+                  <article
+                    style={{
+                      position: "absolute", inset: 0, backfaceVisibility: "hidden",
+                      transform: "rotateY(180deg)",
+                      background: "linear-gradient(135deg, rgba(212,168,85,0.12), rgba(28,20,14,0.95))",
+                      border: "1px solid rgba(201,162,110,0.35)",
+                      borderRadius: 14, overflow: "hidden",
+                      display: "flex", flexDirection: "column", justifyContent: "center",
+                      padding: "32px 28px",
+                    }}
+                  >
+                    <span className="glass-tag" style={{ alignSelf: "flex-start", marginBottom: 20 }}>{post.tag}</span>
+                    <p style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 17, fontStyle: "italic", color: "#d4b896", lineHeight: 1.85, margin: 0 }}>
+                      {post.back}
+                    </p>
+                    <div style={{ marginTop: 28, height: 1, background: "linear-gradient(to right, #c9a26e, transparent)" }} />
+                    <div style={{ marginTop: 16, fontSize: 11, color: "#9c8264", letterSpacing: "0.15em", textTransform: "uppercase" }}>
+                      {post.read} чтения · {post.date}
+                    </div>
+                  </article>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </FadeSection>
+
+      {/* ── CONTACTS ── */}
+      <FadeSection id="contacts" className="py-24" style={{ background: "#100c09" }}>
+        <div className="max-w-5xl mx-auto px-6">
+          <div className="mb-14">
+            <div className="section-tag">Мы ждём вас</div>
+            <h2 className="font-display font-light mt-2" style={{ fontSize: "clamp(40px, 5vw, 60px)", color: "#f0e8da" }}>Контакты</h2>
+            <div className="gold-divider" />
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-12">
+            {/* Form */}
+            <div>
+              <h3 className="font-display font-light mb-4" style={{ fontSize: 28, color: "#f0e8da" }}>Записаться на визит</h3>
+              <p className="text-sm mb-6" style={{ color: "#B8A98A", lineHeight: 1.6 }}>
+                Оставьте ваши контактные данные, наш администратор свяжется с вами и ответит на ваши вопросы с 10:00 до 22:00
+              </p>
+              <form className="space-y-3" onSubmit={async (e) => {
+                e.preventDefault();
+                setFormStatus("loading");
+                try {
+                  const res = await fetch("https://functions.poehali.dev/ce5987a8-a696-47ec-be09-3afce56f755b", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(formData),
+                  });
+                  if (res.ok) {
+                    setFormStatus("success");
+                    setFormData({ name: "", phone: "", comment: "" });
+                  } else {
+                    setFormStatus("error");
+                  }
+                } catch {
+                  setFormStatus("error");
+                }
+              }}>
+                {[
+                  { key: "name", type: "text", placeholder: "Ваше имя" },
+                  { key: "phone", type: "tel", placeholder: "Номер телефона" },
+                ].map(({ key, type, placeholder }) => (
+                  <input
+                    key={key}
+                    type={type}
+                    placeholder={placeholder}
+                    value={formData[key as keyof typeof formData]}
+                    onChange={(e) => setFormData((p) => ({ ...p, [key]: e.target.value }))}
+                    required
+                    className="w-full px-5 py-3.5 text-sm outline-none transition-all"
+                    style={{
+                      background: "rgba(26,20,16,0.7)",
+                      border: "1px solid rgba(212,168,85,0.15)",
+                      borderRadius: 8,
+                      color: "#f0e8da",
+                      fontFamily: "'Golos Text', sans-serif",
+                    }}
+                    onFocus={(e) => (e.target.style.borderColor = "rgba(212,168,85,0.5)")}
+                    onBlur={(e) => (e.target.style.borderColor = "rgba(212,168,85,0.15)")}
+                  />
+                ))}
+                <textarea
+                  placeholder="Пожелания или вопросы"
+                  rows={4}
+                  value={formData.comment}
+                  onChange={(e) => setFormData((p) => ({ ...p, comment: e.target.value }))}
+                  className="w-full px-5 py-3.5 text-sm outline-none transition-all resize-none"
+                  style={{
+                    background: "rgba(26,20,16,0.7)",
+                    border: "1px solid rgba(212,168,85,0.15)",
+                    borderRadius: 8,
+                    color: "#f0e8da",
+                    fontFamily: "'Golos Text', sans-serif",
+                  }}
+                  onFocus={(e) => (e.target.style.borderColor = "rgba(212,168,85,0.5)")}
+                  onBlur={(e) => (e.target.style.borderColor = "rgba(212,168,85,0.15)")}
+                />
+                <label style={{ display: "flex", alignItems: "flex-start", gap: 10, cursor: "pointer" }}>
+                  <input
+                    type="checkbox"
+                    checked={policyChecked}
+                    onChange={(e) => setPolicyChecked(e.target.checked)}
+                    style={{ marginTop: 3, accentColor: "#c9a26e", flexShrink: 0, width: 15, height: 15 }}
+                  />
+                  <span style={{ fontSize: 12, color: "rgba(240,232,218,0.55)", lineHeight: 1.6 }}>
+                    Нажимая кнопку, я принимаю{" "}
+                    <button type="button" onClick={() => setPolicyModal("privacy")} style={{ color: "#c9a26e", background: "none", border: "none", padding: 0, cursor: "pointer", fontSize: 12, textDecoration: "underline" }}>
+                      политику конфиденциальности
+                    </button>{" "}
+                    и даю{" "}
+                    <button type="button" onClick={() => setPolicyModal("consent")} style={{ color: "#c9a26e", background: "none", border: "none", padding: 0, cursor: "pointer", fontSize: 12, textDecoration: "underline" }}>
+                      согласие на обработку персональных данных
+                    </button>
+                  </span>
+                </label>
+                <button
+                  type="submit"
+                  className="w-full btn-gold text-center"
+                  disabled={formStatus === "loading" || !policyChecked}
+                  style={{ opacity: policyChecked ? 1 : 0.5 }}
+                >
+                  {formStatus === "loading" ? "Отправка..." : "Отправить заявку"}
+                </button>
+                {formStatus === "success" && (
+                  <p className="text-sm text-center mt-3" style={{ color: "#c9a26e" }}>
+                    Заявка отправлена! Мы свяжемся с вами с 10:00 до 22:00.
+                  </p>
+                )}
+                {formStatus === "error" && (
+                  <p className="text-sm text-center mt-3" style={{ color: "#e88" }}>
+                    Не удалось отправить. Позвоните нам напрямую.
+                  </p>
+                )}
+              </form>
+            </div>
+
+            {/* Info */}
+            <div>
+              <h3 className="font-display font-light mb-6" style={{ fontSize: 28, color: "#f0e8da" }}>Как нас найти</h3>
+              <div className="space-y-0">
+                {[
+                  { icon: "MapPin", title: "Адрес", text: "г. Артём, мкр. Глобус 2, дом 1А" },
+                  { icon: "Phone", title: "Телефон", text: "+7 908 980-35-45" },
+                  { icon: "Mail", title: "Email", text: "fitnslim.par@mail.ru\nОтвечаем с 10:00 до 22:00" },
+                  { icon: "Clock", title: "Время работы", text: "Пн–Вс: 10:00–22:00\nБез выходных" },
+                ].map((item) => (
+                  <div
+                    key={item.title}
+                    className="flex gap-4 py-4"
+                    style={{ borderBottom: "1px solid rgba(212,168,85,0.08)" }}
+                  >
+                    <Icon name={item.icon} size={16} style={{ color: "#c9a26e", marginTop: 2, flexShrink: 0 }} />
+                    <div>
+                      <div style={{ fontSize: 10, letterSpacing: "0.15em", textTransform: "uppercase", color: "#c9a26e", fontWeight: 500, marginBottom: 3 }}>
+                        {item.title}
+                      </div>
+                      <div style={{ fontSize: 14, color: "#f0e8da", lineHeight: 1.7, whiteSpace: "pre-line" }}>{item.text}</div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </FadeSection>
+
+      {/* ── FOOTER ── */}
+      <footer className="py-8" style={{ background: "#080706", borderTop: "1px solid rgba(212,168,85,0.08)" }}>
+        <div className="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4">
+          <div className="flex items-center gap-3">
+            <div className="w-7 h-7 rounded-full flex items-center justify-center" style={{ background: "linear-gradient(135deg,#c9a26e,#a8813f)" }}>
+              <span style={{ color: "#100c09", fontWeight: 700, fontSize: 9 }}>ПП</span>
+            </div>
+            <span className="font-display" style={{ fontSize: 15, letterSpacing: "0.15em", textTransform: "uppercase", color: "#c9a26e" }}>
+              Пространство Пара
+            </span>
+          </div>
+          <div style={{ fontSize: 12, color: "#9c8264" }}>© 2026 Пространство Пара. Все права защищены.</div>
+          <div className="flex gap-3">
+            {["Instagram", "MessageCircle", "Send"].map((icon) => (
+              <a
+                key={icon}
+                href="#"
+                className="w-8 h-8 rounded-full flex items-center justify-center transition-all hover:scale-110"
+                style={{ border: "1px solid rgba(212,168,85,0.2)", color: "#9c8264" }}
+                onMouseEnter={(e) => {
+                  (e.currentTarget as HTMLElement).style.borderColor = "rgba(212,168,85,0.6)";
+                  (e.currentTarget as HTMLElement).style.color = "#c9a26e";
+                }}
+                onMouseLeave={(e) => {
+                  (e.currentTarget as HTMLElement).style.borderColor = "rgba(212,168,85,0.2)";
+                  (e.currentTarget as HTMLElement).style.color = "#9c8264";
+                }}
+              >
+                <Icon name={icon} size={13} />
+              </a>
+            ))}
+          </div>
+        </div>
+      </footer>
+
+      <PolicyModal type={policyModal} onClose={() => setPolicyModal(null)} />
+    </>
+  );
+}
