@@ -156,7 +156,7 @@ export default function ProgramsSection() {
                     {prog.modal ? (
                       <button
                         onClick={() => setProgramModal(prog.modal!)}
-                        className={prog.popular ? "btn-gold text-center" : "btn-outline-gold text-center"}
+                        className="btn-outline-gold text-center"
                         style={{ fontSize: 11, padding: "11px 20px", cursor: "pointer" }}
                       >
                         Подробнее
@@ -164,7 +164,7 @@ export default function ProgramsSection() {
                     ) : (
                       <Link
                         to={prog.href}
-                        className={prog.popular ? "btn-gold text-center" : "btn-outline-gold text-center"}
+                        className="btn-outline-gold text-center"
                         style={{ fontSize: 11, padding: "11px 20px" }}
                       >
                         Подробнее
