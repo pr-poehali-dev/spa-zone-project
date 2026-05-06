@@ -180,14 +180,14 @@ export const PROGRAMS = [
 ];
 
 export const GALLERY_ITEMS = [
-  { img: "https://cdn.poehali.dev/projects/96829bf9-8ea6-42db-bc21-6a2d363e218e/bucket/6a0f613a-b074-4016-81ca-9edc16686f03.jpg", title: "Бассейн", cat: "Бассейн" },
-  { img: SAUNA_IMAGE, title: "Финская сауна", cat: "Сауны", imgs: [SAUNA_IMAGE, "https://cdn.poehali.dev/projects/96829bf9-8ea6-42db-bc21-6a2d363e218e/bucket/f9297473-a316-4856-83ad-f065e7fa567f.jpg", "https://cdn.poehali.dev/projects/96829bf9-8ea6-42db-bc21-6a2d363e218e/bucket/55d46f04-b3af-40ec-8a72-0d6d3507a70e.jpg"] },
-  { img: "https://cdn.poehali.dev/projects/96829bf9-8ea6-42db-bc21-6a2d363e218e/bucket/28bdf4f0-62a7-4d59-9b55-99b6d575208f.jpg", title: "Хаммам", cat: "Хаммам" },
-  { img: "https://cdn.poehali.dev/files/ca1bd218-a636-47d0-9274-451e54c2cd18.jpg", title: "Можжевеловая комната", cat: "Арома" },
-  { img: "https://cdn.poehali.dev/projects/96829bf9-8ea6-42db-bc21-6a2d363e218e/bucket/b503abaf-8203-45d7-b31e-34f8102364d2.jpg", title: "Чан на свежем воздухе", cat: "Чан" },
-  { img: MASSAGE_IMAGE, title: "Массажный зал", cat: "Массаж" },
+  { img: POOL_IMAGE, title: "Бассейн", cat: "Бассейн" },
+  { img: "https://cdn.poehali.dev/projects/96829bf9-8ea6-42db-bc21-6a2d363e218e/bucket/f9297473-a316-4856-83ad-f065e7fa567f.jpg", title: "Финская сауна", cat: "Сауны" },
+  { img: "https://cdn.poehali.dev/projects/96829bf9-8ea6-42db-bc21-6a2d363e218e/bucket/7870c390-eddb-404f-accd-1a723f4987e9.JPG", title: "Хаммам", cat: "Хаммам" },
+  { img: "https://cdn.poehali.dev/files/2eced06b-a37e-48f8-a7b3-3443680ee5e1.jpg", title: "Можжевеловая комната", cat: "Арома" },
+  { img: "https://cdn.poehali.dev/projects/96829bf9-8ea6-42db-bc21-6a2d363e218e/bucket/55d46f04-b3af-40ec-8a72-0d6d3507a70e.jpg", title: "Чан на свежем воздухе", cat: "Чан" },
+  { img: "https://cdn.poehali.dev/files/1f142cc2-f16d-4c72-a8a2-52ecb84d4849.jpg", title: "Массажный зал", cat: "Массаж" },
   { img: "https://cdn.poehali.dev/projects/96829bf9-8ea6-42db-bc21-6a2d363e218e/bucket/16925e76-36b5-4168-9b0b-d4cb6025ed94.jpg", title: "Наш интерьер", cat: "Интерьер" },
-  { img: "https://cdn.poehali.dev/projects/96829bf9-8ea6-42db-bc21-6a2d363e218e/bucket/7900c746-c09e-4676-bc8b-875efd4855b8.jpg", title: "Терраса", cat: "Чан" },
+  { img: "https://cdn.poehali.dev/projects/96829bf9-8ea6-42db-bc21-6a2d363e218e/bucket/6284b1da-37e5-49a7-884b-955656d70c38.jpg", title: "СПА-косметика", cat: "Косметика" },
 ];
 
 export const REVIEWS = [
@@ -220,12 +220,12 @@ export const REVIEWS = [
 export const BLOG_POSTS = [
   {
     title: "Как пространство пара меняет кожу за один сеанс",
-    date: "8 апреля 2026", read: "5 мин", tag: "Процедуры", img: MASSAGE_IMAGE,
+    date: "8 апреля 2026", read: "5 мин", tag: "Процедуры", img: "https://cdn.poehali.dev/files/1174c867-0a1f-4ab0-8dc4-f00abe9b028c.jpg",
     back: "Горячий пар раскрывает поры, усиливает кровообращение и запускает глубокое очищение. Уже после первого сеанса кожа становится мягкой, упругой — как после моря. Это не косметика. Это физиология.",
   },
   {
     title: "Можжевельник: что происходит с телом в ароматной комнате",
-    date: "2 апреля 2026", read: "7 мин", tag: "Наука", img: SAUNA_IMAGE,
+    date: "2 апреля 2026", read: "7 мин", tag: "Наука", img: "https://cdn.poehali.dev/files/ca1bd218-a636-47d0-9274-451e54c2cd18.jpg",
     back: "Смолы можжевельника — природный антисептик. В комнате они насыщают воздух фитонцидами, которые очищают дыхание, успокаивают нервную систему и снижают уровень кортизола. Наука подтверждает то, что тело чувствует само.",
   },
   {
