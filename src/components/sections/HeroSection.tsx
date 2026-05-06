@@ -99,6 +99,7 @@ export default function HeroSection({ activeNav, scrolled, parallaxY, heroIndex 
               alt="Пространство Пара"
               className="absolute inset-0 w-full h-full object-cover"
               style={{
+                objectPosition: "center 70%",
                 transform: `translateY(${parallaxY}px)`,
                 willChange: "transform",
                 scale: "1.15",
