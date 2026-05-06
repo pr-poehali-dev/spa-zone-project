@@ -53,6 +53,19 @@ const PROGRAMS = [
     popular: false,
     img: "https://cdn.poehali.dev/projects/96829bf9-8ea6-42db-bc21-6a2d363e218e/bucket/b26557f3-6845-4507-9ead-5707dc258983.jpg",
     href: "/programmy/puteshestvie",
+    modal: {
+      label: "ПРОГРАММА ПАРЕНИЯ НА ДВОИХ",
+      heading: "ПУТЕШЕСТВИЕ ПО СОСТОЯНИЮ ТЕЛА",
+      subtitle: "Для двоих",
+      quote: ["Иногда самое ценное — просто быть рядом, в тишине.", "Без телефонов, без планов, без города за окном.", "Три часа в паре — и вы снова чувствуете друг друга."],
+      steps: [
+        { num: "I", title: "Встреча с пар-мастером", desc: "Мастер слышит настроение каждого и выстраивает день так, чтобы оба чувствовали себя гостями, а не участниками потока. Никакого расписания — только ваш темп." },
+        { num: "II", title: "Классическое парение на сенном матрасе — вдвоём", desc: "2 захода по 15 минут. Мастер работает для вас обоих: прогревает, ведёт, подстраивается под каждого. Совместное парение — особый опыт близости." },
+        { num: "III", title: "Контрастное проливание горячими травяными отварами", desc: "После каждого захода — контраст с отварами. Уходит усталость, исчезает напряжение — у обоих одновременно. Травяные отвары подобраны под сезон и запрос." },
+        { num: "IV", title: "Хаммам, бассейн, можжевеловая комната", desc: "Весь комплекс в вашем распоряжении. Никаких чужих людей рядом. Только вы двое, пар и тишина. Хаммам прогревает до самых глубоких слоёв." },
+        { num: "V", title: "Терраса: свежий воздух, подвесная кровать, плед на двоих", desc: "Тела отдыхают, слова не нужны, а время как будто останавливается. Терраса закрыта только для вас — подвесная кровать, пледы, горячий чай." },
+      ],
+    },
   },
   {
     title: "Ладование",
@@ -364,6 +377,7 @@ export default function Index() {
   const [policyChecked, setPolicyChecked] = useState(false);
   const [parallaxY, setParallaxY] = useState(0);
   const [heroIndex, setHeroIndex] = useState(0);
+  const [programModal, setProgramModal] = useState<typeof PROGRAMS[0]["modal"] | null>(null);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -745,13 +759,23 @@ export default function Index() {
                     ))}
                   </ul>
                   <div className="flex flex-col gap-2">
-                    <Link
-                      to={prog.href}
-                      className={prog.popular ? "btn-gold text-center" : "btn-outline-gold text-center"}
-                      style={{ fontSize: 11, padding: "11px 20px" }}
-                    >
-                      Подробнее
-                    </Link>
+                    {prog.modal ? (
+                      <button
+                        onClick={() => setProgramModal(prog.modal!)}
+                        className={prog.popular ? "btn-gold text-center" : "btn-outline-gold text-center"}
+                        style={{ fontSize: 11, padding: "11px 20px", cursor: "pointer" }}
+                      >
+                        Подробнее
+                      </button>
+                    ) : (
+                      <Link
+                        to={prog.href}
+                        className={prog.popular ? "btn-gold text-center" : "btn-outline-gold text-center"}
+                        style={{ fontSize: 11, padding: "11px 20px" }}
+                      >
+                        Подробнее
+                      </Link>
+                    )}
                     <a
                       href="#contacts"
                       style={{ fontSize: 11, color: "#9c8264", textAlign: "center", padding: "8px", letterSpacing: "0.06em", textTransform: "uppercase" }}
@@ -1148,6 +1172,72 @@ export default function Index() {
         </div>
       </footer>
       <PolicyModal type={policyModal} onClose={() => setPolicyModal(null)} />
+
+      {programModal && (
+        <div
+          onClick={() => setProgramModal(null)}
+          style={{ position: "fixed", inset: 0, background: "rgba(13,10,7,0.82)", backdropFilter: "blur(8px)", zIndex: 2000, display: "flex", alignItems: "center", justifyContent: "center", padding: "24px 16px" }}
+        >
+          <div
+            onClick={(e) => e.stopPropagation()}
+            style={{ background: "#f5f0e8", borderRadius: 20, maxWidth: 600, width: "100%", maxHeight: "90vh", overflowY: "auto", position: "relative", boxShadow: "0 40px 100px rgba(0,0,0,0.5)" }}
+          >
+            <button
+              onClick={() => setProgramModal(null)}
+              style={{ position: "absolute", top: 20, right: 20, background: "none", border: "none", cursor: "pointer", color: "#8b5a3c", fontSize: 22, lineHeight: 1, zIndex: 10 }}
+            >
+              ✕
+            </button>
+            <div style={{ padding: "48px 40px 40px" }}>
+              <div style={{ fontSize: 10, letterSpacing: "0.28em", textTransform: "uppercase", color: "#8b5a3c", marginBottom: 12, fontStyle: "italic", fontFamily: "'Golos Text', sans-serif" }}>
+                {programModal.label}
+              </div>
+              <h2 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(28px, 5vw, 44px)", fontWeight: 700, color: "#3d1f0d", lineHeight: 1.1, margin: "0 0 6px" }}>
+                {programModal.heading}
+              </h2>
+              <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 16, fontStyle: "italic", color: "#8b5a3c", marginBottom: 28 }}>
+                {programModal.subtitle}
+              </div>
+              <div style={{ height: 1, background: "rgba(139,90,60,0.2)", marginBottom: 24 }} />
+              <div style={{ marginBottom: 28 }}>
+                {programModal.quote.map((q, i) => (
+                  <p key={i} style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 17, fontStyle: "italic", color: "#5c3520", lineHeight: 1.75, margin: "0 0 4px", fontWeight: i === programModal.quote.length - 1 ? 600 : 400 }}>
+                    {q}
+                  </p>
+                ))}
+              </div>
+              <div style={{ height: 1, background: "rgba(139,90,60,0.2)", marginBottom: 24 }} />
+              <h3 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 11, fontWeight: 600, letterSpacing: "0.28em", textTransform: "uppercase", color: "#5c3520", marginBottom: 20 }}>
+                КАК ПРОХОДИТ ВАШ ВЕЧЕР
+              </h3>
+              {programModal.steps.map((step, i) => (
+                <div key={i} style={{ display: "grid", gridTemplateColumns: "36px 1fr", gap: "0 12px", padding: "16px 0", borderBottom: i < programModal.steps.length - 1 ? "1px solid rgba(139,90,60,0.12)" : "none" }}>
+                  <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 20, fontStyle: "italic", color: "rgba(139,90,60,0.5)", paddingTop: 2 }}>
+                    {step.num}
+                  </div>
+                  <div>
+                    <div style={{ fontFamily: "'Golos Text', sans-serif", fontSize: 14, fontWeight: 600, color: "#3d1f0d", marginBottom: 4 }}>
+                      {step.title}
+                    </div>
+                    <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 14, fontStyle: "italic", color: "#7a5540", lineHeight: 1.65 }}>
+                      {step.desc}
+                    </div>
+                  </div>
+                </div>
+              ))}
+              <div style={{ marginTop: 32, textAlign: "center" }}>
+                <a
+                  href="#contacts"
+                  onClick={() => setProgramModal(null)}
+                  style={{ display: "inline-block", background: "linear-gradient(135deg, #c9a26e, #d4874a)", color: "#fff8f0", padding: "14px 42px", borderRadius: 50, fontSize: 12, fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", textDecoration: "none", boxShadow: "0 4px 24px rgba(201,162,110,0.35)", fontFamily: "'Golos Text', sans-serif" }}
+                >
+                  Забронировать
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
