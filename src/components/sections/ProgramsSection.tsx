@@ -112,56 +112,72 @@ export default function ProgramsSection() {
             <p className="mt-4 max-w-xl" style={{ color: "#9c8264", fontSize: 16, lineHeight: 1.85 }}>Каждая программа — это маршрут внутрь себя. Со своим запахом, теплом и состоянием, которое останется с вами ещё долго после.</p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {PROGRAMS.map((prog) => (
+          {/* Популярная программа — большая карточка */}
+          {PROGRAMS.filter((p) => p.popular).map((prog) => (
+            <div
+              key={prog.title}
+              className="relative overflow-hidden mb-1.5"
+              style={{ borderRadius: 4, height: 420 }}
+            >
+              <img src={prog.img} alt={prog.title} style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", transition: "transform 0.6s ease" }}
+                onMouseEnter={(e) => (e.currentTarget.style.transform = "scale(1.04)")}
+                onMouseLeave={(e) => (e.currentTarget.style.transform = "scale(1)")}
+              />
+              <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to right, rgba(10,8,6,0.88) 0%, rgba(10,8,6,0.4) 55%, rgba(10,8,6,0.1) 100%)" }} />
+              <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(10,8,6,0.7) 0%, transparent 60%)" }} />
+              <div style={{ position: "absolute", top: 28, left: 36 }}>
+                <div style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "linear-gradient(135deg,#D4A855,#F0C878)", borderRadius: 50, padding: "5px 16px", marginBottom: 18 }}>
+                  <span style={{ fontSize: 10, fontWeight: 700, letterSpacing: "0.15em", textTransform: "uppercase", color: "#100c09" }}>Хит</span>
+                </div>
+                <h3 className="font-display font-light" style={{ fontSize: "clamp(32px, 4vw, 52px)", color: "#f0e8da", lineHeight: 1.1, maxWidth: 480, marginBottom: 8 }}>{prog.title}</h3>
+                <p style={{ color: "#c9a26e", fontSize: 14, fontStyle: "italic", marginBottom: 22 }}>{prog.subtitle}</p>
+                <ul style={{ display: "flex", flexDirection: "column", gap: 8, marginBottom: 28 }}>
+                  {prog.features.map((f) => (
+                    <li key={f} style={{ display: "flex", alignItems: "center", gap: 8, fontSize: 14, color: "rgba(240,232,218,0.85)" }}>
+                      <Icon name="Check" size={13} style={{ color: "#c9a26e", flexShrink: 0 }} />
+                      {f}
+                    </li>
+                  ))}
+                </ul>
+                <div style={{ display: "flex", gap: 12 }}>
+                  {prog.modal && (
+                    <button onClick={() => setProgramModal(prog.modal!)} className="btn-outline-gold" style={{ fontSize: 11, padding: "11px 24px", cursor: "pointer" }}>
+                      Подробнее
+                    </button>
+                  )}
+                  <a href="#contacts" className="btn-gold" style={{ fontSize: 11, padding: "11px 24px" }}>Записаться</a>
+                </div>
+              </div>
+              <div style={{ position: "absolute", bottom: 24, right: 32 }}>
+                <span className="glass-tag">{prog.tag}</span>
+              </div>
+            </div>
+          ))}
+
+          {/* Остальные программы — 3 в ряд */}
+          <div className="grid md:grid-cols-3 gap-1.5">
+            {PROGRAMS.filter((p) => !p.popular).map((prog) => (
               <div
                 key={prog.title}
-                className="relative flex flex-col transition-all duration-300 hover:-translate-y-2 overflow-hidden"
-                style={{
-                  background: prog.popular ? "rgba(212,168,85,0.06)" : "rgba(26,20,16,0.6)",
-                  border: prog.popular ? "1px solid rgba(212,168,85,0.5)" : "1px solid rgba(212,168,85,0.12)",
-                  borderRadius: 16,
-                  boxShadow: prog.popular ? "0 0 40px rgba(212,168,85,0.12)" : "none",
-                }}
+                className="relative overflow-hidden group"
+                style={{ borderRadius: 4, aspectRatio: "3/4" }}
               >
-                {prog.popular && (
-                  <div
-                    className="absolute top-4 right-4 z-10 px-4 py-1 text-xs font-semibold tracking-wide"
-                    style={{ background: "linear-gradient(135deg,#D4A855,#F0C878)", color: "#100c09", borderRadius: 50, whiteSpace: "nowrap" }}
-                  >
-                    Популярное
-                  </div>
-                )}
-                <div className="relative overflow-hidden" style={{ height: 180, background: prog.imgFit === "contain" ? "#100c09" : "transparent" }}>
-                  <img src={prog.img} alt={prog.title} className={`w-full h-full transition-transform duration-500 hover:scale-105 ${prog.imgFit === "contain" ? "object-contain" : "object-cover"}`} />
-                  <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(16,12,9,0.85) 0%, transparent 60%)" }} />
-                  <div className="absolute bottom-3 left-4">
-                    <span className="glass-tag">{prog.tag}</span>
-                  </div>
-                </div>
-                <div className="p-6 flex flex-col flex-1">
-                  <div className="mb-4 flex-1">
-                    <h3 className="font-display font-light mb-1" style={{ fontSize: 22, color: "#f0e8da", lineHeight: 1.25 }}>{prog.title}</h3>
-                    <p style={{ color: "#9c8264", fontSize: 12, marginTop: 4 }}>{prog.subtitle}</p>
-                  </div>
-                  <ul className="space-y-2 mb-6">
-                    {prog.features.map((f) => (
-                      <li key={f} className="flex items-start gap-2" style={{ fontSize: 13, color: "rgba(240,232,218,0.75)" }}>
-                        <Icon name="Check" size={12} style={{ color: "#c9a26e", flexShrink: 0, marginTop: 2 }} />
-                        {f}
-                      </li>
-                    ))}
-                  </ul>
-                  <div className="flex flex-col gap-2">
-                    {prog.modal ? (
-                      <button
-                        onClick={() => setProgramModal(prog.modal!)}
-                        className="btn-outline-gold text-center"
-                        style={{ fontSize: 11, padding: "11px 20px", cursor: "pointer" }}
-                      >
+                <img src={prog.img} alt={prog.title} style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", transition: "transform 0.6s ease" }}
+                  onMouseEnter={(e) => (e.currentTarget.style.transform = "scale(1.06)")}
+                  onMouseLeave={(e) => (e.currentTarget.style.transform = "scale(1)")}
+                />
+                <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(10,8,6,0.92) 0%, rgba(10,8,6,0.3) 50%, transparent 100%)" }} />
+                <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, padding: "24px 22px" }}>
+                  <span className="glass-tag" style={{ fontSize: 9, marginBottom: 10, display: "inline-block" }}>{prog.tag}</span>
+                  <h3 className="font-display font-light" style={{ fontSize: "clamp(18px, 2.2vw, 24px)", color: "#f0e8da", lineHeight: 1.2, marginBottom: 6 }}>{prog.title}</h3>
+                  <p style={{ color: "#9c8264", fontSize: 12, marginBottom: 16 }}>{prog.subtitle}</p>
+                  <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+                    {prog.modal && (
+                      <button onClick={() => setProgramModal(prog.modal!)} className="btn-outline-gold" style={{ fontSize: 10, padding: "10px 18px", cursor: "pointer", textAlign: "center" }}>
                         Подробнее
                       </button>
-                    ) : (
+                    )}
+                    {!prog.modal && (
                       <Link
                         to={prog.href}
                         className="btn-outline-gold text-center"
