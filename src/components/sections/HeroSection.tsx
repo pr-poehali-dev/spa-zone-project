@@ -192,9 +192,8 @@ export default function HeroSection({ activeNav, scrolled, parallaxY, heroIndex 
           <div className="absolute" style={{ bottom: "10%", right: "35%", width: 300, height: 120, borderRadius: "50%", background: "rgba(212,135,74,0.09)", filter: "blur(50px)", animation: "waterGlow 7s ease-in-out infinite reverse", zIndex: 2, pointerEvents: "none" }} />
           <div className="absolute" style={{ bottom: "20%", right: "15%", width: 250, height: 100, borderRadius: "50%", background: "rgba(255,200,120,0.06)", filter: "blur(40px)", animation: "waterGlow 9s ease-in-out infinite", zIndex: 2, pointerEvents: "none" }} />
 
-          <div className="absolute inset-0" style={{ background: "rgba(13,8,5,0.55)", zIndex: 3 }} />
-          <div className="absolute inset-0" style={{ background: "linear-gradient(to right, rgba(13,8,5,0.92) 0%, rgba(13,8,5,0.65) 55%, rgba(13,8,5,0.4) 100%)", zIndex: 3 }} />
-          <div className="absolute inset-0" style={{ background: "linear-gradient(to bottom, rgba(13,8,5,0.3) 0%, transparent 40%, rgba(13,8,5,0.8) 100%)", zIndex: 3 }} />
+          <div className="absolute inset-0" style={{ background: "linear-gradient(to right, rgba(13,11,10,0.85) 0%, rgba(13,11,10,0.5) 55%, rgba(13,11,10,0.2) 100%)", zIndex: 3 }} />
+          <div className="absolute inset-0" style={{ background: "linear-gradient(to bottom, transparent 50%, rgba(13,11,10,0.7) 100%)", zIndex: 3 }} />
         </div>
 
         <div className="absolute" style={{ top: "20%", left: "20%", width: 420, height: 420, borderRadius: "50%", background: "rgba(212,135,74,0.06)", filter: "blur(90px)", animation: "float 6s ease-in-out infinite" }} />
