@@ -35,7 +35,7 @@ export default function HeroSection({ activeNav, scrolled, parallaxY, heroIndex 
         <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
           <a href="#hero" className="flex items-center gap-3">
             <img
-              src="https://cdn.poehali.dev/projects/96829bf9-8ea6-42db-bc21-6a2d363e218e/bucket/dc07b768-2d2a-475e-807e-ef7df6a48a5c.png"
+              src="https://cdn.poehali.dev/projects/96829bf9-8ea6-42db-bc21-6a2d363e218e/bucket/d09e264e-f834-4b1e-b7fe-6249ce129089.png"
               alt="Пространство Пара"
               style={{ height: 48, width: "auto", objectFit: "contain", background: "transparent", mixBlendMode: "luminosity" }}
             />
