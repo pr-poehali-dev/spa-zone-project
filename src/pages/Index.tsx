@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Icon from "@/components/ui/icon";
 import HeroSection from "@/components/sections/HeroSection";
 import SpacesAndGallery from "@/components/sections/SpacesAndGallery";
@@ -6,6 +6,21 @@ import ProgramsSection from "@/components/sections/ProgramsSection";
 import ContactsSection from "@/components/sections/ContactsSection";
 import PromoSection from "@/components/sections/PromoSection";
 import { NAV_ITEMS, HERO_IMAGES } from "@/data/indexData";
+
+function RevealSection({ children }: { children: React.ReactNode }) {
+  const ref = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) { el.classList.add("visible"); observer.unobserve(el); } },
+      { threshold: 0.08 }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+  return <div ref={ref} className="reveal">{children}</div>;
+}
 
 export default function Index() {
   const [activeNav, setActiveNav] = useState("hero");
@@ -45,13 +60,21 @@ export default function Index() {
         heroIndex={heroIndex}
       />
 
-      <SpacesAndGallery onLightboxOpen={setLightbox} />
+      <RevealSection>
+        <SpacesAndGallery onLightboxOpen={setLightbox} />
+      </RevealSection>
 
-      <ProgramsSection />
+      <RevealSection>
+        <ProgramsSection />
+      </RevealSection>
 
-      <PromoSection />
+      <RevealSection>
+        <PromoSection />
+      </RevealSection>
 
-      <ContactsSection />
+      <RevealSection>
+        <ContactsSection />
+      </RevealSection>
 
       {/* Lightbox */}
       {lightbox && (
