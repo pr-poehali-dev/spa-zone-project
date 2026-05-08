@@ -153,15 +153,7 @@ export default function ContactsSection() {
                 alt="О нас"
                 style={{ width: "100%", height: 460, objectFit: "cover", borderRadius: 12 }}
               />
-              <div
-                className="absolute -bottom-5 -right-5 p-6 hidden md:block"
-                style={{ background: "linear-gradient(135deg,#c9a26e,#a8813f)", borderRadius: 12 }}
-              >
-                <div className="font-display font-light" style={{ fontSize: 42, color: "#0e0a07" }}>8 000+</div>
-                <div style={{ fontSize: 11, letterSpacing: "0.15em", textTransform: "uppercase", color: "rgba(14,10,7,0.6)", marginTop: 4 }}>
-                  Гостей за 3 года
-                </div>
-              </div>
+
             </div>
             <div>
               <div className="section-tag">Кто мы</div>
