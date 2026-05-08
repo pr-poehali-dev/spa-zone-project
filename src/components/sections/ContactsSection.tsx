@@ -462,13 +462,12 @@ export default function ContactsSection() {
       {/* ── FOOTER ── */}
       <footer className="py-8" style={{ background: "#080706", borderTop: "1px solid rgba(212,168,85,0.08)" }}>
         <div className="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4">
-          <div className="flex items-center gap-3">
-            <div className="w-7 h-7 rounded-full flex items-center justify-center" style={{ background: "linear-gradient(135deg,#c9a26e,#a8813f)" }}>
-              <span style={{ color: "#100c09", fontWeight: 700, fontSize: 9 }}>ПП</span>
-            </div>
-            <span className="font-display" style={{ fontSize: 15, letterSpacing: "0.15em", textTransform: "uppercase", color: "#c9a26e" }}>
-              Пространство Пара
-            </span>
+          <div className="flex items-center">
+            <img
+              src="https://cdn.poehali.dev/projects/96829bf9-8ea6-42db-bc21-6a2d363e218e/bucket/d09e264e-f834-4b1e-b7fe-6249ce129089.png"
+              alt="Пространство Пара"
+              style={{ height: 40, width: "auto" }}
+            />
           </div>
           <div style={{ fontSize: 12, color: "#9c8264" }}>© 2026 Пространство Пара. Все права защищены.</div>
           <div className="flex gap-3">
