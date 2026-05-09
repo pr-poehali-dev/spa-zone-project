@@ -140,18 +140,19 @@ export default function ContactsSection() {
   const [formStatus, setFormStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [policyModal, setPolicyModal] = useState<"privacy" | "consent" | null>(null);
   const [policyChecked, setPolicyChecked] = useState(false);
+  const [flippedBlog, setFlippedBlog] = useState<Record<string, boolean>>({});
 
   return (
     <>
       {/* ── ABOUT ── */}
-      <FadeSection id="about" className="py-24" style={{ background: "#0F0D0B" }}>
+      <FadeSection id="about" className="py-12 md:py-24" style={{ background: "#0F0D0B" }}>
         <div className="max-w-6xl mx-auto px-6">
-          <div className="grid md:grid-cols-2 gap-16 items-center">
+          <div className="grid md:grid-cols-2 gap-8 md:gap-16 items-center">
             <div className="relative">
               <img
                 src={MASSAGE_IMAGE}
                 alt="О нас"
-                style={{ width: "100%", height: 460, objectFit: "cover", borderRadius: 12 }}
+                style={{ width: "100%", height: "clamp(260px, 50vw, 460px)", objectFit: "cover", borderRadius: 12 }}
               />
 
             </div>
@@ -253,16 +254,16 @@ export default function ContactsSection() {
               <div
                 key={post.title}
                 className="cursor-pointer"
-                style={{ height: 340, perspective: 1000 }}
+                style={{ minHeight: 340, perspective: 1000 }}
+                onClick={() => setFlippedBlog(prev => ({ ...prev, [post.title]: !prev[post.title] }))}
               >
                 <div
                   className="blog-flip-inner"
                   style={{
                     position: "relative", width: "100%", height: "100%",
                     transformStyle: "preserve-3d", transition: "transform 0.7s cubic-bezier(0.4,0.2,0.2,1)",
+                    transform: flippedBlog[post.title] ? "rotateY(180deg)" : "rotateY(0deg)",
                   }}
-                  onMouseEnter={e => (e.currentTarget.style.transform = "rotateY(180deg)")}
-                  onMouseLeave={e => (e.currentTarget.style.transform = "rotateY(0deg)")}
                 >
                   {/* Front */}
                   <article
@@ -325,10 +326,10 @@ export default function ContactsSection() {
             <div className="gold-divider" />
           </div>
 
-          <div className="grid md:grid-cols-2 gap-12">
+          <div className="grid md:grid-cols-2 gap-6 md:gap-12">
             {/* Form */}
             <div>
-              <h3 className="font-display font-light mb-4" style={{ fontSize: 28, color: "#f0e8da" }}>Записаться на визит</h3>
+              <h3 className="font-display font-light mb-4" style={{ fontSize: "clamp(22px, 4vw, 28px)", color: "#f0e8da" }}>Записаться на визит</h3>
               <p className="text-sm mb-6" style={{ color: "#B8A98A", lineHeight: 1.6 }}>
                 Оставьте ваши контактные данные, наш администратор свяжется с вами и ответит на ваши вопросы с 10:00 до 22:00
               </p>
@@ -431,7 +432,7 @@ export default function ContactsSection() {
 
             {/* Info */}
             <div>
-              <h3 className="font-display font-light mb-6" style={{ fontSize: 28, color: "#f0e8da" }}>Как нас найти</h3>
+              <h3 className="font-display font-light mb-6" style={{ fontSize: "clamp(22px, 4vw, 28px)", color: "#f0e8da" }}>Как нас найти</h3>
               <div className="space-y-0">
                 {[
                   { icon: "MapPin", title: "Адрес", text: "г. Артём, мкр. Глобус 2, дом 1А" },

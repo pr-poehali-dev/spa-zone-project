@@ -480,3 +480,11 @@
   background: var(--spa-gold-dark);
   border-radius: 2px;
 }
+
+@media (max-width: 640px) {
+  .btn-gold,
+  .btn-outline-gold {
+    padding: 11px 24px;
+    font-size: 11px;
+  }
+}

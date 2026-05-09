@@ -30,7 +30,7 @@ export default function PromoSection() {
   return (
     <section
       ref={ref}
-      className={`py-20 transition-all duration-700 ${inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
+      className={`py-12 md:py-20 transition-all duration-700 ${inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
       style={{ background: "#0a0806" }}
     >
       <div className="max-w-6xl mx-auto px-6">
@@ -47,7 +47,7 @@ export default function PromoSection() {
             <div
               key={i}
               className="flex overflow-hidden"
-              style={{ borderRadius: 6, background: "rgba(22,17,12,0.9)", border: "1px solid rgba(201,162,110,0.12)", minHeight: 280 }}
+              style={{ borderRadius: 6, background: "rgba(22,17,12,0.9)", border: "1px solid rgba(201,162,110,0.12)", minHeight: "clamp(200px, 30vw, 280px)" }}
             >
               {/* Текст */}
               <div className="flex flex-col justify-between p-8 flex-1">
@@ -76,7 +76,7 @@ export default function PromoSection() {
               </div>
 
               {/* Фото */}
-              <div style={{ width: 200, flexShrink: 0, position: "relative", overflow: "hidden" }}>
+              <div style={{ minWidth: 200, maxWidth: "30%", flexShrink: 0, position: "relative", overflow: "hidden" }}>
                 <img
                   src={promo.img}
                   alt={promo.title}

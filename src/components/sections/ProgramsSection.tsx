@@ -124,7 +124,7 @@ export default function ProgramsSection() {
               <div
                 key={prog.title}
                 className="mb-1.5"
-                style={{ borderRadius: 4, height: 420, perspective: 1200, position: "relative" }}
+                style={{ borderRadius: 4, minHeight: 420, perspective: 1200, position: "relative" }}
               >
                 <div
                   style={{
@@ -183,7 +183,7 @@ export default function ProgramsSection() {
                     {prog.modal && (
                       <>
                         {/* Левая часть — текст */}
-                        <div style={{ flex: 1, display: "flex", flexDirection: "column", padding: "36px 40px", overflowY: "auto" }}>
+                        <div style={{ flex: 1, display: "flex", flexDirection: "column", padding: "clamp(20px, 4vw, 36px) clamp(16px, 3vw, 40px)", overflowY: "auto" }}>
                           <div style={{ fontSize: 9, letterSpacing: "0.28em", textTransform: "uppercase", color: "#c9a26e", marginBottom: 10, fontStyle: "italic", fontFamily: "'Golos Text', sans-serif" }}>
                             {prog.modal.label}
                           </div>
@@ -211,7 +211,7 @@ export default function ProgramsSection() {
                           </div>
                         </div>
                         {/* Правая часть — шаги */}
-                        <div style={{ flex: 1, display: "flex", flexDirection: "column", padding: "36px 36px 36px 0", overflowY: "auto", gap: 14 }}>
+                        <div style={{ flex: 1, display: "flex", flexDirection: "column", padding: "0 clamp(16px, 3vw, 36px) clamp(20px, 4vw, 36px)", overflowY: "auto", gap: 14 }}>
                           {prog.modal.steps.map((step, i) => (
                             <div key={i} style={{ display: "grid", gridTemplateColumns: "28px 1fr", gap: "0 10px" }}>
                               <span style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 16, fontStyle: "italic", color: "rgba(201,162,110,0.5)", paddingTop: 1 }}>{step.num}</span>
@@ -295,7 +295,7 @@ export default function ProgramsSection() {
                     >
                       {prog.modal && (
                         <>
-                          <div style={{ padding: "28px 24px 0", flex: "0 0 auto" }}>
+                          <div style={{ padding: "clamp(16px,3vw,28px) clamp(14px,3vw,24px) 0", flex: "0 0 auto" }}>
                             <div style={{ fontSize: 9, letterSpacing: "0.28em", textTransform: "uppercase", color: "#c9a26e", marginBottom: 8, fontStyle: "italic", fontFamily: "'Golos Text', sans-serif" }}>
                               {prog.modal.label}
                             </div>
@@ -304,7 +304,7 @@ export default function ProgramsSection() {
                             </h3>
                             <div style={{ height: 1, background: "rgba(201,162,110,0.25)", margin: "12px 0" }} />
                           </div>
-                          <div style={{ padding: "0 24px", flex: 1, overflowY: "auto" }}>
+                          <div style={{ padding: "0 clamp(14px,3vw,24px)", flex: 1, overflowY: "auto" }}>
                             {prog.modal.quote.map((q, i) => (
                               <p key={i} style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 13, fontStyle: "italic", color: "rgba(201,162,110,0.85)", lineHeight: 1.7, marginBottom: 6 }}>
                                 {q}

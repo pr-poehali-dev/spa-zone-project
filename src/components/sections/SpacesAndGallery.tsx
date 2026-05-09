@@ -219,7 +219,7 @@ export default function SpacesAndGallery({ onLightboxOpen }: SpacesAndGalleryPro
       </FadeSection>
 
       {/* ── SPACES / GALLERY ── */}
-      <FadeSection id="spaces" className="pt-10 pb-24" style={{ background: "#100c09" }}>
+      <FadeSection id="spaces" className="pt-10 pb-12 md:pb-24" style={{ background: "#100c09" }}>
         <div className="max-w-7xl mx-auto px-6">
           <div className="mb-14">
             <div className="section-tag">Наши пространства</div>
@@ -228,7 +228,7 @@ export default function SpacesAndGallery({ onLightboxOpen }: SpacesAndGalleryPro
           </div>
 
           {/* Gallery: 2 fixed cards + wide carousel below */}
-          <div className="grid grid-cols-2 gap-3 mb-3">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-3">
             {GALLERY_ITEMS.slice(0, 2).map((item, i) => (
               <GalleryCard key={i} item={item} onOpen={() => onLightboxOpen(item)} />
             ))}
@@ -238,7 +238,7 @@ export default function SpacesAndGallery({ onLightboxOpen }: SpacesAndGalleryPro
           </div>
 
           {/* Space cards */}
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-1.5">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-1.5">
             {SPACES.map((space) => (
               <SpaceCard key={space.title} space={space} />
             ))}
