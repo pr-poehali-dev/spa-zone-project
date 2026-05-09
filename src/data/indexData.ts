@@ -21,6 +21,7 @@ export const NAV_ITEMS = [
   { label: "О нас", href: "#about" },
   { label: "Отзывы", href: "#reviews" },
   { label: "Блог", href: "#blog" },
+  { label: "Запись", href: "#booking" },
   { label: "Контакты", href: "#contacts" },
 ];
 
