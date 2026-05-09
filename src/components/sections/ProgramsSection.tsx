@@ -100,6 +100,11 @@ function ProgramModal({ modal, onClose }: { modal: NonNullable<ProgramModal>; on
 
 export default function ProgramsSection() {
   const [programModal, setProgramModal] = useState<NonNullable<ProgramModal> | null>(null);
+  const [flippedCards, setFlippedCards] = useState<Record<string, boolean>>({});
+
+  const toggleFlip = (title: string) => {
+    setFlippedCards((prev) => ({ ...prev, [title]: !prev[title] }));
+  };
 
   return (
     <>
@@ -156,46 +161,113 @@ export default function ProgramsSection() {
 
           {/* Остальные программы — 3 в ряд */}
           <div className="grid md:grid-cols-3 gap-1.5">
-            {PROGRAMS.filter((p) => !p.popular).map((prog) => (
-              <div
-                key={prog.title}
-                className="relative overflow-hidden group"
-                style={{ borderRadius: 4, aspectRatio: "3/4" }}
-              >
-                <img src={prog.img} alt={prog.title} style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", transition: "transform 0.6s ease" }}
-                  onMouseEnter={(e) => (e.currentTarget.style.transform = "scale(1.06)")}
-                  onMouseLeave={(e) => (e.currentTarget.style.transform = "scale(1)")}
-                />
-                <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(10,8,6,0.92) 0%, rgba(10,8,6,0.3) 50%, transparent 100%)" }} />
-                <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, padding: "24px 22px" }}>
-                  <span className="glass-tag" style={{ fontSize: 9, marginBottom: 10, display: "inline-block" }}>{prog.tag}</span>
-                  <h3 className="font-display font-light" style={{ fontSize: "clamp(18px, 2.2vw, 24px)", color: "#f0e8da", lineHeight: 1.2, marginBottom: 6 }}>{prog.title}</h3>
-                  <p style={{ color: "#9c8264", fontSize: 12, marginBottom: 16 }}>{prog.subtitle}</p>
-                  <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-                    {prog.modal && (
-                      <button onClick={() => setProgramModal(prog.modal!)} className="btn-outline-gold" style={{ fontSize: 10, padding: "10px 18px", cursor: "pointer", textAlign: "center" }}>
-                        Подробнее
-                      </button>
-                    )}
-                    {!prog.modal && (
-                      <Link
-                        to={prog.href}
-                        className="btn-outline-gold text-center"
-                        style={{ fontSize: 11, padding: "11px 20px" }}
-                      >
-                        Подробнее
-                      </Link>
-                    )}
-                    <a
-                      href="#contacts"
-                      style={{ fontSize: 11, color: "#9c8264", textAlign: "center", padding: "8px", letterSpacing: "0.06em", textTransform: "uppercase" }}
+            {PROGRAMS.filter((p) => !p.popular).map((prog) => {
+              const isFlipped = !!flippedCards[prog.title];
+              return (
+                <div
+                  key={prog.title}
+                  style={{ borderRadius: 4, aspectRatio: "3/4", perspective: 1000, position: "relative" }}
+                >
+                  <div
+                    style={{
+                      position: "absolute", inset: 0,
+                      transformStyle: "preserve-3d",
+                      transition: "transform 0.7s cubic-bezier(0.4,0.2,0.2,1)",
+                      transform: isFlipped ? "rotateY(180deg)" : "rotateY(0deg)",
+                      borderRadius: 4,
+                    }}
+                  >
+                    {/* Лицевая сторона */}
+                    <div
+                      style={{ position: "absolute", inset: 0, backfaceVisibility: "hidden", borderRadius: 4, overflow: "hidden" }}
                     >
-                      Записаться
-                    </a>
+                      <img src={prog.img} alt={prog.title} style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }} />
+                      <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(10,8,6,0.92) 0%, rgba(10,8,6,0.3) 50%, transparent 100%)" }} />
+                      <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, padding: "24px 22px" }}>
+                        <span className="glass-tag" style={{ fontSize: 9, marginBottom: 10, display: "inline-block" }}>{prog.tag}</span>
+                        <h3 className="font-display font-light" style={{ fontSize: "clamp(18px, 2.2vw, 24px)", color: "#f0e8da", lineHeight: 1.2, marginBottom: 6 }}>{prog.title}</h3>
+                        <p style={{ color: "#9c8264", fontSize: 12, marginBottom: 16 }}>{prog.subtitle}</p>
+                        <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+                          {prog.modal && (
+                            <button
+                              onClick={() => toggleFlip(prog.title)}
+                              className="btn-outline-gold"
+                              style={{ fontSize: 10, padding: "10px 18px", cursor: "pointer", textAlign: "center" }}
+                            >
+                              Подробнее
+                            </button>
+                          )}
+                          {!prog.modal && (
+                            <Link to={prog.href} className="btn-outline-gold text-center" style={{ fontSize: 11, padding: "11px 20px" }}>
+                              Подробнее
+                            </Link>
+                          )}
+                          <a href="#contacts" style={{ fontSize: 11, color: "#9c8264", textAlign: "center", padding: "8px", letterSpacing: "0.06em", textTransform: "uppercase" }}>
+                            Записаться
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Обратная сторона */}
+                    <div
+                      style={{
+                        position: "absolute", inset: 0,
+                        backfaceVisibility: "hidden",
+                        transform: "rotateY(180deg)",
+                        borderRadius: 4,
+                        background: "#1a120b",
+                        overflow: "hidden",
+                        display: "flex",
+                        flexDirection: "column",
+                      }}
+                    >
+                      {prog.modal && (
+                        <>
+                          <div style={{ padding: "28px 24px 0", flex: "0 0 auto" }}>
+                            <div style={{ fontSize: 9, letterSpacing: "0.28em", textTransform: "uppercase", color: "#c9a26e", marginBottom: 8, fontStyle: "italic", fontFamily: "'Golos Text', sans-serif" }}>
+                              {prog.modal.label}
+                            </div>
+                            <h3 className="font-display font-light" style={{ fontSize: "clamp(16px, 2vw, 20px)", color: "#f0e8da", lineHeight: 1.2, marginBottom: 6 }}>
+                              {prog.modal.heading}
+                            </h3>
+                            <div style={{ height: 1, background: "rgba(201,162,110,0.25)", margin: "12px 0" }} />
+                          </div>
+                          <div style={{ padding: "0 24px", flex: 1, overflowY: "auto" }}>
+                            {prog.modal.quote.map((q, i) => (
+                              <p key={i} style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 13, fontStyle: "italic", color: "rgba(201,162,110,0.85)", lineHeight: 1.7, marginBottom: 6 }}>
+                                {q}
+                              </p>
+                            ))}
+                            <div style={{ height: 1, background: "rgba(201,162,110,0.15)", margin: "12px 0" }} />
+                            {prog.modal.steps.slice(0, 3).map((step, i) => (
+                              <div key={i} style={{ display: "grid", gridTemplateColumns: "24px 1fr", gap: "0 8px", marginBottom: 10 }}>
+                                <span style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 14, fontStyle: "italic", color: "rgba(201,162,110,0.5)", paddingTop: 1 }}>{step.num}</span>
+                                <div>
+                                  <div style={{ fontSize: 11, fontWeight: 600, color: "#f0e8da", marginBottom: 2, fontFamily: "'Golos Text', sans-serif" }}>{step.title}</div>
+                                  <div style={{ fontSize: 11, fontStyle: "italic", color: "#9c8264", lineHeight: 1.55, fontFamily: "'Cormorant Garamond', serif" }}>{step.desc}</div>
+                                </div>
+                              </div>
+                            ))}
+                          </div>
+                          <div style={{ padding: "14px 24px 20px", flex: "0 0 auto", display: "flex", gap: 8 }}>
+                            <a href="#contacts" style={{ flex: 1, display: "block", background: "linear-gradient(135deg,#c9a26e,#d4874a)", color: "#fff8f0", padding: "11px", borderRadius: 50, fontSize: 10, fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", textDecoration: "none", textAlign: "center", fontFamily: "'Golos Text', sans-serif" }}>
+                              Записаться
+                            </a>
+                            <button
+                              onClick={() => toggleFlip(prog.title)}
+                              style={{ background: "none", border: "1px solid rgba(201,162,110,0.4)", borderRadius: 50, padding: "11px 16px", fontSize: 10, color: "#c9a26e", cursor: "pointer", letterSpacing: "0.06em", textTransform: "uppercase", fontFamily: "'Golos Text', sans-serif" }}
+                            >
+                              Назад
+                            </button>
+                          </div>
+                        </>
+                      )}
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </FadeSection>
