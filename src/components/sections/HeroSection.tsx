@@ -45,7 +45,24 @@ export default function HeroSection({ activeNav, scrolled, parallaxY, heroIndex 
             </div>
           </a>
 
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-3">
+            <a
+              href="tel:+79089803545"
+              className="flex items-center gap-2"
+              style={{
+                fontFamily: "'Golos Text', sans-serif",
+                fontSize: 14,
+                color: "#f0e8da",
+                letterSpacing: "0.03em",
+                textDecoration: "none",
+                background: "linear-gradient(90deg,#b8862e,#e8c06a)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+              }}
+            >
+              <Icon name="Phone" size={15} />
+              <span style={{ WebkitTextFillColor: "transparent" }}>+7 908 980-35-45</span>
+            </a>
             <button
               style={{ color: "#f0e8da" }}
               onClick={() => setMenuOpen(!menuOpen)}
