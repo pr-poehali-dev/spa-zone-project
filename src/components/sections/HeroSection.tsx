@@ -45,7 +45,7 @@ export default function HeroSection({ activeNav, scrolled, parallaxY, heroIndex 
             </div>
           </a>
 
-          <div className="hidden xl:flex items-center gap-7">
+          <div className="hidden xl:flex items-center gap-4 2xl:gap-7">
             {NAV_ITEMS.map((item) => (
               <a
                 key={item.label}
