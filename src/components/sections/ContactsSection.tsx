@@ -452,14 +452,20 @@ export default function ContactsSection() {
                       </div>
                       <div style={{ fontSize: 14, color: "#f0e8da", lineHeight: 1.7, whiteSpace: "pre-line" }}>{item.text}</div>
                       {item.href && (
-                        <a
-                          href={item.href}
-                          className="inline-flex items-center gap-2 mt-3 btn-gold"
-                          style={{ fontSize: 13, padding: "8px 20px" }}
-                        >
-                          <Icon name="Phone" size={13} />
-                          Позвонить
-                        </a>
+                        <div className="flex flex-wrap gap-2 mt-3">
+                          <a href="tel:+79089803545" className="inline-flex items-center gap-2 btn-gold" style={{ fontSize: 13, padding: "8px 20px" }}>
+                            <Icon name="Phone" size={13} />
+                            Позвонить
+                          </a>
+                          <a href="https://wa.me/79089803545" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2" style={{ fontSize: 13, padding: "8px 20px", borderRadius: 8, border: "1px solid rgba(212,168,85,0.3)", color: "#c9a26e", textDecoration: "none" }}>
+                            <Icon name="MessageCircle" size={13} />
+                            WhatsApp
+                          </a>
+                          <a href="https://t.me/+79089803545" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2" style={{ fontSize: 13, padding: "8px 20px", borderRadius: 8, border: "1px solid rgba(212,168,85,0.3)", color: "#c9a26e", textDecoration: "none" }}>
+                            <Icon name="Send" size={13} />
+                            Telegram
+                          </a>
+                        </div>
                       )}
                     </div>
                   </div>
@@ -492,24 +498,28 @@ export default function ContactsSection() {
             <div style={{ fontSize: 12, color: "#9c8264" }}>© 2023–2026 Пространство Пара. Все права защищены.</div>
           </div>
           <div className="flex gap-3">
-            {["Instagram", "MessageCircle", "Send"].map((icon) => (
-              <a
-                key={icon}
-                href="#"
-                className="w-8 h-8 rounded-full flex items-center justify-center transition-all hover:scale-110"
-                style={{ border: "1px solid rgba(212,168,85,0.2)", color: "#9c8264" }}
-                onMouseEnter={(e) => {
-                  (e.currentTarget as HTMLElement).style.borderColor = "rgba(212,168,85,0.6)";
-                  (e.currentTarget as HTMLElement).style.color = "#c9a26e";
-                }}
-                onMouseLeave={(e) => {
-                  (e.currentTarget as HTMLElement).style.borderColor = "rgba(212,168,85,0.2)";
-                  (e.currentTarget as HTMLElement).style.color = "#9c8264";
-                }}
-              >
-                <Icon name={icon} size={13} />
-              </a>
-            ))}
+            <a
+              href="https://wa.me/79089803545"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-8 h-8 rounded-full flex items-center justify-center transition-all hover:scale-110"
+              style={{ border: "1px solid rgba(212,168,85,0.2)", color: "#9c8264" }}
+              onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.borderColor = "rgba(212,168,85,0.6)"; (e.currentTarget as HTMLElement).style.color = "#c9a26e"; }}
+              onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.borderColor = "rgba(212,168,85,0.2)"; (e.currentTarget as HTMLElement).style.color = "#9c8264"; }}
+            >
+              <Icon name="MessageCircle" size={13} />
+            </a>
+            <a
+              href="https://t.me/+79089803545"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-8 h-8 rounded-full flex items-center justify-center transition-all hover:scale-110"
+              style={{ border: "1px solid rgba(212,168,85,0.2)", color: "#9c8264" }}
+              onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.borderColor = "rgba(212,168,85,0.6)"; (e.currentTarget as HTMLElement).style.color = "#c9a26e"; }}
+              onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.borderColor = "rgba(212,168,85,0.2)"; (e.currentTarget as HTMLElement).style.color = "#9c8264"; }}
+            >
+              <Icon name="Send" size={13} />
+            </a>
           </div>
         </div>
       </footer>
