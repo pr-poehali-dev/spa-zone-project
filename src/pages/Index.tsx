@@ -5,6 +5,7 @@ import SpacesAndGallery from "@/components/sections/SpacesAndGallery";
 import ProgramsSection from "@/components/sections/ProgramsSection";
 import ContactsSection from "@/components/sections/ContactsSection";
 import PromoSection from "@/components/sections/PromoSection";
+import YclientsWidget from "@/components/sections/YclientsWidget";
 import { NAV_ITEMS, HERO_IMAGES } from "@/data/indexData";
 
 function RevealSection({ children }: { children: React.ReactNode }) {
@@ -70,6 +71,10 @@ export default function Index() {
 
       <RevealSection>
         <PromoSection />
+      </RevealSection>
+
+      <RevealSection>
+        <YclientsWidget />
       </RevealSection>
 
       <RevealSection>
