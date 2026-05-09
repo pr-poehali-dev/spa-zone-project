@@ -470,7 +470,7 @@ export default function ContactsSection() {
               style={{ height: 40, width: "auto" }}
             />
           </div>
-          <div style={{ fontSize: 12, color: "#9c8264" }}>© 2026 Пространство Пара. Все права защищены.</div>
+          <div style={{ fontSize: 12, color: "#9c8264" }}>© 2023–2026 Пространство Пара. Все права защищены.</div>
           <div className="flex gap-3">
             {["Instagram", "MessageCircle", "Send"].map((icon) => (
               <a
