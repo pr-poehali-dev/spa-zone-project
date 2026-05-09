@@ -45,7 +45,7 @@ export default function HeroSection({ activeNav, scrolled, parallaxY, heroIndex 
             </div>
           </a>
 
-          <div className="hidden lg:flex items-center gap-7">
+          <div className="hidden xl:flex items-center gap-7">
             {NAV_ITEMS.map((item) => (
               <a
                 key={item.label}
@@ -60,15 +60,15 @@ export default function HeroSection({ activeNav, scrolled, parallaxY, heroIndex 
           <div className="flex items-center gap-4">
             <a
               href="tel:+79089803545"
-              className="hidden lg:inline-flex items-center gap-2"
+              className="hidden xl:inline-flex items-center gap-2"
               style={{ color: "#e8c08a", fontSize: 15, fontWeight: 600, letterSpacing: "0.03em", textDecoration: "none" }}
             >
               <Icon name="Phone" size={15} style={{ color: "#e8c08a" }} />
               +7 908 980-35-45
             </a>
-            <a href="#contacts" className="hidden lg:inline-block btn-gold">Записаться</a>
+            <a href="#contacts" className="hidden xl:inline-block btn-gold">Записаться</a>
             <button
-              className="lg:hidden"
+              className="xl:hidden"
               style={{ color: "#f0e8da" }}
               onClick={() => setMenuOpen(!menuOpen)}
             >
@@ -79,7 +79,7 @@ export default function HeroSection({ activeNav, scrolled, parallaxY, heroIndex 
 
         {menuOpen && (
           <div
-            className="lg:hidden px-6 py-5 flex flex-col gap-3"
+            className="xl:hidden px-6 py-5 flex flex-col gap-3"
             style={{ background: "rgba(16,12,9,0.98)", borderTop: "1px solid rgba(212,168,85,0.1)" }}
           >
             {NAV_ITEMS.map((item) => (
