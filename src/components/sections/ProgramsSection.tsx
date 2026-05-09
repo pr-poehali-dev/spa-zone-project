@@ -124,7 +124,7 @@ export default function ProgramsSection() {
               <div
                 key={prog.title}
                 className="mb-1.5"
-                style={{ borderRadius: 4, minHeight: 420, perspective: 1200, position: "relative" }}
+                style={{ borderRadius: 4, minHeight: "clamp(320px, 55vw, 420px)", perspective: 1200, position: "relative" }}
               >
                 <div
                   style={{
@@ -178,51 +178,52 @@ export default function ProgramsSection() {
                       background: "#1a120b",
                       overflow: "hidden",
                       display: "flex",
+                      flexWrap: "wrap",
                     }}
                   >
                     {prog.modal && (
-                      <>
+                      <div style={{ display: "flex", flexWrap: "wrap", width: "100%", overflowY: "auto" }}>
                         {/* Левая часть — текст */}
-                        <div style={{ flex: 1, display: "flex", flexDirection: "column", padding: "clamp(20px, 4vw, 36px) clamp(16px, 3vw, 40px)", overflowY: "auto" }}>
+                        <div style={{ flex: "1 1 260px", display: "flex", flexDirection: "column", padding: "clamp(20px, 4vw, 36px) clamp(16px, 3vw, 40px)" }}>
                           <div style={{ fontSize: 9, letterSpacing: "0.28em", textTransform: "uppercase", color: "#c9a26e", marginBottom: 10, fontStyle: "italic", fontFamily: "'Golos Text', sans-serif" }}>
                             {prog.modal.label}
                           </div>
-                          <h3 className="font-display font-light" style={{ fontSize: "clamp(24px, 3vw, 38px)", color: "#f0e8da", lineHeight: 1.1, marginBottom: 6 }}>
+                          <h3 className="font-display font-light" style={{ fontSize: "clamp(20px, 3vw, 38px)", color: "#f0e8da", lineHeight: 1.1, marginBottom: 6 }}>
                             {prog.modal.heading}
                           </h3>
                           <div style={{ height: 1, background: "rgba(201,162,110,0.25)", margin: "14px 0" }} />
                           <div style={{ marginBottom: 18 }}>
                             {prog.modal.quote.map((q, i) => (
-                              <p key={i} style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 15, fontStyle: "italic", color: "rgba(201,162,110,0.85)", lineHeight: 1.7, marginBottom: 4 }}>
+                              <p key={i} style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(13px, 1.5vw, 15px)", fontStyle: "italic", color: "rgba(201,162,110,0.85)", lineHeight: 1.7, marginBottom: 4 }}>
                                 {q}
                               </p>
                             ))}
                           </div>
-                          <div style={{ display: "flex", gap: 12, marginTop: "auto", paddingTop: 16 }}>
-                            <a href="#contacts" style={{ display: "inline-block", background: "linear-gradient(135deg,#c9a26e,#d4874a)", color: "#fff8f0", padding: "12px 32px", borderRadius: 50, fontSize: 11, fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", textDecoration: "none", fontFamily: "'Golos Text', sans-serif" }}>
+                          <div style={{ display: "flex", gap: 12, marginTop: "auto", paddingTop: 16, flexWrap: "wrap" }}>
+                            <a href="#contacts" style={{ display: "inline-block", background: "linear-gradient(135deg,#c9a26e,#d4874a)", color: "#fff8f0", padding: "11px 24px", borderRadius: 50, fontSize: 11, fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", textDecoration: "none", fontFamily: "'Golos Text', sans-serif" }}>
                               Записаться
                             </a>
                             <button
                               onClick={() => toggleFlip(prog.title)}
-                              style={{ background: "none", border: "1px solid rgba(201,162,110,0.4)", borderRadius: 50, padding: "12px 24px", fontSize: 11, color: "#c9a26e", cursor: "pointer", letterSpacing: "0.06em", textTransform: "uppercase", fontFamily: "'Golos Text', sans-serif" }}
+                              style={{ background: "none", border: "1px solid rgba(201,162,110,0.4)", borderRadius: 50, padding: "11px 20px", fontSize: 11, color: "#c9a26e", cursor: "pointer", letterSpacing: "0.06em", textTransform: "uppercase", fontFamily: "'Golos Text', sans-serif" }}
                             >
                               Назад
                             </button>
                           </div>
                         </div>
                         {/* Правая часть — шаги */}
-                        <div style={{ flex: 1, display: "flex", flexDirection: "column", padding: "0 clamp(16px, 3vw, 36px) clamp(20px, 4vw, 36px)", overflowY: "auto", gap: 14 }}>
+                        <div style={{ flex: "1 1 260px", display: "flex", flexDirection: "column", padding: "clamp(16px, 3vw, 28px) clamp(16px, 3vw, 36px)", gap: 12 }}>
                           {prog.modal.steps.map((step, i) => (
                             <div key={i} style={{ display: "grid", gridTemplateColumns: "28px 1fr", gap: "0 10px" }}>
                               <span style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 16, fontStyle: "italic", color: "rgba(201,162,110,0.5)", paddingTop: 1 }}>{step.num}</span>
                               <div>
-                                <div style={{ fontSize: 12, fontWeight: 600, color: "#f0e8da", marginBottom: 3, fontFamily: "'Golos Text', sans-serif" }}>{step.title}</div>
-                                <div style={{ fontSize: 12, fontStyle: "italic", color: "#9c8264", lineHeight: 1.55, fontFamily: "'Cormorant Garamond', serif" }}>{step.desc}</div>
+                                <div style={{ fontSize: "clamp(11px, 1.3vw, 12px)", fontWeight: 600, color: "#f0e8da", marginBottom: 3, fontFamily: "'Golos Text', sans-serif" }}>{step.title}</div>
+                                <div style={{ fontSize: "clamp(11px, 1.3vw, 12px)", fontStyle: "italic", color: "#9c8264", lineHeight: 1.55, fontFamily: "'Cormorant Garamond', serif" }}>{step.desc}</div>
                               </div>
                             </div>
                           ))}
                         </div>
-                      </>
+                      </div>
                     )}
                   </div>
                 </div>
@@ -231,7 +232,7 @@ export default function ProgramsSection() {
           })}
 
           {/* Остальные программы — 3 в ряд */}
-          <div className="grid md:grid-cols-3 gap-1.5">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-1.5">
             {PROGRAMS.filter((p) => !p.popular).map((prog) => {
               const isFlipped = !!flippedCards[prog.title];
               return (

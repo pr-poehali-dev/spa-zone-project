@@ -249,12 +249,12 @@ export default function ContactsSection() {
               Все статьи <Icon name="ArrowRight" size={14} />
             </a>
           </div>
-          <div className="grid md:grid-cols-3 gap-5">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 md:gap-5">
             {BLOG_POSTS.map((post) => (
               <div
                 key={post.title}
                 className="cursor-pointer"
-                style={{ minHeight: 340, perspective: 1000 }}
+                style={{ minHeight: "clamp(300px, auto, 340px)", perspective: 1000 }}
                 onClick={() => setFlippedBlog(prev => ({ ...prev, [post.title]: !prev[post.title] }))}
               >
                 <div
@@ -273,7 +273,7 @@ export default function ContactsSection() {
                       borderRadius: 14, overflow: "hidden",
                     }}
                   >
-                    <div style={{ position: "relative", height: 190, overflow: "hidden" }}>
+                    <div style={{ position: "relative", height: "clamp(140px, 25vw, 190px)", overflow: "hidden" }}>
                       <img src={post.img} alt={post.title} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
                       <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(16,12,9,0.7) 0%, transparent 60%)" }} />
                       <div style={{ position: "absolute", top: 16, left: 16 }}>

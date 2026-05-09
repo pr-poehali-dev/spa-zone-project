@@ -211,19 +211,19 @@ export default function HeroSection({ activeNav, scrolled, parallaxY, heroIndex 
         <div className="absolute" style={{ top: "55%", left: "55%", width: 200, height: 200, borderRadius: "50%", background: "rgba(139,58,26,0.04)", filter: "blur(60px)", animation: "float 10s ease-in-out infinite" }} />
 
         <div className="relative z-10 max-w-7xl mx-auto px-6 w-full">
-          <div className="max-w-2xl" style={{ paddingLeft: 60 }}>
+          <div className="max-w-2xl" style={{ paddingLeft: "clamp(0px, 4vw, 60px)" }}>
             <p
-              style={{ color: "#9c8264", fontSize: 17, fontWeight: 300, maxWidth: 420, lineHeight: 1.7, marginBottom: 14, animation: "fadeUp 0.8s 0.35s ease forwards", opacity: 0 }}
+              style={{ color: "#9c8264", fontSize: "clamp(13px, 2vw, 17px)", fontWeight: 300, maxWidth: "min(420px, 90%)", lineHeight: 1.7, marginBottom: 14, animation: "fadeUp 0.8s 0.35s ease forwards", opacity: 0 }}
             >
               Бассейн · Сауна · Хаммам · Массаж · Ароматерапия
             </p>
             <p
-              style={{ color: "rgba(240,232,218,0.7)", fontSize: 16, fontWeight: 300, maxWidth: 400, lineHeight: 1.85, marginBottom: 20, animation: "fadeUp 0.8s 0.45s ease forwards", opacity: 0 }}
+              style={{ color: "rgba(240,232,218,0.7)", fontSize: "clamp(14px, 2vw, 16px)", fontWeight: 300, maxWidth: "min(400px, 90%)", lineHeight: 1.85, marginBottom: 20, animation: "fadeUp 0.8s 0.45s ease forwards", opacity: 0 }}
             >
               Здесь тело вспоминает, как быть лёгким. Тепло, пар, тишина — и ничего лишнего.
             </p>
             <p
-              style={{ color: "rgba(201,162,110,0.75)", fontSize: 14, fontWeight: 300, maxWidth: 400, lineHeight: 1.7, marginBottom: 36, animation: "fadeUp 0.8s 0.55s ease forwards", opacity: 0, letterSpacing: "0.04em" }}
+              style={{ color: "rgba(201,162,110,0.75)", fontSize: "clamp(12px, 1.8vw, 14px)", fontWeight: 300, maxWidth: "min(400px, 90%)", lineHeight: 1.7, marginBottom: 36, animation: "fadeUp 0.8s 0.55s ease forwards", opacity: 0, letterSpacing: "0.04em" }}
             >
               Уютное пространство для компании до 8 человек
             </p>

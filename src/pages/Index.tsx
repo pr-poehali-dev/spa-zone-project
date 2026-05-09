@@ -83,12 +83,12 @@ export default function Index() {
           style={{ background: "rgba(16,12,9,0.95)", backdropFilter: "blur(8px)", animation: "fadeIn 0.3s ease" }}
           onClick={() => setLightbox(null)}
         >
-          <button className="absolute top-6 right-6 transition-colors" style={{ color: "rgba(237,232,223,0.5)" }} onClick={() => setLightbox(null)}>
+          <button className="absolute top-3 right-3 sm:top-6 sm:right-6 transition-colors" style={{ color: "rgba(237,232,223,0.5)" }} onClick={() => setLightbox(null)}>
             <Icon name="X" size={28} />
           </button>
           <div className="max-w-4xl w-full" onClick={(e) => e.stopPropagation()}>
             <img src={lightbox.img} alt={lightbox.title} style={{ width: "100%", borderRadius: 12 }} />
-            <p className="text-center font-display mt-4" style={{ fontSize: 22, color: "#c9a26e" }}>{lightbox.title}</p>
+            <p className="text-center font-display mt-4" style={{ fontSize: "clamp(16px, 4vw, 22px)", color: "#c9a26e" }}>{lightbox.title}</p>
           </div>
         </div>
       )}
