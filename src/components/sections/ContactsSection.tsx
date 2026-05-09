@@ -200,33 +200,64 @@ export default function ContactsSection() {
             <div className="gold-divider" />
             <p className="mt-4 max-w-lg" style={{ color: "#9c8264", fontSize: 15, lineHeight: 1.85 }}>Слова тех, кто уже побывал здесь — и нашёл что-то важное для себя.</p>
           </div>
-          {/* Яндекс-плашка общего рейтинга */}
-          <a
-            href="https://yandex.ru/maps/org/prostranstvo_para/184055735940/reviews/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-4 mb-8 w-fit"
-            style={{ background: "rgba(26,20,16,0.8)", border: "1px solid rgba(212,168,85,0.15)", borderRadius: 12, padding: "14px 22px", textDecoration: "none", transition: "border-color 0.3s" }}
-            onMouseEnter={(e) => (e.currentTarget.style.borderColor = "rgba(212,168,85,0.4)")}
-            onMouseLeave={(e) => (e.currentTarget.style.borderColor = "rgba(212,168,85,0.15)")}
-          >
-            <svg width="28" height="28" viewBox="0 0 100 100" fill="none">
-              <circle cx="50" cy="50" r="50" fill="#FC3F1D"/>
-              <path d="M56.5 22H43.7V78H56.5V55.3H61.3C70.8 55.3 76.5 50 76.5 38.4C76.5 27.3 70.8 22 61.3 22H56.5ZM56.5 33.4H60.3C65.1 33.4 67.5 36 67.5 38.9C67.5 42.4 65.4 44.1 60.5 44.1H56.5V33.4ZM23.5 78H36.3V22H30.6L22 44.4V78H23.5Z" fill="white"/>
-            </svg>
-            <div>
-              <div style={{ fontSize: 11, color: "#9c8264", letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: 3 }}>Яндекс Карты</div>
-              <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
-                <div style={{ display: "flex", gap: 2 }}>
-                  {Array.from({ length: 5 }).map((_, i) => (
-                    <Icon key={i} name="Star" size={13} style={{ color: "#FFD700" }} />
-                  ))}
+          {/* Плашки рейтингов */}
+          <div className="flex flex-wrap gap-4 mb-10">
+            {/* Яндекс */}
+            <a
+              href="https://yandex.ru/maps/org/prostranstvo_para/184055735940/reviews/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-4"
+              style={{ background: "rgba(26,20,16,0.8)", border: "1px solid rgba(212,168,85,0.15)", borderRadius: 12, padding: "14px 22px", textDecoration: "none", transition: "border-color 0.3s" }}
+              onMouseEnter={(e) => (e.currentTarget.style.borderColor = "rgba(212,168,85,0.4)")}
+              onMouseLeave={(e) => (e.currentTarget.style.borderColor = "rgba(212,168,85,0.15)")}
+            >
+              <svg width="28" height="28" viewBox="0 0 100 100" fill="none">
+                <circle cx="50" cy="50" r="50" fill="#FC3F1D"/>
+                <path d="M56.5 22H43.7V78H56.5V55.3H61.3C70.8 55.3 76.5 50 76.5 38.4C76.5 27.3 70.8 22 61.3 22H56.5ZM56.5 33.4H60.3C65.1 33.4 67.5 36 67.5 38.9C67.5 42.4 65.4 44.1 60.5 44.1H56.5V33.4ZM23.5 78H36.3V22H30.6L22 44.4V78H23.5Z" fill="white"/>
+              </svg>
+              <div>
+                <div style={{ fontSize: 11, color: "#9c8264", letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: 3 }}>Яндекс Карты</div>
+                <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
+                  <div style={{ display: "flex", gap: 2 }}>
+                    {Array.from({ length: 5 }).map((_, i) => (
+                      <Icon key={i} name="Star" size={13} style={{ color: "#FFD700" }} />
+                    ))}
+                  </div>
+                  <span style={{ fontSize: 15, fontWeight: 600, color: "#f0e8da" }}>4.9</span>
+                  <span style={{ fontSize: 12, color: "#9c8264" }}>· 50+ отзывов</span>
                 </div>
-                <span style={{ fontSize: 15, fontWeight: 600, color: "#f0e8da" }}>4.9</span>
-                <span style={{ fontSize: 12, color: "#9c8264" }}>· 50+ отзывов</span>
               </div>
-            </div>
-          </a>
+            </a>
+
+            {/* 2ГИС */}
+            <a
+              href="https://2gis.ru/artem/firm/70000001089071398/tab/reviews"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-4"
+              style={{ background: "rgba(26,20,16,0.8)", border: "1px solid rgba(212,168,85,0.15)", borderRadius: 12, padding: "14px 22px", textDecoration: "none", transition: "border-color 0.3s" }}
+              onMouseEnter={(e) => (e.currentTarget.style.borderColor = "rgba(212,168,85,0.4)")}
+              onMouseLeave={(e) => (e.currentTarget.style.borderColor = "rgba(212,168,85,0.15)")}
+            >
+              <svg width="28" height="28" viewBox="0 0 100 100" fill="none">
+                <circle cx="50" cy="50" r="50" fill="#19A55A"/>
+                <text x="50" y="66" textAnchor="middle" fill="white" fontSize="44" fontWeight="bold" fontFamily="Arial">2</text>
+              </svg>
+              <div>
+                <div style={{ fontSize: 11, color: "#9c8264", letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: 3 }}>2ГИС</div>
+                <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
+                  <div style={{ display: "flex", gap: 2 }}>
+                    {Array.from({ length: 5 }).map((_, i) => (
+                      <Icon key={i} name="Star" size={13} style={{ color: "#FFD700" }} />
+                    ))}
+                  </div>
+                  <span style={{ fontSize: 15, fontWeight: 600, color: "#f0e8da" }}>5.0</span>
+                  <span style={{ fontSize: 12, color: "#9c8264" }}>· читать отзывы</span>
+                </div>
+              </div>
+            </a>
+          </div>
 
           <ReviewsCarousel />
         </div>
