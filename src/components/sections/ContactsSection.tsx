@@ -317,6 +317,74 @@ export default function ContactsSection() {
         </div>
       </FadeSection>
 
+      {/* ── HOW TO GET ── */}
+      <FadeSection id="howtoget" className="py-24" style={{ background: "#0F0D0B" }}>
+        <div className="max-w-5xl mx-auto px-6">
+          <div className="mb-10">
+            <div className="section-tag">Как добраться</div>
+            <h2 className="font-display font-light mt-2" style={{ fontSize: "clamp(36px, 5vw, 56px)", color: "#f0e8da" }}>Мы на карте</h2>
+            <div className="gold-divider" />
+            <p className="mt-4" style={{ color: "#9c8264", fontSize: 15, lineHeight: 1.8 }}>
+              г. Артём, мкр. Глобус 2, дом 1А
+            </p>
+          </div>
+
+          {/* Карта */}
+          <div style={{ borderRadius: 16, overflow: "hidden", border: "1px solid rgba(212,168,85,0.15)", boxShadow: "0 8px 40px rgba(0,0,0,0.5)", marginBottom: 20 }}>
+            <iframe
+              src="https://yandex.ru/map-widget/v1/?ll=132.163000%2C43.360000&z=14&pt=132.163000%2C43.360000&text=%D0%90%D1%80%D1%82%D1%91%D0%BC%2C%20%D0%BC%D0%BA%D1%80.%20%D0%93%D0%BB%D0%BE%D0%B1%D1%83%D1%81%202%2C%20%D0%B4%D0%BE%D0%BC%201%D0%90"
+              title="Пространство Пара на карте"
+              width="100%"
+              height="420"
+              frameBorder="0"
+              style={{ display: "block" }}
+              allowFullScreen
+            />
+          </div>
+
+          {/* Маршруты */}
+          <div className="grid sm:grid-cols-2 gap-4 mb-4">
+            <a
+              href="https://yandex.ru/maps/?rtext=Владивосток~43.360000,132.163000&rtt=auto"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-4 p-5 transition-all"
+              style={{ background: "rgba(26,20,16,0.7)", border: "1px solid rgba(212,168,85,0.15)", borderRadius: 12, textDecoration: "none" }}
+              onMouseEnter={(e) => (e.currentTarget.style.borderColor = "rgba(212,168,85,0.4)")}
+              onMouseLeave={(e) => (e.currentTarget.style.borderColor = "rgba(212,168,85,0.15)")}
+            >
+              <div className="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0" style={{ background: "linear-gradient(135deg,#b8862e,#e8c06a)" }}>
+                <Icon name="Navigation" size={18} style={{ color: "#100c09" }} />
+              </div>
+              <div>
+                <div style={{ fontSize: 13, color: "#c9a26e", letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: 3 }}>Из Владивостока</div>
+                <div style={{ fontSize: 14, color: "#f0e8da" }}>Маршрут на Яндекс.Картах</div>
+                <div style={{ fontSize: 12, color: "#9c8264", marginTop: 2 }}>~45 мин · трасса А-189</div>
+              </div>
+            </a>
+
+            <a
+              href="https://yandex.ru/maps/?rtext=Артём~43.360000,132.163000&rtt=auto"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-4 p-5 transition-all"
+              style={{ background: "rgba(26,20,16,0.7)", border: "1px solid rgba(212,168,85,0.15)", borderRadius: 12, textDecoration: "none" }}
+              onMouseEnter={(e) => (e.currentTarget.style.borderColor = "rgba(212,168,85,0.4)")}
+              onMouseLeave={(e) => (e.currentTarget.style.borderColor = "rgba(212,168,85,0.15)")}
+            >
+              <div className="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0" style={{ background: "linear-gradient(135deg,#b8862e,#e8c06a)" }}>
+                <Icon name="MapPin" size={18} style={{ color: "#100c09" }} />
+              </div>
+              <div>
+                <div style={{ fontSize: 13, color: "#c9a26e", letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: 3 }}>По городу Артём</div>
+                <div style={{ fontSize: 14, color: "#f0e8da" }}>Маршрут на Яндекс.Картах</div>
+                <div style={{ fontSize: 12, color: "#9c8264", marginTop: 2 }}>~10 мин · мкр. Глобус 2</div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </FadeSection>
+
       {/* ── CONTACTS ── */}
       <FadeSection id="contacts" className="py-24" style={{ background: "#100c09" }}>
         <div className="max-w-5xl mx-auto px-6">
