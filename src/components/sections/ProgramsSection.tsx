@@ -117,47 +117,118 @@ export default function ProgramsSection() {
             <p className="mt-4 max-w-xl" style={{ color: "#9c8264", fontSize: 16, lineHeight: 1.85 }}>Каждая программа — это маршрут внутрь себя. Со своим запахом, теплом и состоянием, которое останется с вами ещё долго после.</p>
           </div>
 
-          {/* Популярная программа — большая карточка */}
-          {PROGRAMS.filter((p) => p.popular).map((prog) => (
-            <div
-              key={prog.title}
-              className="relative overflow-hidden mb-1.5"
-              style={{ borderRadius: 4, height: 420 }}
-            >
-              <img src={prog.img} alt={prog.title} style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", transition: "transform 0.6s ease" }}
-                onMouseEnter={(e) => (e.currentTarget.style.transform = "scale(1.04)")}
-                onMouseLeave={(e) => (e.currentTarget.style.transform = "scale(1)")}
-              />
-              <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to right, rgba(10,8,6,0.88) 0%, rgba(10,8,6,0.4) 55%, rgba(10,8,6,0.1) 100%)" }} />
-              <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(10,8,6,0.7) 0%, transparent 60%)" }} />
-              <div style={{ position: "absolute", top: 28, left: 36 }}>
-                <div style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "linear-gradient(135deg,#D4A855,#F0C878)", borderRadius: 50, padding: "5px 16px", marginBottom: 18 }}>
-                  <span style={{ fontSize: 10, fontWeight: 700, letterSpacing: "0.15em", textTransform: "uppercase", color: "#100c09" }}>Хит</span>
-                </div>
-                <h3 className="font-display font-light" style={{ fontSize: "clamp(32px, 4vw, 52px)", color: "#f0e8da", lineHeight: 1.1, maxWidth: 480, marginBottom: 8 }}>{prog.title}</h3>
-                <p style={{ color: "#c9a26e", fontSize: 14, fontStyle: "italic", marginBottom: 22 }}>{prog.subtitle}</p>
-                <ul style={{ display: "flex", flexDirection: "column", gap: 8, marginBottom: 28 }}>
-                  {prog.features.map((f) => (
-                    <li key={f} style={{ display: "flex", alignItems: "center", gap: 8, fontSize: 14, color: "rgba(240,232,218,0.85)" }}>
-                      <Icon name="Check" size={13} style={{ color: "#c9a26e", flexShrink: 0 }} />
-                      {f}
-                    </li>
-                  ))}
-                </ul>
-                <div style={{ display: "flex", gap: 12 }}>
-                  {prog.modal && (
-                    <button onClick={() => setProgramModal(prog.modal!)} className="btn-outline-gold" style={{ fontSize: 11, padding: "11px 24px", cursor: "pointer" }}>
-                      Подробнее
-                    </button>
-                  )}
-                  <a href="#contacts" className="btn-gold" style={{ fontSize: 11, padding: "11px 24px" }}>Записаться</a>
+          {/* Популярная программа — большая карточка с flip */}
+          {PROGRAMS.filter((p) => p.popular).map((prog) => {
+            const isFlipped = !!flippedCards[prog.title];
+            return (
+              <div
+                key={prog.title}
+                className="mb-1.5"
+                style={{ borderRadius: 4, height: 420, perspective: 1200, position: "relative" }}
+              >
+                <div
+                  style={{
+                    position: "absolute", inset: 0,
+                    transformStyle: "preserve-3d",
+                    transition: "transform 0.7s cubic-bezier(0.4,0.2,0.2,1)",
+                    transform: isFlipped ? "rotateY(180deg)" : "rotateY(0deg)",
+                    borderRadius: 4,
+                  }}
+                >
+                  {/* Лицевая сторона */}
+                  <div style={{ position: "absolute", inset: 0, backfaceVisibility: "hidden", borderRadius: 4, overflow: "hidden" }}>
+                    <img src={prog.img} alt={prog.title} style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }} />
+                    <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to right, rgba(10,8,6,0.88) 0%, rgba(10,8,6,0.4) 55%, rgba(10,8,6,0.1) 100%)" }} />
+                    <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(10,8,6,0.7) 0%, transparent 60%)" }} />
+                    <div style={{ position: "absolute", top: 28, left: 36 }}>
+                      <div style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "linear-gradient(135deg,#D4A855,#F0C878)", borderRadius: 50, padding: "5px 16px", marginBottom: 18 }}>
+                        <span style={{ fontSize: 10, fontWeight: 700, letterSpacing: "0.15em", textTransform: "uppercase", color: "#100c09" }}>Хит</span>
+                      </div>
+                      <h3 className="font-display font-light" style={{ fontSize: "clamp(32px, 4vw, 52px)", color: "#f0e8da", lineHeight: 1.1, maxWidth: 480, marginBottom: 8 }}>{prog.title}</h3>
+                      <p style={{ color: "#c9a26e", fontSize: 14, fontStyle: "italic", marginBottom: 22 }}>{prog.subtitle}</p>
+                      <ul style={{ display: "flex", flexDirection: "column", gap: 8, marginBottom: 28 }}>
+                        {prog.features.map((f) => (
+                          <li key={f} style={{ display: "flex", alignItems: "center", gap: 8, fontSize: 14, color: "rgba(240,232,218,0.85)" }}>
+                            <Icon name="Check" size={13} style={{ color: "#c9a26e", flexShrink: 0 }} />
+                            {f}
+                          </li>
+                        ))}
+                      </ul>
+                      <div style={{ display: "flex", gap: 12 }}>
+                        {prog.modal && (
+                          <button onClick={() => toggleFlip(prog.title)} className="btn-outline-gold" style={{ fontSize: 11, padding: "11px 24px", cursor: "pointer" }}>
+                            Подробнее
+                          </button>
+                        )}
+                        <a href="#contacts" className="btn-gold" style={{ fontSize: 11, padding: "11px 24px" }}>Записаться</a>
+                      </div>
+                    </div>
+                    <div style={{ position: "absolute", bottom: 24, right: 32 }}>
+                      <span className="glass-tag">{prog.tag}</span>
+                    </div>
+                  </div>
+
+                  {/* Обратная сторона */}
+                  <div
+                    style={{
+                      position: "absolute", inset: 0,
+                      backfaceVisibility: "hidden",
+                      transform: "rotateY(180deg)",
+                      borderRadius: 4,
+                      background: "#1a120b",
+                      overflow: "hidden",
+                      display: "flex",
+                    }}
+                  >
+                    {prog.modal && (
+                      <>
+                        {/* Левая часть — текст */}
+                        <div style={{ flex: 1, display: "flex", flexDirection: "column", padding: "36px 40px", overflowY: "auto" }}>
+                          <div style={{ fontSize: 9, letterSpacing: "0.28em", textTransform: "uppercase", color: "#c9a26e", marginBottom: 10, fontStyle: "italic", fontFamily: "'Golos Text', sans-serif" }}>
+                            {prog.modal.label}
+                          </div>
+                          <h3 className="font-display font-light" style={{ fontSize: "clamp(24px, 3vw, 38px)", color: "#f0e8da", lineHeight: 1.1, marginBottom: 6 }}>
+                            {prog.modal.heading}
+                          </h3>
+                          <div style={{ height: 1, background: "rgba(201,162,110,0.25)", margin: "14px 0" }} />
+                          <div style={{ marginBottom: 18 }}>
+                            {prog.modal.quote.map((q, i) => (
+                              <p key={i} style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 15, fontStyle: "italic", color: "rgba(201,162,110,0.85)", lineHeight: 1.7, marginBottom: 4 }}>
+                                {q}
+                              </p>
+                            ))}
+                          </div>
+                          <div style={{ display: "flex", gap: 12, marginTop: "auto", paddingTop: 16 }}>
+                            <a href="#contacts" style={{ display: "inline-block", background: "linear-gradient(135deg,#c9a26e,#d4874a)", color: "#fff8f0", padding: "12px 32px", borderRadius: 50, fontSize: 11, fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", textDecoration: "none", fontFamily: "'Golos Text', sans-serif" }}>
+                              Записаться
+                            </a>
+                            <button
+                              onClick={() => toggleFlip(prog.title)}
+                              style={{ background: "none", border: "1px solid rgba(201,162,110,0.4)", borderRadius: 50, padding: "12px 24px", fontSize: 11, color: "#c9a26e", cursor: "pointer", letterSpacing: "0.06em", textTransform: "uppercase", fontFamily: "'Golos Text', sans-serif" }}
+                            >
+                              Назад
+                            </button>
+                          </div>
+                        </div>
+                        {/* Правая часть — шаги */}
+                        <div style={{ flex: 1, display: "flex", flexDirection: "column", padding: "36px 36px 36px 0", overflowY: "auto", gap: 14 }}>
+                          {prog.modal.steps.map((step, i) => (
+                            <div key={i} style={{ display: "grid", gridTemplateColumns: "28px 1fr", gap: "0 10px" }}>
+                              <span style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 16, fontStyle: "italic", color: "rgba(201,162,110,0.5)", paddingTop: 1 }}>{step.num}</span>
+                              <div>
+                                <div style={{ fontSize: 12, fontWeight: 600, color: "#f0e8da", marginBottom: 3, fontFamily: "'Golos Text', sans-serif" }}>{step.title}</div>
+                                <div style={{ fontSize: 12, fontStyle: "italic", color: "#9c8264", lineHeight: 1.55, fontFamily: "'Cormorant Garamond', serif" }}>{step.desc}</div>
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      </>
+                    )}
+                  </div>
                 </div>
               </div>
-              <div style={{ position: "absolute", bottom: 24, right: 32 }}>
-                <span className="glass-tag">{prog.tag}</span>
-              </div>
-            </div>
-          ))}
+            );
+          })}
 
           {/* Остальные программы — 3 в ряд */}
           <div className="grid md:grid-cols-3 gap-1.5">
