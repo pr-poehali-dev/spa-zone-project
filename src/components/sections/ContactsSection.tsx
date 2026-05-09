@@ -435,10 +435,10 @@ export default function ContactsSection() {
               <h3 className="font-display font-light mb-6" style={{ fontSize: "clamp(22px, 4vw, 28px)", color: "#f0e8da" }}>Как нас найти</h3>
               <div className="space-y-0">
                 {[
-                  { icon: "MapPin", title: "Адрес", text: "г. Артём, мкр. Глобус 2, дом 1А" },
-                  { icon: "Phone", title: "Телефон", text: "+7 908 980-35-45" },
-                  { icon: "Mail", title: "Email", text: "fitnslim.par@mail.ru\nОтвечаем с 10:00 до 22:00" },
-                  { icon: "Clock", title: "Время работы", text: "Пн–Вс: 10:00–22:00\nБез выходных" },
+                  { icon: "MapPin", title: "Адрес", text: "г. Артём, мкр. Глобус 2, дом 1А", href: undefined },
+                  { icon: "Phone", title: "Телефон", text: "+7 908 980-35-45", href: "tel:+79089803545" },
+                  { icon: "Mail", title: "Email", text: "fitnslim.par@mail.ru\nОтвечаем с 10:00 до 22:00", href: undefined },
+                  { icon: "Clock", title: "Время работы", text: "Пн–Вс: 10:00–22:00\nБез выходных", href: undefined },
                 ].map((item) => (
                   <div
                     key={item.title}
@@ -446,11 +446,21 @@ export default function ContactsSection() {
                     style={{ borderBottom: "1px solid rgba(212,168,85,0.08)" }}
                   >
                     <Icon name={item.icon} size={16} style={{ color: "#c9a26e", marginTop: 2, flexShrink: 0 }} />
-                    <div>
+                    <div className="flex-1">
                       <div style={{ fontSize: 10, letterSpacing: "0.15em", textTransform: "uppercase", color: "#c9a26e", fontWeight: 500, marginBottom: 3 }}>
                         {item.title}
                       </div>
                       <div style={{ fontSize: 14, color: "#f0e8da", lineHeight: 1.7, whiteSpace: "pre-line" }}>{item.text}</div>
+                      {item.href && (
+                        <a
+                          href={item.href}
+                          className="inline-flex items-center gap-2 mt-3 btn-gold"
+                          style={{ fontSize: 13, padding: "8px 20px" }}
+                        >
+                          <Icon name="Phone" size={13} />
+                          Позвонить
+                        </a>
+                      )}
                     </div>
                   </div>
                 ))}
@@ -470,7 +480,17 @@ export default function ContactsSection() {
               style={{ height: 40, width: "auto" }}
             />
           </div>
-          <div style={{ fontSize: 12, color: "#9c8264" }}>© 2023–2026 Пространство Пара. Все права защищены.</div>
+          <div className="flex flex-col items-center gap-2">
+            <a
+              href="tel:+79089803545"
+              className="flex items-center gap-2"
+              style={{ fontFamily: "'Golos Text', sans-serif", fontSize: 15, letterSpacing: "0.03em", textDecoration: "none", background: "linear-gradient(90deg,#b8862e,#e8c06a)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}
+            >
+              <Icon name="Phone" size={14} style={{ color: "#c9a26e" }} />
+              +7 908 980-35-45
+            </a>
+            <div style={{ fontSize: 12, color: "#9c8264" }}>© 2023–2026 Пространство Пара. Все права защищены.</div>
+          </div>
           <div className="flex gap-3">
             {["Instagram", "MessageCircle", "Send"].map((icon) => (
               <a
