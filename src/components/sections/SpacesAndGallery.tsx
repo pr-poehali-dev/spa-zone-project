@@ -172,7 +172,10 @@ function SpaceCard({ space }: { space: { icon: string; title: string; desc: stri
         background: "linear-gradient(to top, rgba(10,8,6,0.85) 0%, rgba(10,8,6,0.2) 50%, transparent 100%)",
       }} />
       <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, padding: "20px 20px 18px" }}>
-        <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 4 }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 6 }}>
+          <div style={{ width: 28, height: 28, borderRadius: "50%", background: "rgba(212,168,85,0.15)", border: "1px solid rgba(212,168,85,0.3)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+            <Icon name={space.icon as Parameters<typeof Icon>[0]["name"]} size={14} style={{ color: "#c9a26e" }} />
+          </div>
           <span className="glass-tag" style={{ fontSize: 9 }}>{space.tag}</span>
         </div>
         <h3 className="font-display" style={{ fontSize: "clamp(16px, 2vw, 22px)", color: "#f0e8da", fontWeight: 400, lineHeight: 1.2 }}>{space.title}</h3>
