@@ -91,7 +91,7 @@ function ReviewsCarousel() {
           <Icon name="ChevronLeft" size={16} style={{ color: "#c9a26e" }} />
         </button>
         <div style={{ display: "flex", gap: 7 }}>
-          {Array.from({ length: pairs }).map((_, i) => (
+          {[...Array(pairs).keys()].map((i) => (
             <button
               key={i}
               onClick={() => goTo(i * 2, i >= pairIndex ? 1 : -1)}

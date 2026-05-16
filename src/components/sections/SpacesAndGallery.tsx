@@ -53,7 +53,7 @@ function GalleryCarousel({ items, onOpen }: { items: typeof GALLERY_ITEMS; onOpe
           <Icon name="ChevronLeft" size={15} style={{ color: "#c9a26e" }} />
         </button>
         <div style={{ display: "flex", gap: 6 }}>
-          {Array.from({ length: pairs }).map((_, i) => (
+          {[...Array(pairs).keys()].map((i) => (
             <button key={i} onClick={() => goTo(i)} style={{ width: i === page ? 18 : 6, height: 6, borderRadius: 99, background: i === page ? "#c9a26e" : "rgba(255,255,255,0.3)", border: "none", cursor: "pointer", padding: 0, transition: "all 0.3s" }} />
           ))}
         </div>
