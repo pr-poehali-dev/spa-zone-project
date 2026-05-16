@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Icon from "@/components/ui/icon";
 import HeroSection from "@/components/sections/HeroSection";
 import SpacesAndGallery from "@/components/sections/SpacesAndGallery";
