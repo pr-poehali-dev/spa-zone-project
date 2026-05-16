@@ -224,21 +224,6 @@ export default function HeroSection({ activeNav, scrolled, parallaxY, heroIndex 
             </p>
 
             <div
-              className="flex flex-col sm:flex-row gap-3 items-start sm:items-center"
-              style={{ animation: "fadeUp 0.8s 0.6s ease forwards", opacity: 0 }}
-            >
-              <a
-                href="tel:+79089803545"
-                className="inline-flex items-center gap-2"
-                style={{ color: "#e8c08a", fontSize: 16, fontWeight: 600, letterSpacing: "0.03em", textDecoration: "none" }}
-              >
-                <Icon name="Phone" size={15} style={{ color: "#e8c08a" }} />
-                +7 908 980-35-45
-              </a>
-
-            </div>
-
-            <div
               className="flex flex-wrap gap-3 mt-6"
               style={{ animation: "fadeUp 0.8s 0.75s ease forwards", opacity: 0 }}
             >
