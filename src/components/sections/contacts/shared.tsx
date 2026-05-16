@@ -1,8 +1,6 @@
 import React from "react";
 import { useInView } from "./useInView";
 
-export { useInView };
-
 export function FadeSection({ children, className = "", id = "", style }: { children: React.ReactNode; className?: string; id?: string; style?: React.CSSProperties }) {
   const { ref, inView } = useInView();
   return (
