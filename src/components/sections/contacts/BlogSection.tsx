@@ -1,11 +1,11 @@
-import React from "react";
+import { type Dispatch, type SetStateAction } from "react";
 import Icon from "@/components/ui/icon";
 import { BLOG_POSTS } from "@/data/indexData";
 import { FadeSection } from "./shared";
 
 interface BlogSectionProps {
   flippedBlog: Record<string, boolean>;
-  setFlippedBlog: React.Dispatch<React.SetStateAction<Record<string, boolean>>>;
+  setFlippedBlog: Dispatch<SetStateAction<Record<string, boolean>>>;
 }
 
 export default function BlogSection({ flippedBlog, setFlippedBlog }: BlogSectionProps) {

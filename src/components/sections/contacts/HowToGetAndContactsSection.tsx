@@ -1,17 +1,17 @@
-import React from "react";
+import { type Dispatch, type SetStateAction } from "react";
 import Icon from "@/components/ui/icon";
 import PolicyModal from "@/components/PolicyModal";
 import { FadeSection } from "./shared";
 
 interface HowToGetAndContactsSectionProps {
   formData: { name: string; phone: string; comment: string };
-  setFormData: React.Dispatch<React.SetStateAction<{ name: string; phone: string; comment: string }>>;
+  setFormData: Dispatch<SetStateAction<{ name: string; phone: string; comment: string }>>;
   formStatus: "idle" | "loading" | "success" | "error";
-  setFormStatus: React.Dispatch<React.SetStateAction<"idle" | "loading" | "success" | "error">>;
+  setFormStatus: Dispatch<SetStateAction<"idle" | "loading" | "success" | "error">>;
   policyModal: "privacy" | "consent" | null;
-  setPolicyModal: React.Dispatch<React.SetStateAction<"privacy" | "consent" | null>>;
+  setPolicyModal: Dispatch<SetStateAction<"privacy" | "consent" | null>>;
   policyChecked: boolean;
-  setPolicyChecked: React.Dispatch<React.SetStateAction<boolean>>;
+  setPolicyChecked: Dispatch<SetStateAction<boolean>>;
 }
 
 export default function HowToGetAndContactsSection({
