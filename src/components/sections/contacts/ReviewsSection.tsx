@@ -31,7 +31,7 @@ function ReviewCard({ r }: { r: typeof REVIEWS[0] }) {
         <YandexLogo />
       </div>
       <div className="flex gap-1 mb-4">
-        {Array.from({ length: r.stars }).map((_, i) => (
+        {[...Array(r.stars).keys()].map((i) => (
           <Icon key={i} name="Star" size={14} style={{ color: "#FFD700" }} />
         ))}
       </div>
@@ -140,7 +140,7 @@ export default function ReviewsSection() {
               <div style={{ fontSize: 11, color: "#9c8264", letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: 3 }}>Яндекс Карты</div>
               <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
                 <div style={{ display: "flex", gap: 2 }}>
-                  {Array.from({ length: 5 }).map((_, i) => (
+                  {[...Array(5).keys()].map((i) => (
                     <Icon key={i} name="Star" size={13} style={{ color: "#FFD700" }} />
                   ))}
                 </div>
@@ -168,7 +168,7 @@ export default function ReviewsSection() {
               <div style={{ fontSize: 11, color: "#9c8264", letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: 3 }}>2ГИС</div>
               <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
                 <div style={{ display: "flex", gap: 2 }}>
-                  {Array.from({ length: 5 }).map((_, i) => (
+                  {[...Array(5).keys()].map((i) => (
                     <Icon key={i} name="Star" size={13} style={{ color: "#FFD700" }} />
                   ))}
                 </div>
