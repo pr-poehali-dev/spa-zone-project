@@ -235,7 +235,7 @@ export default function HeroSection({ activeNav, scrolled, parallaxY, heroIndex 
                 <Icon name="Phone" size={15} style={{ color: "#e8c08a" }} />
                 +7 908 980-35-45
               </a>
-              <a href="#contacts" className="btn-outline-gold">Жду звонка</a>
+
             </div>
 
             <div
