@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Icon from "@/components/ui/icon";
 import { SPACES, GALLERY_ITEMS } from "@/data/indexData";
 
@@ -127,7 +127,7 @@ function GalleryCard({ item, onOpen }: { item: { img: string; title: string; cat
       </div>
       {images.length > 1 && (
         <div style={{ position: "absolute", bottom: 8, left: "50%", transform: "translateX(-50%)", display: "flex", gap: 5, zIndex: 10 }}>
-          {images.map((_, i) => (
+          {[...images.keys()].map((i) => (
             <div key={i} style={{ width: i === idx ? 14 : 5, height: 5, borderRadius: 99, background: i === idx ? "#c9a26e" : "rgba(255,255,255,0.4)", transition: "all 0.3s" }} />
           ))}
         </div>
