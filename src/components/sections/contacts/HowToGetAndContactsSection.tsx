@@ -1,3 +1,4 @@
+import React from "react";
 import Icon from "@/components/ui/icon";
 import PolicyModal from "@/components/PolicyModal";
 import { FadeSection } from "./shared";

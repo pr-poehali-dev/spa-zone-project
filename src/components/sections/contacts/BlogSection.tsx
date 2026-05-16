@@ -1,3 +1,4 @@
+import React from "react";
 import Icon from "@/components/ui/icon";
 import { BLOG_POSTS } from "@/data/indexData";
 import { FadeSection } from "./shared";
