@@ -9,7 +9,7 @@ interface HeroSectionProps {
   heroIndex: number;
 }
 
-export default function HeroSection({ activeNav, scrolled, parallaxY, heroIndex }: HeroSectionProps) {
+export default function HeroSection({ scrolled, parallaxY, heroIndex }: HeroSectionProps) {
   const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
